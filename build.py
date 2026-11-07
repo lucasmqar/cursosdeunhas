@@ -205,7 +205,7 @@ def audit(n):
     bad = 0
     for f in OUT.rglob("*.html"):
         rel = str(f.relative_to(OUT))
-        if rel.startswith("ir/") or rel.startswith("google"):
+        if rel.startswith("ir/") or rel.startswith("google") or rel == "404.html":
             continue
         t = f.read_text("utf-8")
         title = html.unescape(re.search(r"<title>(.*?)</title>", t).group(1))
