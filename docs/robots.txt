@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /ir/
+
+Sitemap: https://cursosdeunhas.com.br/sitemap.xml
