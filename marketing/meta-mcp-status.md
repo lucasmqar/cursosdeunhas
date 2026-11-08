@@ -213,3 +213,60 @@ Os 8 vídeos ficaram `ready` logo na primeira consulta. As artes já existiam na
    posicionamento foi aplicada depois de publicado.
 4. **Análise:** ler `effective_status` de novo mais tarde (esperado PENDING_REVIEW → ACTIVE, ou DISAPPROVED). O motivo de
    reprovação só aparece no Ads Manager.
+
+## Troca de Página
+
+2026-11-08, só pelo MCP `meta-ads`. **Motivo:** os 8 anúncios da seção "Publicação" saíam com a Página errada (App FLUX
+171858119345866 / Instagram pede_flux 17841479956486639). A sessão principal pausou a campanha antes de qualquer gasto
+(R$ 0, 0 impressões). A Página Talita Frazzino foi cogitada e cancelada; nada foi criado com ela.
+
+**Página nova:** "Cursos de Unhas", `page_id` **1392422033959176**. **Sem Instagram:** os criativos não têm
+`instagram_user_id`, então o Meta usa a identidade da própria Página no Instagram. Não usei o pede_flux. A API aceitou
+sem pedir Instagram nem vínculo extra da Página com a conta. Mesmo assim, a Página ainda não aparece em
+`ads_get_ad_account_pages`, que hoje lista App FLUX, Talita Frazzino e Lucas Marques.
+
+### Estado atual (leitura de volta)
+
+| Nível | ID | status / effective_status |
+|---|---|---|
+| Campanha "Unhas \| Indireto \| Lead" | 52521304526791 | **ACTIVE / ACTIVE**, R$ 50/dia |
+| Conjunto "BR \| Mulheres 20-50 \| Advantage+" | 52521304526991 | ACTIVE / ACTIVE |
+
+**8 anúncios novos (Página Cursos de Unhas):**
+
+| Anúncio | ID | Criativo | Post (Página_post) | effective_status |
+|---|---|---|---|---|
+| N1 — imagem — CdU | 52521309791191 | 1423493029898578 | 1392422033959176_122107607925532915 | PENDING_REVIEW (em análise) |
+| N2 — imagem — CdU | 52521309827791 | 1673765444124104 | 1392422033959176_122107607961532915 | PENDING_REVIEW (em análise) |
+| N3 — imagem — CdU | 52521309843991 | 1584700273426440 | 1392422033959176_122107607913532915 | PENDING_REVIEW (em análise) |
+| N4 — imagem — CdU | 52521309853391 | 1074943402259503 | 1392422033959176_122107607967532915 | PENDING_REVIEW (em análise) |
+| N1 — vídeo — CdU | 52521309885991 | 2295412684366219 | 1392422033959176_122107608141532915 | PENDING_REVIEW (em análise) |
+| N2 — vídeo — CdU | 52521309907391 | 1881415766360536 | 1392422033959176_122107608297532915 | PENDING_REVIEW (em análise) |
+| N3 — vídeo — CdU | 52521309994391 | 2079558266078030 | 1392422033959176_122107608243532915 | PENDING_REVIEW (em análise) |
+| N4 — vídeo — CdU | 52521310001591 | 1868347700988460 | 1392422033959176_122107608201532915 | PENDING_REVIEW (em análise) |
+
+Conteúdo igual ao da seção "Publicação": mesmos vídeos e artes, regras 9:16 (Stories/Reels FB+IG) e 1:1 (resto),
+textos, títulos, descrição, URLs `?src=meta-n<k>`, LEARN_MORE, rastreamento no pixel 1828949965085065, Advantage+ de
+criativo desligado (`ads_get_creatives` não lista nenhuma melhoria ligada), aviso de IA `OPT_IN` nos vídeos e `OPT_OUT`
+nas imagens. `effective_object_story_id` dos 8 começa com 1392422033959176, ou seja, o post é da Página Cursos de Unhas.
+6 dos 8 já têm `effective_instagram_media_id` (a cópia do post no Instagram); N1 vídeo e N2 vídeo ainda não.
+
+**8 anúncios antigos (App FLUX / pede_flux):** PAUSED / PAUSED, não apagados. Imagens 52521307478391, 52521307605191,
+52521307644591 e 52521307656791; vídeos 52521307661591, 52521307665391, 52521307668591 e 52521307673391.
+
+**Erros de entrega** (`ads_get_errors` na campanha): nenhum. Rascunho da conta: vazio depois da publicação.
+
+### Previews do N1 — vídeo — CdU (52521309885991)
+
+- Facebook Reels: https://business.facebook.com/ads/api/preview_iframe.php?d=AQLr7BlY6cj5pph5kPVJ2xRnARVDHBtHhx37rYf6y7DWcCW8O6WU_Nphn7_MF4xa4BqhPSnv-x6rLDiPhtKQf6mcxS9fR5sFVVs9l6bCTGc_IpKYuGtpVyaOM47WVdI2Zu1cK4kdPg2uEmoyMPgByXE2iDn5xtfbW_-8FJEC-zZ1fHDVzYFd_Z1mtDNgl4Rg-RMFZfHb7BIwHRmhKgpcWnbdTFLjv74wYn2p163w6LpnHQ&t=AQKVSmoR--1YyCtolTg
+- Facebook Feed: https://business.facebook.com/ads/api/preview_iframe.php?d=AQIW3PglqcFUJfVVIGD0N6ODCAzS7yIXQJpPfN70nwoEFJTAYsBu1S5ch0xvanLmGB2lexjM1mSoI89S44gbChZuVgmr9UStokcgv8vo2_D4_11_LfD5kTPodekNY335I7UbfGdgHCsCK4Q62YZrDWBXvgoRXsQzb_RQvnqAKpjULR31ttDpN8dG6OzcBEzJWZIvl06fQM4VFRS8EPCTLBAx-zQhpAMKUjkR0fmgpRWDbg&t=AQJVTJGBJqAZ1voSZnI
+- Instagram Reels: https://business.facebook.com/ads/api/preview_iframe.php?d=AQKe6en87LxBQ2EQILfUOj9LOUtQOCWY1smyKyWsS3TqZnuGfiKEIo-1HVF3Fv0euZC7RwWn5hmmqm7E-lRfQpU68V4_6zclWmobTW6koFjpiDTGEmuI9naQmYstpCf0TDNAY801KQcme9mGW74TeuYp1AHgWHCDSozwqNXewlj9ed5r_JTFt5GV-Zbhw0eWh1oBo6Oc3_Ql2Q_FYwrXd0EOMoMu1JfqEqQkf2XWL6ZaLQ&t=AQKmkeMv5h-LK4arRRY
+
+**Não confirmado visualmente:** o preview do MCP não devolve o nome exibido, e o link baixado fora do navegador volta só
+como página de redirecionamento. A Página está confirmada pelo ID do post. O nome "Cursos de Unhas" na tela, sobretudo
+no Instagram, onde aparece a identidade da própria Página, precisa ser visto abrindo esses links logado (os links expiram).
+
+### Pendências
+- Abrir os previews logado e conferir o nome no Reels/Feed do Facebook e no Reels do Instagram.
+- Ler `effective_status` de novo (hoje os 8 estão em PENDING_REVIEW; próximo: ACTIVE ou DISAPPROVED). O motivo de reprovação só aparece no Ads Manager.
+- Os 4 criativos sem uso da seção anterior (App FLUX) continuam na biblioteca e podem ser apagados.
