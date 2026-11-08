@@ -15,6 +15,9 @@ TODAY = datetime.date.today().isoformat()
 ORG = {"@type": "Organization", "@id": BASE + "/#org", "name": S["name"], "url": BASE + "/", "logo": BASE + "/favicon.svg"}
 
 
+TAG = "<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-18563480938\"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','AW-18563480938');</script>"
+
+
 def e(s):
     return html.escape(str(s), quote=True)
 
@@ -91,7 +94,8 @@ def render(m, body):
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#a3245e">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-{ver}<style>{CSS}</style>
+{ver}<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18563480938"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','AW-18563480938');</script>
+<style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
 <body>
@@ -149,9 +153,10 @@ def review_body(p):
 
 
 def redirect(url):
+    url = url + ("&" if "?" in url else "?") + "src=cursosdeunhas"
     return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">'
-            '<title>Redirecionando…</title><meta http-equiv="refresh" content="0;url=%s"></head><body><p>Abrindo a página oficial… '
-            '<a href="%s" rel="sponsored nofollow">clique aqui</a> se não abrir.</p><script>location.replace(%s)</script></body></html>'
+            '<title>Redirecionando…</title>' + TAG + '<meta http-equiv="refresh" content="2;url=%s"></head><body><p>Abrindo a página oficial… '
+            '<a href="%s" rel="sponsored nofollow">clique aqui</a> se não abrir.</p><script>setTimeout(function(){location.replace(%s)},800)</script></body></html>'
             % (e(url), e(url), json.dumps(url)))
 
 
