@@ -41,6 +41,8 @@ CSS = (":root{--p:#a3245e;--t:#1f1a1d;--m:#5f565c;--b:#faf4f7;--l:#eadde4}*{box-
        "table{width:100%;border-collapse:collapse;font-size:15px;display:block;overflow-x:auto}"
        "th,td{border:1px solid var(--l);padding:8px;text-align:left;vertical-align:top}th{background:var(--b)}"
        "details{border-bottom:1px solid var(--l);padding:10px 0}summary{cursor:pointer;font-weight:600}"
+       ".pick{background:var(--b);border:2px solid var(--p);border-radius:12px;padding:14px 16px;margin:18px 0}.pick p{margin:6px 0}.btn.sm{padding:7px 12px;font-size:15px}"
+       ".sticky{display:none}@media(max-width:760px){.sticky{display:block;position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:#fff;border-top:1px solid var(--l);text-align:center;z-index:9}.sticky .btn{display:block}body{padding-bottom:76px}}"
        "footer{margin-top:48px;border-top:1px solid var(--l);background:var(--b);font-size:14px;color:var(--m)}"
        "footer .w{padding-top:16px;padding-bottom:16px}footer a{color:var(--m);margin-right:14px}")
 
@@ -119,16 +121,24 @@ def cards():
         return '<p class="card">Análises dos cursos em atualização.</p>'
     out = []
     for i, p in enumerate(P, 1):
-        out.append(f"""<div class="card"><h3>{i}. {e(p['name'])}</h3><p class="meta">{e(p['producer'])} · {e(p['best'])}</p><p>{e(p['summary'])}</p><p><strong>Preço:</strong> {e(p['price'])} · <strong>Garantia:</strong> {e(p['guarantee'])} · <strong>Certificado:</strong> {e(p['certificate'])}</p><p><a href="/{p['slug']}/">Ler análise completa</a> &nbsp; <a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver página oficial</a></p></div>""")
+        out.append(f"""<div class="card"><h3>{i}. {e(p['name'])}</h3><p class="meta">{e(p['producer'])} · {e(p['best'])}</p><p>{e(p['summary'])}</p><p><strong>Preço:</strong> {e(p['price'])} · <strong>Garantia:</strong> {e(p['guarantee'])} · <strong>Certificado:</strong> {e(p['certificate'])}</p><p><a href="/{p['slug']}/">Ler análise completa</a> &nbsp; <a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver preço e garantia →</a></p></div>""")
     return "".join(out)
 
 
 def table():
     if not P:
         return ""
-    rows = "".join(f"<tr><td><a href='/{p['slug']}/'>{e(p['name'])}</a></td><td>{e(p['best'])}</td><td>{e(p['price'])}</td><td>{e(p['certificate'])}</td><td>{e(p['guarantee'])}</td></tr>" for p in P)
-    return ("<table><thead><tr><th>Curso</th><th>Melhor para</th><th>Preço</th><th>Certificado</th><th>Garantia</th></tr></thead><tbody>"
+    rows = "".join(f"<tr><td><a href='/{p['slug']}/'>{e(p['name'])}</a></td><td>{e(p['best'])}</td><td>{e(p['price'])}</td><td>{e(p['certificate'])}</td><td>{e(p['guarantee'])}</td><td><a class='btn sm' href='{hot(p)}' rel='sponsored nofollow'>Ver preço</a></td></tr>" for p in P)
+    return ("<table><thead><tr><th>Curso</th><th>Melhor para</th><th>Preço</th><th>Certificado</th><th>Garantia</th><th></th></tr></thead><tbody>"
             + rows + "</tbody></table>")
+
+
+def picks():
+    if len(P) < 3:
+        return ""
+    lab = ["Para trabalhar com alongamento", "Começando do zero, formação completa", "Mais barato, para iniciantes"]
+    rows = "".join(f"<p><strong>{lab[i]}:</strong> <a href='/{p['slug']}/'>{e(p['name'])}</a> ({e(p['price'].split(' (')[0])}) <a class='btn sm' href='{hot(p)}' rel='sponsored nofollow'>Ver preço e garantia →</a></p>" for i, p in enumerate(P[:3]))
+    return '<div class="pick" id="escolha"><p><strong>Nossa escolha por objetivo</strong></p>' + rows + '<p class="meta">Todos com garantia de pelo menos 7 dias: se não gostar, pede o reembolso.</p></div>'
 
 
 def ul(xs):
@@ -137,7 +147,7 @@ def ul(xs):
 
 def review_body(p):
     return f"""<p>{e(p['intro'])}</p>
-<div class="card"><p><strong>Resumo:</strong> {e(p['verdict'])}</p><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver condições na página oficial</a></div>
+<div class="card"><p><strong>Resumo:</strong> {e(p['verdict'])}</p><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver preço e garantia na página oficial →</a></div>
 <h2>Ficha do curso</h2>
 <table><tbody><tr><th>Produtor(a)</th><td>{e(p['producer'])}</td></tr><tr><th>Indicado para</th><td>{e(p['best'])}</td></tr><tr><th>Preço</th><td>{e(p['price'])}</td></tr><tr><th>Acesso</th><td>{e(p['access'])}</td></tr><tr><th>Certificado</th><td>{e(p['certificate'])}</td></tr><tr><th>Garantia</th><td>{e(p['guarantee'])}</td></tr></tbody></table>
 <h2>O que o curso ensina</h2>{ul(p['modules'])}
@@ -148,6 +158,7 @@ def review_body(p):
 <h2>{e(p['name'])} vale a pena?</h2><p>{e(p['verdict'])}</p>
 <h2>Como comprar com segurança</h2><p>Compre apenas pela página oficial, que tem checkout seguro. Pelo Código de Defesa do Consumidor, compras on-line têm direito de arrependimento em até 7 dias; confira também a garantia informada pelo produtor.</p>
 <p><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Acessar a página oficial</a></p>
+<div class="sticky"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver preço e garantia de {e(p['name'])} →</a></div>
 <p class="meta">Como fizemos esta análise: reunimos as informações públicas da página oficial e da plataforma de vendas em {br(p.get('checked', TODAY))}. Não é depoimento de aluno; preços e condições podem mudar.</p>
 <p>Compare com outras opções no nosso <a href="/melhor-curso-de-unhas-online/">ranking de cursos de unhas on-line</a>.</p>"""
 
@@ -168,7 +179,7 @@ def main():
     for f in sorted((R / "content").glob("*.html")):
         raw = f.read_text("utf-8")
         m = json.loads(re.match(r"<!--META(.*?)-->", raw, re.S).group(1))
-        pages.append((m, raw.split("-->", 1)[1].strip().replace("{{CARDS}}", cards()).replace("{{TABLE}}", table())))
+        pages.append((m, raw.split("-->", 1)[1].strip().replace("{{CARDS}}", cards()).replace("{{TABLE}}", table()).replace("{{PICKS}}", picks())))
     for p in P:
         chk = p.get("checked", TODAY)
         pages.append(({"path": "/%s/" % p["slug"], "type": "review", "title": p["title"], "desc": p["desc"],
