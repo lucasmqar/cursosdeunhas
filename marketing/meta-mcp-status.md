@@ -350,3 +350,4 @@ trilha, nome da Página) é feita abrindo os links.
 - ATIVOS (Página Cursos de Unhas, originais sem motion): imagens 52521309791191, 52521309827791, 52521309843991, 52521309853391; vídeos 52521309885991, 52521309907391, 52521309994391, 52521310001591.
 - ARQUIVADOS: 7 anúncios da Página errada (App FLUX/pede_flux) e os 4 motion.
 - "N3 — vídeo" antigo (52521307668591, pede_flux): edição solta do rascunho descartada com confirmação do usuário e anúncio ARQUIVADO. Rascunho da conta vazio. Os 8 anúncios da Página errada estão arquivados.
+- Renomeadas (08/11): 52521304526791 → "CURSOS DE UNHAS | Unhas | Indireto | Lead | Site /comecar" (mantém o trecho "Unhas | Indireto | Lead" usado pelas 2 regras automáticas); 52521322785991 → "PEDE FLUX | Mensagens | Messenger". Nenhuma campanha de unhas duplicada em nenhuma das 4 contas; cópias antigas de outros projetos mantidas (usuário optou por não excluir).
