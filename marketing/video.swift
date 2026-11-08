@@ -11,7 +11,8 @@ let dur = CMTimeGetSeconds(audio.duration) + 1.0
 let tmp = URL(fileURLWithPath: a[3] + ".tmp.mov")
 try? FileManager.default.removeItem(at: tmp)
 let w = try! AVAssetWriter(outputURL: tmp, fileType: .mov)
-let inp = AVAssetWriterInput(mediaType: .video, outputSettings: [AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey: W, AVVideoHeightKey: H])
+let inp = AVAssetWriterInput(mediaType: .video, outputSettings: [AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey: W, AVVideoHeightKey: H,
+    AVVideoCompressionPropertiesKey: [AVVideoAverageBitRateKey: 2_500_000, AVVideoProfileLevelKey: AVVideoProfileLevelH264HighAutoLevel]])
 let ad = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: inp, sourcePixelBufferAttributes: [
     kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32ARGB,
     kCVPixelBufferWidthKey as String: W, kCVPixelBufferHeightKey as String: H])
@@ -44,7 +45,7 @@ try! at.insertTimeRange(CMTimeRange(start: .zero, duration: audio.duration), of:
                         at: CMTime(value: 4, timescale: 10))
 let out = URL(fileURLWithPath: a[3])
 try? FileManager.default.removeItem(at: out)
-let ex = AVAssetExportSession(asset: comp, presetName: AVAssetExportPresetHighestQuality)!
+let ex = AVAssetExportSession(asset: comp, presetName: AVAssetExportPresetPassthrough)!
 ex.outputURL = out; ex.outputFileType = .mp4
 ex.exportAsynchronously { sem.signal() }; sem.wait()
 try? FileManager.default.removeItem(at: tmp)
