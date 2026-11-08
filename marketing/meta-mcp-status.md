@@ -280,3 +280,67 @@ no Instagram, onde aparece a identidade da própria Página, precisa ser visto a
 
 **Regra "pausar CTR baixo" não existe:** o Meta recusa regras que pausam anúncio por métrica de desempenho em campanhas com orçamento na campanha (CBO). A regra de lead e o próprio CBO cobrem esse papel.
 **Frequência:** a interface não tem "a cada 72 h"; ficou "1 vez por semana" (mais conservador).
+
+## Vídeos motion
+
+2026-11-08, só pelo MCP `meta-ads`. Pedido do usuário: trocar **só os anúncios de vídeo** pelos novos vídeos em motion
+design (legenda, trilha, efeitos e narração mais emotiva). As imagens, a campanha e o conjunto não foram mexidos.
+
+### Vídeos enviados (mesmas URLs `raw.githubusercontent.com/lucasmqar/cursosdeunhas/midia/n<k>_*.mp4`, arquivos novos)
+
+| | 1:1 | 9:16 | Duração |
+|---|---|---|---|
+| N1 motion | 2206346463562553 | 2010900476245753 | 36,0 s |
+| N2 motion | 1386375326908383 | 4084628831830784 | 29,4 s |
+| N3 motion | 1323215999866321 | 2416190892539448 | 29,8 s |
+| N4 motion | 3675956985907032 | 1031360420001825 | 29,6 s |
+
+São arquivos novos: etag diferente da versão anterior no GitHub, 10–16 MB cada, durações diferentes das antigas. Os 8
+ficaram `ready` antes de os anúncios serem criados.
+
+### Anúncios
+
+| Anúncio | ID | Criativo | Post (Página_post) | status / effective_status |
+|---|---|---|---|---|
+| N1 — motion — CdU | 52521322782991 | 1664735558602541 | 1392422033959176_122107681185532915 | ACTIVE / **ACTIVE (aprovado)** |
+| N2 — motion — CdU | 52521322809191 | 29149789511304441 | 1392422033959176_122107681137532915 | ACTIVE / **ACTIVE (aprovado)** |
+| N3 — motion — CdU | 52521322831391 | 1435513638154066 | 1392422033959176_122107681071532915 | ACTIVE / **ACTIVE (aprovado)** |
+| N4 — motion — CdU | 52521322863791 | 1588199096323531 | 1392422033959176_122107681083532915 | ACTIVE / **ACTIVE (aprovado)** |
+| N1 — vídeo — CdU (antigo) | 52521309885991 | | | **PAUSED / PAUSED** |
+| N2 — vídeo — CdU (antigo) | 52521309907391 | | | **PAUSED / PAUSED** |
+| N3 — vídeo — CdU (antigo) | 52521309994391 | | | **PAUSED / PAUSED** |
+| N4 — vídeo — CdU (antigo) | 52521310001591 | | | **PAUSED / PAUSED** |
+| N1 — imagem — CdU | 52521309791191 | | | ACTIVE / **ACTIVE (aprovado)** |
+| N2 — imagem — CdU | 52521309827791 | | | ACTIVE / **ACTIVE (aprovado)** |
+| N3 — imagem — CdU | 52521309843991 | | | ACTIVE / **ACTIVE (aprovado)** |
+| N4 — imagem — CdU | 52521309853391 | | | ACTIVE / **ACTIVE (aprovado)** |
+
+Os vídeos antigos foram pausados direto no publicado (`is_draft=false`); a leitura seguinte já mostrou
+`effective_status=PAUSED`. Nada foi apagado.
+
+Campanha 52521304526791: **ACTIVE / ACTIVE**, R$ 50/dia. Erros de entrega (`ads_get_errors`): nenhum. Rascunho da conta
+vazio depois da publicação.
+
+**Configuração dos 4 motion:** igual aos vídeos CdU anteriores. Página 1392422033959176 sem `instagram_user_id`, 9:16 em
+Stories/Reels FB+IG e 1:1 no resto, mesmos textos, títulos, descrição, URL `?src=meta-n<k>`, LEARN_MORE, pixel
+1828949965085065 e miniatura = arte N<k> do mesmo formato. Aviso de IA `OPT_IN`. Advantage+ de criativo desligado, agora
+também com `video_auto_crop`, `audio` e `music_generation` em OPT_OUT e `audios: [{type: opted_out}]` no asset_feed_spec
+(sem música automática). `ads_get_creatives` não lista nenhuma melhoria ligada. Os 4 posts são da Página Cursos de Unhas.
+A cópia no Instagram (`effective_instagram_media_id`) ainda não tinha sido gerada na leitura.
+
+### Previews do N1 — motion — CdU (52521322782991)
+
+- Instagram Reels: https://business.facebook.com/ads/api/preview_iframe.php?d=AQLf602rNkdFdKH7XJbn4gle884rXp6612jcyY8W8PhLZQsKeaL90Z4-8dn5WYr5uxb3VEnLP2wF4iJfxqinHXM0Sj3htF52M6pk0QeixCWw37mwaKQRUEL7BUVOu1k5lzectbG0EARKSAPsgQWpPQYc6aK3rFLA97nxN2_qZrMA0c9UXAKImwDCXRUM08SwsSJN7AcBmx0oslJPOHwKxg55GcKQlaz0DhIUxy-3B9T-Aw&t=AQI1d3fVDLQCT40jvJU
+- Facebook Feed: https://business.facebook.com/ads/api/preview_iframe.php?d=AQIwQV0RTGgxERQWY3i5QMCX8OGTk3xhlUzRo00P1wBwBLRb2AdkchU-3kj9DoGMqS22ZlvUIfawA1YSwmtMe5TUyWEmaxjQzwhp_OlhyY2SNrBPHArA7HBrQcGwKSp39SQktgD4AJoS2iS1Nuj4p3LXt_QOyMJxIRe6uX-x-gmzlvy7nKxUGRmlj6PjF4MZ_mMzVGrWxjauaOL0E-3tn1o2X38YvMLrDjQLZiaNSVqV8Q&t=AQJ5yVNpfONTr3y51uc
+
+Os links abrem logado e expiram. O MCP não devolve imagem nem nome exibido, então a conferência visual (legenda,
+trilha, nome da Página) é feita abrindo os links.
+
+### Pendências
+- Os 4 motion foram aprovados (`effective_status=ACTIVE`) cerca de 3 min depois de publicados. Falta só a conferência visual nos previews.
+
+### Motion desfeito (08/11/2026, a pedido do usuário: "ficou estranho")
+- 4 anúncios motion (52521322782991, 52521322809191, 52521322831391, 52521322863791): PAUSED, não apagados.
+- 4 vídeos anteriores da Cursos de Unhas (52521309885991, 52521309907391, 52521309994391, 52521310001591): reativados (ACTIVE, voltando a veicular).
+- 4 imagens da Cursos de Unhas: ACTIVE. Campanha ACTIVE a R$ 50/dia. Branch `midia` apagado de novo.
+- O motor (marketing/motion.swift) e as narrações v4 ficam no repositório para uma próxima versão.
