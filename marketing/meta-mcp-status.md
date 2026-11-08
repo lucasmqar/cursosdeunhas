@@ -349,4 +349,4 @@ trilha, nome da Página) é feita abrindo os links.
 - Uma só campanha de unhas: "Unhas | Indireto | Lead" 52521304526791 (ACTIVE, R$ 50/dia). A outra ativa na conta é a de mensagens do PEDE FLUX (R$ 13/dia), do usuário, não mexida.
 - ATIVOS (Página Cursos de Unhas, originais sem motion): imagens 52521309791191, 52521309827791, 52521309843991, 52521309853391; vídeos 52521309885991, 52521309907391, 52521309994391, 52521310001591.
 - ARQUIVADOS: 7 anúncios da Página errada (App FLUX/pede_flux) e os 4 motion.
-- Pendente de decisão do usuário: o "N3 — vídeo" antigo (52521307668591, pede_flux) segue PAUSED com uma edição solta no rascunho do Ads Manager (troca de Página com Instagram pede_flux, com erro). Não foi descartada por falta de confirmação; não afeta a veiculação.
+- "N3 — vídeo" antigo (52521307668591, pede_flux): edição solta do rascunho descartada com confirmação do usuário e anúncio ARQUIVADO. Rascunho da conta vazio. Os 8 anúncios da Página errada estão arquivados.
