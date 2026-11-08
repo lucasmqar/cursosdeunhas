@@ -34,3 +34,5 @@ Depois de ~15 vendas: trocar lance para Maximizar conversões.
 ## Revisão de 08/11/2026 (texto sem marca e sem superlativo)
 - Títulos: "Ranking Atualizado 2026" → "Comparativo Atualizado 2026"; "Análises Independentes" → "Análises Detalhadas"; grupo 1 "Com Certificado" → "Compare o Certificado".
 - Frase de destaque "Cursos com Certificado" → "Compare Certificados".
+- Aplicado na conta em 08/11: sitelinks "Formação Completa" e "Curso de Alongamento"; frase de destaque "Compare Certificados"; títulos "Comparativo Atualizado 2026" e "Compare o Certificado" (antes "Ranking Atualizado 2026" e "Cursos Com Certificado"). Só há 1 grupo de anúncios.
+- Status 08/11: campanha Ativada, mas Pendente (análise de política); 0 impressões. Ao salvar o anúncio, o pré-filtro marcou "Métodos anticoncepcionais, fertilidade e testes" (limitado, não reprovado) — falso positivo provável por "Gel". Se continuar limitado após a análise, contestar.
