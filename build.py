@@ -18,6 +18,12 @@ ORG = {"@type": "Organization", "@id": BASE + "/#org", "name": S["name"], "url":
 TAG = "<script async src=\"https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS\"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());</script>"
 
 
+MP = S.get("meta_pixel", "")
+PIXEL = ("<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};"
+         "if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];"
+         "s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','%s');fbq('track','PageView');</script>" % MP) if MP else ""
+
+
 def e(s):
     return html.escape(str(s), quote=True)
 
@@ -164,11 +170,14 @@ def review_body(p):
 
 
 def redirect(url):
-    url = url + ("&" if "?" in url else "?") + "src=cursosdeunhas"
+    base = url + ("&" if "?" in url else "?") + "src="
+    url = base + "cursosdeunhas"
+    js = ("var s=new URLSearchParams(location.search).get('src');s=s?s.replace(/[^a-z0-9_-]/gi,'').slice(0,30):'cursosdeunhas';"
+          "window.fbq&&fbq('track','InitiateCheckout');setTimeout(function(){location.replace(%s+s)},900)" % json.dumps(base))
     return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">'
-            '<title>Redirecionando…</title>' + TAG + '<meta http-equiv="refresh" content="2;url=%s"></head><body><p>Abrindo a página oficial… '
-            '<a href="%s" rel="sponsored nofollow">clique aqui</a> se não abrir.</p><script>setTimeout(function(){location.replace(%s)},800)</script></body></html>'
-            % (e(url), e(url), json.dumps(url)))
+            '<title>Redirecionando…</title>' + TAG + PIXEL + '<meta http-equiv="refresh" content="3;url=%s"></head><body><p>Abrindo a página oficial… '
+            '<a href="%s" rel="sponsored nofollow">clique aqui</a> se não abrir.</p><script>%s</script></body></html>'
+            % (e(url), e(url), js))
 
 
 def main():
@@ -209,6 +218,10 @@ def main():
     (OUT / ".nojekyll").write_text("", "utf-8")
     (OUT / (KEY + ".txt")).write_text(KEY, "utf-8")
     shutil.copy(R / "static" / "favicon.svg", OUT / "favicon.svg")
+    for lp in (R / "static" / "lp").glob("*.html"):
+        d = OUT / lp.stem
+        d.mkdir(exist_ok=True)
+        (d / "index.html").write_text(lp.read_text("utf-8").replace("{{TAG}}", TAG).replace("{{PIXEL}}", PIXEL), "utf-8")
     for extra in (R / "static").glob("google*.html"):
         shutil.copy(extra, OUT / extra.name)
     (OUT / "llms.txt").write_text("# %s\n\n> %s\n\n" % (S["name"], S["tagline"]) + "".join(
