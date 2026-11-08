@@ -102,7 +102,7 @@ def render(m, body):
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#a3245e">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-{ver}<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());</script>
+{ver}<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());</script>{PIXEL}
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
