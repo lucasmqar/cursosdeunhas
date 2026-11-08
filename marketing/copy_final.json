@@ -1,0 +1,131 @@
+{
+ "narrations": [
+  {
+   "k": 1,
+   "title": "N1 — As mãos dela",
+   "text": "Ela olhava pras próprias mãos… e só via cansaço. Até que viu um caminho. Primeiro, nas próprias unhas. Depois, na irmã. Depois, na vizinha. Hoje, cada unha bem-feita tem a assinatura dela. Não começou com coragem. Começou com uma decisão pequena: aprender. No tempo dela. Sem sair de casa. Toda história assim começa do mesmo jeito: com uma primeira aula. Descubra por onde começar. Leva dois minutos.",
+   "words": 67
+  },
+  {
+   "k": 2,
+   "title": "N2 — Onze da noite",
+   "text": "Onze da noite. A casa dorme. Pra muita mulher, é o pedaço do dia que é só dela. Tem quem use esse tempo pra descansar. E tem quem use pra aprender a fazer unhas. Uma aula de cada vez. Uma unha de cada vez. Sem pressa, sem sair de casa. Um dia ela vai olhar pra trás… e agradecer por essa noite. Se der vontade, veja por onde começar.",
+   "words": 69
+  },
+  {
+   "k": 3,
+   "title": "N3 — O detalhe",
+   "text": "Sabe aquela sensação de olhar pra mão e sorrir sozinha? Tem sempre alguém por trás desse sorriso. Agora imagina ser essa pessoa. A que devolve esse sorriso pra outra mulher. Unha é detalhe. Mas é no detalhe que muita gente volta a se sentir bonita. Aprender isso é aprender a cuidar. Dá pra começar do zero, no seu ritmo, sem sair de casa. Veja qual caminho é o seu.",
+   "words": 69
+  },
+  {
+   "k": 4,
+   "title": "N4 — Com calma",
+   "text": "Antes de pagar por um curso de unhas, ela fez uma coisa simples: comparou. O que ensina. Se tem certificado. Quanto custa. Se tem garantia. Porque escolha boa é escolha com calma. A gente reuniu três caminhos, do zero ao alongamento, com o que cada um ensina, preço e garantia lado a lado. Sem pressa, sem pressão. Leva dois minutos pra ver qual caminho é o seu.",
+   "words": 67
+  }
+ ],
+ "ads": [
+  {
+   "k": 1,
+   "primary_text": "Não começou com coragem. Começou com uma decisão pequena: aprender. Veja por onde começar, no seu ritmo.",
+   "headline": "Descubra por onde começar",
+   "description": "Guia de cursos de unhas on-line. Contém links de afiliado.",
+   "cta": "Saiba mais",
+   "url": "https://cursosdeunhas.com.br/comecar/?src=meta-n1"
+  },
+  {
+   "k": 2,
+   "primary_text": "Onze da noite. A casa dorme. Uma aula de unhas de cada vez, no seu ritmo. Veja por onde começar.",
+   "headline": "Uma aula de cada vez",
+   "description": "Guia de cursos de unhas on-line. Contém links de afiliado.",
+   "cta": "Saiba mais",
+   "url": "https://cursosdeunhas.com.br/comecar/?src=meta-n2"
+  },
+  {
+   "k": 3,
+   "primary_text": "Unha é detalhe. Mas é no detalhe que muita gente volta a se sentir bonita. Veja por onde começar a aprender.",
+   "headline": "Aprender unhas é aprender a cuidar",
+   "description": "Guia de cursos de unhas on-line. Contém links de afiliado.",
+   "cta": "Saiba mais",
+   "url": "https://cursosdeunhas.com.br/comecar/?src=meta-n3"
+  },
+  {
+   "k": 4,
+   "primary_text": "Do zero ao alongamento: compare conteúdo, certificado, preço e garantia de três caminhos. Leva 2 minutos.",
+   "headline": "Compare antes de escolher",
+   "description": "Guia de cursos de unhas on-line. Contém links de afiliado.",
+   "cta": "Saiba mais",
+   "url": "https://cursosdeunhas.com.br/comecar/?src=meta-n4"
+  }
+ ],
+ "lp_changes": [
+  {
+   "find": "header{padding:56px 0 8px;text-align:center}header svg{width:220px;height:auto}",
+   "replace": "header{padding:28px 0 4px;text-align:center}header svg{width:150px;height:auto}"
+  },
+  {
+   "find": "h2{font:400 1.45rem/1.3 Georgia,serif;text-align:center;margin:52px 0 6px}",
+   "replace": "h2{font:400 1.45rem/1.3 Georgia,serif;text-align:center;margin:32px 0 6px}"
+  },
+  {
+   "find": "<p class=\"lead\">Aprender. No seu tempo, sem sair de casa, com quem já ensinou milhares de pessoas.</p>",
+   "replace": "<p class=\"lead\">Aprender. No seu tempo, sem sair de casa, com cursos que somam mais de 3 mil avaliações de alunos.</p>"
+  },
+  {
+   "find": "<p class=\"story\"><span>Primeiro, nas próprias unhas.</span><span>Depois, na irmã.</span><span>Depois, na vizinha.</span><span>Hoje, a agenda tem nome — e é dela.</span></p>\n",
+   "replace": ""
+  },
+  {
+   "find": "<p class=\"q\">Escolha e a gente mostra o caminho que faz sentido.</p>",
+   "replace": "<p class=\"q\">Escolha e a gente mostra o caminho que faz sentido.<br><small>Os três são cursos on-line de um mesmo produtor. Somos afiliados: recebemos comissão se você comprar por estes links, sem custo extra. O botão abre a página oficial do curso.</small></p>"
+  },
+  {
+   "find": "<small>Manicure e pedicure com certificado. A opção mais em conta — até R$ 49,90 quando conferimos.</small>",
+   "replace": "<small>Manicure e pedicure, com certificado e garantia de 7 dias. A mais em conta: R$ 49,90 quando conferimos. Nota 4,9 (243 avaliações).</small>"
+  },
+  {
+   "find": "<small>Do básico ao alongamento e decoração, em 17 níveis. Nota 4,8 entre alunos.</small>",
+   "replace": "<small>Do básico ao alongamento e decoração, em 17 níveis. R$ 100 quando conferimos, garantia de pelo menos 7 dias. Certificado: confirme na página oficial. Nota 4,8 (614 avaliações).</small>"
+  },
+  {
+   "find": "<small>Fibra, gel, polygel e nail art com certificado. Mais de 2 mil avaliações, nota 4,7.</small>",
+   "replace": "<small>Fibra, gel, polygel e nail art, com certificado. R$ 147 quando conferimos, garantia de pelo menos 7 dias. Nota 4,7 (2.245 avaliações).</small>"
+  },
+  {
+   "find": "<div class=\"trust\"><span>Certificado</span><span>Garantia de 7 dias</span><span>Acesso on-line</span><span>Estude no seu ritmo</span></div>",
+   "replace": "<div class=\"trust\"><span>Garantia de pelo menos 7 dias</span><span>Acesso on-line</span><span>Estude no seu ritmo</span></div>\n<p class=\"story\"><span>Primeiro, nas próprias unhas.</span><span>Depois, na irmã.</span><span>Depois, na vizinha.</span><span>Hoje, cada unha bem-feita tem a assinatura dela.</span></p>"
+  },
+  {
+   "find": "Guia independente. Podemos receber comissão quando você compra pelos nossos links, sem custo extra para você. Notas e preços conferidos na plataforma de vendas em 07/11/2026; podem mudar.",
+   "replace": "Recebemos comissão quando você compra pelos nossos links, sem custo extra para você. Notas e preços conferidos na plataforma de vendas em 07/11/2026; podem mudar, e o parcelamento pode ter juros. Nenhum curso garante clientes ou renda: o resultado depende de prática."
+  },
+  {
+   "find": "(function(){var s=new URLSearchParams(location.search).get('src')||'lp';\n",
+   "replace": "(function(){var s=new URLSearchParams(location.search).get('src')||'lp';\nvar H={'meta-n2':['Onze da noite.<br><em>Uma aula de cada vez.</em>','Aprender unhas no seu tempo, sem sair de casa.'],'meta-n3':['Unha é detalhe.<br><em>Aprender é aprender a cuidar.</em>','Do zero ou já fazendo unhas: veja o caminho que faz sentido.'],'meta-n4':['Escolha boa é com calma.<br><em>Leva dois minutos.</em>','Três caminhos, do zero ao alongamento, com preço e garantia lado a lado.']}[s];\nif(H){document.querySelector('h1').innerHTML=H[0];document.querySelector('.lead').textContent=H[1];}\n"
+  }
+ ],
+ "art_changes": [
+  "N1 (1x1, 9x16, 1.91x1): sem mudança. Título 'Não começou com coragem. / Começou com uma / decisão pequena.' e legenda 'aprender.' continuam.",
+  "N2 (gen_assets.py, linha 50, nos 3 formatos): trocar as linhas por 'Onze da noite.' / 'Um tempo' / 'que é só seu.' (sai a palavra 'único'). A legenda 'uma aula de cada vez.' continua.",
+  "N3 (gen_assets.py, linha 51, nos 3 formatos): trocar a legenda por 'mas é no detalhe que muita gente volta a se sentir bonita.' ('a gente' passa a ser 'muita gente'). O título 'Unha é detalhe.' continua.",
+  "N4 (gen_assets.py, linha 52, nos 3 formatos): trocar o título por 'Escolha boa' / 'é com calma.' e a legenda por 'três caminhos, lado a lado.' O símbolo (3 ovais com o visto) continua.",
+  "Gerar de novo os PNG e SVG dos 3 formatos de N2, N3 e N4. Gerar de novo também os 4 vídeos 9:16 (videos.sh / video.swift), com as narrações N1 a N4 novas no ElevenLabs, na mesma configuração (voz Pri, Multilingual v2, estabilidade 45, similaridade 75, estilo 25, velocidade 0,95). Se o vídeo tiver texto gravado na imagem, ele precisa seguir as artes novas."
+ ],
+ "rejected": [
+  "ACEITO, mas não cabe nesta saída (é preciso mudar o site.json, não a LP). Bloqueio do Pixel (revisor 1): conferi que o site.json não tem 'meta_pixel'. Por isso o build.py troca {{PIXEL}} por texto vazio em /comecar/ e /ir/, e o evento Lead nunca dispara. Acrescentar \"meta_pixel\": \"<ID>\" no /Users/lucasmqar/Desktop/lovit/cursosdeunhas/site.json, rodar o build.py e conferir PageView e Lead em 'Testar eventos'. Não ligar a campanha de R$ 50/dia antes disso: o objetivo Vendas com evento Lead e as regras 1 e 3 ficariam sem dados.",
+  "ACEITO, fora desta saída. Política de privacidade (revisores 1 e 2): a linha 5 de /Users/lucasmqar/Desktop/lovit/cursosdeunhas/content/politica-de-privacidade.html diz 'não tem ... cookies próprios', mas a página já tem GTM e vai ter o Pixel do Meta. Trocar pelo texto do revisor 1 (Google Tag Manager e medição de anúncios, Pixel do Meta, como bloquear, facebook.com/adpreferences e myadcenter.google.com) e atualizar a data. A faixa de consentimento de cookies antes de carregar Pixel e Google Ads (revisor 2) é recomendada pela orientação da ANPD, mas não impede a aprovação do anúncio. Fica como próximo passo, não como bloqueio.",
+  "ACEITO, fora desta saída. Sitelinks com marca no Google (revisor 2): a linha 31 do /Users/lucasmqar/Desktop/lovit/cursosdeunhas/ads-campanha.md tem 'Nail Academy, Escola Designer', o que contraria a regra das linhas 20 e 21 do mesmo arquivo. Trocar na conta do Google Ads, que está no ar, e no arquivo por 'Formação Completa', 'Curso de Alongamento', 'Curso de Manicure' e 'Unha em Gel Vale a Pena?'. Antes de usar qualquer nome de curso de novo, conferir as Regras de afiliação na Hotmart.",
+  "ACEITO, fora desta saída. Textos do Google (revisores 2 e 3): 'Ranking Atualizado 2026' passa a 'Comparativo Atualizado 2026'. 'Análises Independentes' passa a 'Análises Detalhadas'. No grupo 1, 'Com Certificado' passa a 'Compare o Certificado' e a frase de destaque 'Cursos com Certificado' passa a 'Compare Certificados'. O grupo 2 (manicure) mantém 'Com Certificado', que está confirmado. No comparativo, 'alguns links deste site são de afiliado' passa a 'os links para os cursos são de afiliado'.",
+  "ACEITO, fora desta saída. Orçamento (revisor 3, e é o que o usuário pediu: R$ 50 por dia): no §6 da estrategia.md, trocar 'sugerido R$ 30/dia' por 'R$ 50/dia'. Na regra 3, subir o teto de R$ 60/dia para R$ 100/dia. Com o teto antigo, a regra subiria uma única vez (de 50 para 60) e pararia.",
+  "ACEITO, fora desta saída. Na tabela de conceitos da estrategia.md, o público do N1 passa a ser 'Mulheres 22–45 interessadas em beleza, unhas e manicure' (sai 'renda extra'). Na lista de títulos, 'Com certificado e garantia' passa a 'Compare certificado e garantia' (30 caracteres). Os 4 anúncios finais já não usam o título antigo.",
+  "REJEITADO (revisor 3): manter no N1 'a agenda tem nome, tem horário… e é dela' e 'Se você sente que dá pra mais'. A agenda própria mostra clientela, ou seja renda, depois de um curso. Isso fere a regra 'não prometer renda' e a política do Meta sobre oportunidades de renda. 'Dá pra mais' insinua insatisfação de quem vê. Também rejeitado o fecho 'o primeiro passo cabe numa tarde' (revisor 1), que pode soar como 'aprenda numa tarde'. Do revisor 3 fica o gancho na 3ª pessoa ('Ela olhava pras próprias mãos…'), que é mais forte que 'Tem gente que…'.",
+  "REJEITADO EM PARTE (revisor 2): manter a narração N1 como estava e pôr uma ressalva logo abaixo da história. A frase da agenda saiu, então a história não mostra mais resultado profissional. A ressalva 'Nenhum curso garante clientes ou renda' foi para o rodapé, para não pesar no visual minimalista.",
+  "REJEITADO (revisor 1): trocar 'volta a se sentir bonita' por 'se sente cuidada' no texto e na narração do N3. 'Muita gente volta a se sentir bonita' é uma generalização na 3ª pessoa e não diz nada de quem vê. A regra do Meta contra autopercepção negativa mira frases dirigidas a quem vê. O gancho emocional mais forte fica. Só o 'a gente' da arte, que inclui quem vê, foi corrigido. 'Toda semana' saiu, porque sugere clientela fixa.",
+  "REJEITADO (revisor 3): manter 'recomeço' no N4. Ele não é o gancho da narração e, como o N4 também roda para público frio no Advantage+, insinua uma mudança de vida de quem vê sem ganhar nada em clareza. 'Escolha boa é com calma' combina com o conceito (segurança para decidir) e com o símbolo das 3 ovais.",
+  "ACEITO EM PARTE (revisor 3): abertura da LP conforme o src. O h1 e o .lead mudam para meta-n2, meta-n3 e meta-n4. A arte do topo não muda: o sol de 5 ovais funciona como marca do site, e pôr 3 SVGs a mais pesa a página. A .story não fica escondida: ela foi para depois da faixa de confiança, como fecho emocional que serve para todos. A mudança de CSS e a nova posição da .story põem as 3 opções na primeira tela do celular (cerca de 515 px contra os 780 px de antes).",
+  "REJEITADO (revisor 3): apontar o N4 para /melhor-curso-de-unhas-online/. Não é mais preciso, porque os cartões da LP agora mostram preço, garantia, certificado e avaliações dos três caminhos, que é o que o N4 promete.",
+  "REJEITADO (revisor 2): escrever 'R$ 49,90 à vista' e repetir a data em cada cartão. O products.json só registra 'até R$ …'; ninguém conferiu se o valor é à vista. O 'até', que fixa um teto, saiu. O rodapé avisa que o parcelamento pode ter juros e já traz a data 07/11/2026. Os preços continuam a ser conferidos toda semana enquanto os anúncios rodarem.",
+  "REJEITADO (revisor 2): o texto 'Somos um guia independente e afiliados'. Os três caminhos são do mesmo produtor e todos pagam comissão, então 'independente' passa uma ideia de comparação ampla. A palavra saiu da descrição do anúncio e do rodapé. A divulgação ficou antes dos botões, curta: mesmo produtor, comissão, sem custo extra e o botão abre a página oficial."
+ ]
+}

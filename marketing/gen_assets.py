@@ -47,9 +47,9 @@ def symbol(k, cx, cy, s):
 
 CONCEPTS = {
     1: (["Não começou com coragem.", "Começou com uma", "decisão pequena."], "aprender."),
-    2: (["Onze da noite.", "O único tempo", "que é só seu."], "uma aula de cada vez."),
-    3: (["Unha é detalhe."], "mas é no detalhe que a gente volta a se sentir bonita."),
-    4: (["Recomeço bom", "é com calma."], "compare antes de escolher."),
+    2: (["Onze da noite.", "Um tempo", "que é só seu."], "uma aula de cada vez."),
+    3: (["Unha é detalhe."], "mas é no detalhe que muita gente volta a se sentir bonita."),
+    4: (["Escolha boa", "é com calma."], "três caminhos, lado a lado."),
 }
 
 
