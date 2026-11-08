@@ -23,3 +23,10 @@ Nomes de marca: "escola designer de unhas", "nail academy", "webhoje".
 ## Rastreamento de venda (2026-11-08)
 Conversão "Compra Hotmart" (AW-18563480938 / rótulo _EZpCIvRurQdEOr64JNF) colada no Pixel de Rastreamento da Hotmart nos 3 produtos, evento Vendas realizadas, só pagamentos imediatos, valor da transação.
 Depois de ~15 vendas: trocar lance para Maximizar conversões.
+
+## Ajustes após verificação do anunciante (2026-11-08)
+- Status: Qualificada (limitada) por poucas palavras relevantes; "melhor curso de unhas online" com baixo volume.
+- +15 palavras (frase): curso de unhas, curso de unha, curso de unha em gel, curso de unhas de gel, curso de alongamento de unhas, curso de alongamento em gel, curso de unha de fibra, curso de manicure, curso de manicure e pedicure, curso de nail designer, curso de unha online, curso de unhas com certificado, curso de esmaltação em gel, curso de unha polygel, aprender a fazer unha de gel.
+- Frases de destaque: Garantia de 7 Dias | Cursos com Certificado | Estude no Seu Ritmo | Comparativo Atualizado.
+- Sitelinks: Nail Academy, Escola Designer, Curso de Manicure, Unha em Gel Vale a Pena?
+- Parceiros de pesquisa desativados (só Pesquisa Google). CPC máx. R$1,20 mantido. Local: Brasil.
