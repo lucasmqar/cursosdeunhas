@@ -270,3 +270,13 @@ no Instagram, onde aparece a identidade da própria Página, precisa ser visto a
 - Abrir os previews logado e conferir o nome no Reels/Feed do Facebook e no Reels do Instagram.
 - Ler `effective_status` de novo (hoje os 8 estão em PENDING_REVIEW; próximo: ACTIVE ou DISAPPROVED). O motivo de reprovação só aparece no Ads Manager.
 - Os 4 criativos sem uso da seção anterior (App FLUX) continuam na biblioteca e podem ser apagados.
+
+## Regras automatizadas (08/11/2026, criadas no Ads Manager com confirmação do usuário "Sim, as 3")
+
+| Regra | Aplica a | Ação | Condições | Intervalo |
+|---|---|---|---|---|
+| Unhas - pausar anúncio sem lead (ID 1695407632107630) | anúncios ativos com Nome da campanha contém "Unhas \| Indireto \| Lead" | desativar anúncio | Gasto > R$ 25 e Resultados < 1 | últimos 3 dias (incl. hoje), contínua |
+| Unhas - escalar se barato | campanhas ativas com Nome da campanha contém "Unhas \| Indireto \| Lead" | +20% no orçamento diário, teto R$ 100/dia, no máx. 1x por semana | Custo por resultado < R$ 1,50, Resultados > 4, Impressões vitalícias > 8.000 (trava padrão do Meta) | últimos 3 dias (excl. hoje), diária |
+
+**Regra "pausar CTR baixo" não existe:** o Meta recusa regras que pausam anúncio por métrica de desempenho em campanhas com orçamento na campanha (CBO). A regra de lead e o próprio CBO cobrem esse papel.
+**Frequência:** a interface não tem "a cada 72 h"; ficou "1 vez por semana" (mais conservador).
