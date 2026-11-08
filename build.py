@@ -15,7 +15,7 @@ TODAY = datetime.date.today().isoformat()
 ORG = {"@type": "Organization", "@id": BASE + "/#org", "name": S["name"], "url": BASE + "/", "logo": BASE + "/favicon.svg"}
 
 
-TAG = "<script async src=\"https://www.googletagmanager.com/gtag/js?id=AW-18563480938\"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','AW-18563480938');</script>"
+TAG = "<script async src=\"https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS\"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());</script>"
 
 
 def e(s):
@@ -94,7 +94,7 @@ def render(m, body):
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#a3245e">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-{ver}<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18563480938"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','AW-18563480938');</script>
+{ver}<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());</script>
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
