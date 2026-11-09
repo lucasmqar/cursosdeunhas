@@ -54,13 +54,16 @@ CSS = (":root{--t:#1a1a1a;--m:#6b6b6b;--l:#e6e6e6}*{box-sizing:border-box}"
        ".logo{font-weight:600;text-decoration:none}.top nav a{margin-left:14px;font-size:14px;color:var(--m);text-decoration:none}"
        "h1{font-size:1.55rem;line-height:1.25;margin:22px 0 6px}h2{font-size:1.15rem;line-height:1.3;margin:30px 0 6px}h3{font-size:1.02rem;margin:0 0 2px}"
        ".meta,.crumb,.m,.disc{color:var(--m);font-size:13px}.crumb{margin-top:14px}.crumb a{color:var(--m)}.disc{margin:2px 0 18px}"
-       ".card{border-top:1px solid var(--l);padding:14px 0}.card p{margin:4px 0}"
-       ".btn{display:inline-block;border:1px solid var(--t);color:var(--t);text-decoration:none;padding:8px 14px;border-radius:6px;font-size:15px}"
-       ".btn.sm{padding:4px 10px;font-size:14px}"
+       ".card,.box{background:#f7f7f7;border:1px solid var(--l);border-radius:10px;padding:14px 16px;margin:12px 0}.card p,.box p{margin:4px 0}"
+       ".card .hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.card .pr{white-space:nowrap;font-weight:600}"
+       ".tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px;padding:0}.tags li{list-style:none;background:#fff;border:1px solid var(--l);border-radius:20px;padding:1px 10px;font-size:12px;color:var(--m)}"
+       ".btn{display:inline-block;background:#ececec;border:1px solid #d6d6d6;color:var(--t);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:15px}"
+       ".btn:hover{background:#e2e2e2}.btn.sm{padding:5px 12px;font-size:14px}"
+       ".two{display:grid;gap:12px}@media(min-width:620px){.two{grid-template-columns:1fr 1fr}}.two .box{margin:0}.box h2,.box h3{margin:0 0 6px;font-size:1rem}.box ul{margin:0;padding-left:18px}"
        "table{width:100%;border-collapse:collapse;font-size:14px;display:block;overflow-x:auto}"
        "th,td{border-bottom:1px solid var(--l);padding:8px 6px;text-align:left;vertical-align:top}th{font-weight:600;font-size:13px;color:var(--m)}"
        "details{border-bottom:1px solid var(--l);padding:8px 0}summary{cursor:pointer}"
-       ".pick{margin:16px 0}.pick p{margin:6px 0}"
+       ".pick{background:#f7f7f7;border:1px solid var(--l);border-radius:10px;padding:10px 16px;margin:16px 0}.pick p{margin:6px 0;display:flex;justify-content:space-between;gap:12px}"
        ".sticky{display:none}@media(max-width:760px){.sticky{display:block;position:fixed;left:0;right:0;bottom:0;padding:8px 16px;background:#fff;border-top:1px solid var(--l);z-index:9}.sticky .btn{display:block;text-align:center}body{padding-bottom:64px}}"
        "footer{margin-top:56px;border-top:1px solid var(--l);font-size:13px;color:var(--m)}"
        "footer .w{padding-top:16px;padding-bottom:24px}footer a{color:var(--m);text-decoration:none}footer a:hover{text-decoration:underline}"
@@ -152,7 +155,9 @@ def short(p):
 def cards():
     if not P:
         return '<p class="card">Análises dos cursos em atualização.</p>'
-    return "".join(f"""<div class="card"><h3><a href="/{p['slug']}/">{e(p['name'])}</a></h3><p class="m">{e(p['best'])}</p><p>{e(p['summary'])}</p><p class="m">Preço: {e(p['price'])} · Garantia: {e(p['guarantee'])} · Certificado: {e(p['certificate'])} · Acesso: {e(p['access'])}</p><p><a class="btn sm" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></p></div>""" for p in P)
+    def tg(p):
+        return "".join("<li>%s</li>" % e(x) for x in (p['certificate'].split(',')[0].replace('Sim', 'Certificado'), "Garantia " + p['guarantee'], "Acesso " + p['access'].lower()))
+    return "".join(f"""<div class="card"><div class="hd"><h3><a href="/{p['slug']}/">{e(p['name'])}</a></h3><span class="pr">{e(short(p).replace(' à vista',''))}</span></div><p class="m">{e(p['best'])}</p><p>{e(p['summary'])}</p><ul class="tags">{tg(p)}</ul><a class="btn sm" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></div>""" for p in P)
 
 
 def table():
@@ -167,7 +172,7 @@ def picks():
     if len(P) < 3:
         return ""
     lab = ["Alongamento e decoração", "Do zero ao avançado", "Só manicure e pedicure"]
-    rows = "".join(f"<p>{lab[i]}: <a href='/{p['slug']}/'>{e(p['name'])}</a> <span class='m'>{e(short(p))}</span></p>" for i, p in enumerate(P[:3]))
+    rows = "".join(f"<p><span>{lab[i]}: <a href='/{p['slug']}/'>{e(p['name'])}</a></span><span class='m'>{e(short(p))}</span></p>" for i, p in enumerate(P[:3]))
     return '<div class="pick" id="escolha">' + rows + '</div>'
 
 
@@ -176,21 +181,14 @@ def ul(xs):
 
 
 def review_body(p):
-    return f"""<p>{e(p['intro'])}</p>
-<div class="card"><p><strong>Resumo:</strong> {e(p['verdict'])}</p><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver preço e garantia na página oficial →</a></div>
-<h2>Ficha do curso</h2>
-<table><tbody><tr><th>Produtor(a)</th><td>{e(p['producer'])}</td></tr><tr><th>Indicado para</th><td>{e(p['best'])}</td></tr><tr><th>Preço</th><td>{e(p['price'])}</td></tr><tr><th>Acesso</th><td>{e(p['access'])}</td></tr><tr><th>Certificado</th><td>{e(p['certificate'])}</td></tr><tr><th>Garantia</th><td>{e(p['guarantee'])}</td></tr></tbody></table>
-<h2>O que o curso ensina</h2>{ul(p['modules'])}
-<h2>Pontos fortes</h2>{ul(p['pros'])}
-<h2>Pontos de atenção</h2>{ul(p['cons'])}
-<h2>Para quem é indicado</h2>{ul(p['for'])}
-<h2>Para quem não é</h2>{ul(p['notfor'])}
-<h2>{e(p['name'])} vale a pena?</h2><p>{e(p['verdict'])}</p>
-<h2>Como comprar com segurança</h2><p>Compre apenas pela página oficial, que tem checkout seguro. Pelo Código de Defesa do Consumidor, compras on-line têm direito de arrependimento em até 7 dias; confira também a garantia informada pelo produtor.</p>
-<p><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Acessar a página oficial</a></p>
-<div class="sticky"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver preço e garantia de {e(p['name'])} →</a></div>
-<p class="meta">Como fizemos esta análise: reunimos as informações públicas da página oficial e da plataforma de vendas em {br(p.get('checked', TODAY))}. Não é depoimento de aluno; preços e condições podem mudar.</p>
-<p>Compare com outras opções no nosso <a href="/melhor-curso-de-unhas-online/">ranking de cursos de unhas on-line</a>.</p>"""
+    return f"""<p>{e(p['verdict'])}</p>
+<div class="box"><table><tbody><tr><th>Para quem</th><td>{e(p['best'])}</td></tr><tr><th>Preço</th><td>{e(p['price'])}</td></tr><tr><th>Certificado</th><td>{e(p['certificate'])}</td></tr><tr><th>Acesso</th><td>{e(p['access'])}</td></tr><tr><th>Garantia</th><td>{e(p['guarantee'])}</td></tr></tbody></table>
+<p style="margin-top:10px"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></p></div>
+<div class="box"><h2>O que ensina</h2>{ul(p['modules'])}</div>
+<div class="two"><div class="box"><h3>Pontos fortes</h3>{ul(p['pros'][:3])}</div><div class="box"><h3>Pontos de atenção</h3>{ul(p['cons'][:3])}</div></div>
+<div class="two" style="margin-top:12px"><div class="box"><h3>Para quem é</h3>{ul(p['for'][:3])}</div><div class="box"><h3>Para quem não é</h3>{ul(p['notfor'][:3])}</div></div>
+<div class="sticky"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></div>
+<p class="m" style="margin-top:20px">Dados conferidos na página oficial em {br(p.get('checked', TODAY))}. Não é depoimento de aluno; preços podem mudar. Compre só pela página oficial (garantia de 7 dias). <a href="/melhor-curso-de-unhas-online/">Ver o comparativo</a>.</p>"""
 
 
 def redirect(url):
