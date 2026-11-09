@@ -1,0 +1,22 @@
+Action,Campaign ID,Ad group ID,Campaign,Campaign status,Budget,Final URL suffix,Ad group,Ad group status,Negative keyword,Keyword or list,Match type
+Edit,24455534869,,F1 | Pesquisa | Manicure e Pedicure | Fundo de funil,Enabled,,,,,,,
+Edit,24449805539,,F2 | Pesquisa | Alongamento e Gel | Fundo de funil,Enabled,,,,,,,
+Edit,24449805551,,F3 | Pesquisa | Formação Completa | Fundo de funil,Enabled,,,,,,,
+Edit,24445403891,,Campaign #1,,"12,00",src=gads-a0,,,,,
+Add,24445403891,,Campaign #1,,,,,,manicure,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,pedicure,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,unha em gel,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,unhas em gel,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,unha de gel,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,unhas de gel,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,alongamento,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,fibra,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,polygel,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,esmaltação,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,esmaltacao,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,nail designer,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,designer de unhas,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,completo,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,iniciante,Keyword,Phrase Match
+Add,24445403891,,Campaign #1,,,,,,iniciantes,Keyword,Phrase Match
+Edit,24445403891,200735365414,Campaign #1,,,,Manicure,Paused,,,

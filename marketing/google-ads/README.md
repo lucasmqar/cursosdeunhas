@@ -12,6 +12,6 @@ Criado por **upload em massa** (Ferramentas > Ações em massa > Uploads), sem A
 | F2 Alongamento e Gel | 24449805539 | R$ 12 | R$ 1,40 | gads-f2 | /escola-designer-de-unhas/ |
 | F3 Formação Completa | 24449805551 | R$ 16 | R$ 1,60 | gads-f3 | /nail-academy/ |
 
-Pesquisa Google só (sem parceiros e sem Display), Brasil, Maximizar cliques com limite de CPC (definido na interface, a coluna não entra pelo upload), homens excluídos nos 3 grupos. Status: **pausadas** até o OK do Lucas.
+Pesquisa Google só (sem parceiros e sem Display), Brasil, Maximizar cliques com limite de CPC (definido na interface, a coluna não entra pelo upload), homens excluídos nos 3 grupos. Status: **ativas desde 09/11/2026 20:09** (OK do Lucas), por `gerar_ativacao.py` → `ativacao_upload.csv`. Edições de campanhas existentes exigem a coluna `Campaign ID`.
 
-Ao ativar: Campaign #1 cai de R$ 50 para R$ 12 (total segue R$ 50/dia), recebe `src=gads-a0` e negativas cruzadas (frase: manicure, pedicure, unha em gel, alongamento, fibra, polygel, nail designer, completo, iniciante…), e o grupo "Manicure" dela é pausado (a F1 assume).
+Na ativação: Campaign #1 (ID 24445403891) caiu de R$ 50 para R$ 12 (total segue R$ 50/dia), recebeu `src=gads-a0` e negativas cruzadas (frase: manicure, pedicure, unha em gel, alongamento, fibra, polygel, nail designer, completo, iniciante…), e o grupo "Manicure" dela foi pausado (a F1 assume).
