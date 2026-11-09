@@ -1,0 +1,31 @@
+{
+  "base_negativas": {
+    "ampla": ["grátis","gratis","gratuito","gratuitos","gratuita","gratuitas","free","senac","sebrae","presencial","apostila","apostilas","pdf","emprego","vaga","portugal","youtube","download","salário","salario","kit","kits","loja","shopee","cílios","cilios","uñas","embelleze","hotmart","webhoje","acrigel","tutorial","goiânia","goiania","anápolis","anapolis","uberlândia","uberlandia","niterói","niteroi","curitiba","fortaleza","bh","rj"],
+    "frase": ["de graça","de graca","curso técnico","curso tecnico","quanto ganha","comprar material","mercado livre","alongamento de cílios","alongamento de cilios","manicure y pedicure","instituto embelleze","faby cardoso","fabyana molinari","veronica busellato","belo horizonte","aparecida de goiânia","águas lindas","porto alegre","campo grande","perto de mim","nail academy","escola designer"]
+  },
+  "campanhas": [
+    {"id":"F1","nome":"F1 | Pesquisa | Manicure e Pedicure | Fundo de funil","orcamento":10,"cpc_max":1.10,"src":"gads-f1",
+     "url":"https://cursosdeunhas.com.br/curso-de-manicure-e-pedicure-profissional/","path1":"manicure","path2":"analise",
+     "exata":["curso de manicure online","curso de manicure e pedicure online","curso de manicure e pedicure profissional online","melhor curso de manicure e pedicure online"],
+     "frase":["curso de manicure","curso de manicure e pedicure","curso de manicure online com certificado","curso de manicure e pedicure com certificado","curso de manicure profissional online","curso de manicure iniciante online","curso de pedicure online","quanto custa curso de manicure online"],
+     "negativas_frase":["alongamento","unha em gel","unhas em gel","unha de gel","polygel","fibra","nail designer","designer de unhas","decoração","decoracao","russa"],
+     "titulos":["Curso de Manicure Online","Manicure e Pedicure Online","Curso de Pedicure Online","Manicure Profissional","Curso com Certificado","Por R$ 47 à Vista","Do Preparo ao Acabamento","Acesso Vitalício ao Curso","Garantia de 7 Dias","Aulas 100% Online","Estude no Seu Ritmo","Análise Detalhada do Curso","Leia a Análise Antes","Veja Conteúdo e Preço","Preço e Data no Site"],
+     "descricoes":["Análise do curso de manicure e pedicure: conteúdo, certificado e acesso vitalício.","R$ 47 à vista e garantia de 7 dias. Veja o que o curso ensina antes de comprar.","Nossa análise: conteúdo, prós, contras e para quem o curso de manicure serve.","Estude online no seu ritmo. Compare com outros cursos de unhas no nosso site."]},
+    {"id":"F2","nome":"F2 | Pesquisa | Alongamento e Gel | Fundo de funil","orcamento":12,"cpc_max":1.40,"src":"gads-f2",
+     "url":"https://cursosdeunhas.com.br/escola-designer-de-unhas/","path1":"alongamento","path2":"analise",
+     "exata":["curso de unha em gel online","melhor curso de unha em gel online","curso de alongamento de unhas online"],
+     "frase":["curso de unha em gel","curso de unhas de gel","curso de alongamento de unhas","curso de unha em gel online com certificado","curso de alongamento de unhas online com certificado","curso de alongamento de unhas em gel online","curso unha de fibra de vidro online","curso de polygel online","curso de esmaltação em gel","curso de esmaltacao em gel online","curso de unha gel na tips online","curso de acrilfix online"],
+     "negativas_frase":["manicure","pedicure","completo","do zero","iniciante","iniciantes","nail designer","designer de unhas"],
+     "titulos":["Curso de Unha em Gel Online","Alongamento de Unhas Online","Fibra, Gel e Polygel","Curso de Fibra de Vidro","Curso de Polygel Online","Esmaltação em Gel Online","Inclui Decoração de Unhas","Alongamento com Certificado","2 Certificados Inclusos","Por R$ 67 à Vista","Acesso Vitalício","Garantia de 7 Dias","Análise Detalhada do Curso","Veja Técnicas e Preço","Preço e Data no Site"],
+     "descricoes":["Alongamento em fibra, gel, polygel e acrilfix, mais esmaltação em gel e decoração.","R$ 67 com 2 certificados e acesso vitalício. Leia a análise completa antes de comprar.","Nossa análise: técnicas ensinadas, prós, contras e para quem o curso serve.","Estude online no seu ritmo. Compare com outros cursos de unhas no nosso site."]},
+    {"id":"F3","nome":"F3 | Pesquisa | Formação Completa | Fundo de funil","orcamento":16,"cpc_max":1.60,"src":"gads-f3",
+     "url":"https://cursosdeunhas.com.br/nail-academy/","path1":"curso-completo","path2":"analise",
+     "exata":["curso de nail designer online","melhor curso de nail designer online","curso de unhas completo","curso de unhas em gel para iniciantes"],
+     "frase":["curso de nail designer","curso de nail designer online com certificado","quanto custa um curso de nail designer online","curso nail designer iniciante online","curso nail designer completo","curso completo de unhas em gel","curso de alongamento de unhas para iniciantes","curso de unhas para iniciantes","curso de decoracao de unhas online","curso de designer de unhas online"],
+     "negativas_frase":["manicure","pedicure","fibra","polygel","esmaltação","esmaltacao"],
+     "titulos":["Curso de Unhas Completo","Curso de Nail Designer","Nail Designer Online","Formação de Nail Designer","Do Zero à Decoração","Para Iniciantes","Alongamento e Decoração","17 Níveis de Conteúdo","17 Certificados Inclusos","Por R$ 97 à Vista","Acesso Vitalício","Estude no Seu Ritmo","Análise Detalhada do Curso","Veja os 17 Níveis","Preço e Data no Site"],
+     "descricoes":["Formação online em 17 níveis, do zero ao alongamento e à decoração de unhas.","R$ 97 com 17 certificados e acesso vitalício. Veja o conteúdo de cada nível antes.","Nossa análise: o que cada nível ensina, prós, contras e para quem serve.","Para quem está começando e quer aprender todas as etapas. Compare no nosso site."]}
+  ],
+  "aberta": {"nome":"Campaign #1","orcamento":12,"src":"gads-a0","pausar_grupo":"Manicure",
+     "negativas_cruzadas_frase":["manicure","pedicure","unha em gel","unhas em gel","unha de gel","unhas de gel","alongamento","fibra","polygel","esmaltação","esmaltacao","nail designer","designer de unhas","completo","iniciante","iniciantes"]}
+}
