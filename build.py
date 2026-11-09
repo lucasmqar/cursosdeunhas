@@ -148,6 +148,11 @@ def hot(p):
     return "/ir/%s/" % p["slug"]
 
 
+def ck(p):
+    """checkout direto da Hotmart, com o código de afiliado na URL (ref=); cai na página de vendas se não houver"""
+    return "/ir/%s/checkout/" % p["slug"] if p.get("checkout") else hot(p)
+
+
 def short(p):
     return p['price'].split(' (')[0]
 
@@ -157,7 +162,7 @@ def cards():
         return '<p class="card">Análises dos cursos em atualização.</p>'
     def tg(p):
         return "".join("<li>%s</li>" % e(x) for x in (p['certificate'].split(',')[0].replace('Sim', 'Certificado'), "Garantia " + p['guarantee'], "Acesso " + p['access'].lower()))
-    return "".join(f"""<div class="card"><div class="hd"><h3><a href="/{p['slug']}/">{e(p['name'])}</a></h3><span class="pr">{e(short(p).replace(' à vista',''))}</span></div><p class="m">{e(p['best'])}</p><p>{e(p['summary'])}</p><ul class="tags">{tg(p)}</ul><a class="btn sm" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></div>""" for p in P)
+    return "".join(f"""<div class="card"><div class="hd"><h3><a href="/{p['slug']}/">{e(p['name'])}</a></h3><span class="pr">{e(short(p).replace(' à vista',''))}</span></div><p class="m">{e(p['best'])}</p><p>{e(p['summary'])}</p><ul class="tags">{tg(p)}</ul><a class="btn sm" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a> <a class="m" style="margin-left:10px" href="{ck(p)}" rel="sponsored nofollow">ou comprar direto →</a></div>""" for p in P)
 
 
 def table():
@@ -183,7 +188,7 @@ def ul(xs):
 def review_body(p):
     return f"""<p>{e(p['verdict'])}</p>
 <div class="box"><table><tbody><tr><th>Para quem</th><td>{e(p['best'])}</td></tr><tr><th>Preço</th><td>{e(p['price'])}</td></tr><tr><th>Certificado</th><td>{e(p['certificate'])}</td></tr><tr><th>Acesso</th><td>{e(p['access'])}</td></tr><tr><th>Garantia</th><td>{e(p['guarantee'])}</td></tr></tbody></table>
-<p style="margin-top:10px"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></p></div>
+<p style="margin-top:10px"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a> <a class="m" style="margin-left:10px" href="{ck(p)}" rel="sponsored nofollow">ou comprar direto →</a></p></div>
 <div class="box"><h2>O que ensina</h2>{ul(p['modules'])}</div>
 <div class="two"><div class="box"><h3>Pontos fortes</h3>{ul(p['pros'][:3])}</div><div class="box"><h3>Pontos de atenção</h3>{ul(p['cons'][:3])}</div></div>
 <div class="two" style="margin-top:12px"><div class="box"><h3>Para quem é</h3>{ul(p['for'][:3])}</div><div class="box"><h3>Para quem não é</h3>{ul(p['notfor'][:3])}</div></div>
@@ -222,6 +227,9 @@ def main():
         d = OUT / "ir" / p["slug"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(redirect(p["hotlink"]), "utf-8")
+        if p.get("checkout"):
+            (d / "checkout").mkdir(exist_ok=True)
+            (d / "checkout" / "index.html").write_text(redirect(p["checkout"]), "utf-8")
     global ROUTES
     lab = lambda m: "Início" if m["path"] == "/" else m.get("crumb", m["h1"])
     rs = [(lab(m), m["path"]) for m, _ in pages] + [("Por onde começar", "/comecar/")]

@@ -90,3 +90,12 @@ Chamada: Saiba mais. A página /comecar/ troca título e subtítulo conforme o `
 | Custo por clique de saída | < R$ 1,50 | revisar público/criativo |
 | Taxa LP → /ir/ | > 25% | simplificar a página |
 | Custo por venda | < 60% da comissão | pausar o conceito |
+
+## Comprar direto (09/11/2026)
+Hotlinks de **checkout direto** da Hotmart (Ferramentas › Gerenciador de links › Escolher HotLink › "Página de Pagamento"). Eles levam o código de afiliado na própria URL do checkout (`ref=`), então não dependem só do cookie (os botões da página do produtor não levam `ref`).
+| Curso | Checkout direto | Preço no checkout |
+|---|---|---|
+| Manicure e Pedicure | go.hotmart.com/H108389444X?ap=46e8 | R$ 47 à vista |
+| Nail Academy | go.hotmart.com/J108389456B?ap=4d48 | R$ 97 à vista |
+| Escola Designer | go.hotmart.com/Q108389424A?ap=b64d | R$ 67 à vista (os checkouts 1912 e 2b70 são de R$ 147) |
+No site: `/ir/<curso>/checkout/` (mesmo `src`, Pixel InitiateCheckout e conversão "Clique de saída" do Google). Link discreto "ou comprar direto" nos cards, nas análises e na /comecar/.
