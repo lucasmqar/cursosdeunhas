@@ -45,25 +45,36 @@ def br(d):
     return "/".join(reversed(d.split("-")))
 
 
-CSS = (":root{--p:#a3245e;--t:#1f1a1d;--m:#5f565c;--b:#faf4f7;--l:#eadde4}*{box-sizing:border-box}"
-       "body{margin:0;font:17px/1.65 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--t);background:#fff}"
-       ".w{max-width:760px;margin:0 auto;padding:0 16px}a{color:var(--p)}"
+CSS = (":root{--t:#1a1a1a;--m:#6b6b6b;--l:#e6e6e6}*{box-sizing:border-box}"
+       "body{margin:0;font:16px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--t);background:#fff}"
+       ".w{max-width:680px;margin:0 auto;padding:0 16px}a{color:inherit}"
        ".skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px}"
-       ".top{border-bottom:1px solid var(--l);background:var(--b)}"
-       ".top .w{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}"
-       ".logo{font-weight:700;text-decoration:none;color:var(--t)}nav a{margin-right:14px;font-size:15px;text-decoration:none}"
-       "h1{font-size:1.85rem;line-height:1.25;margin:20px 0 8px}h2{font-size:1.4rem;line-height:1.3;margin:32px 0 8px}h3{font-size:1.15rem;margin:22px 0 6px}"
-       ".meta,.crumb{color:var(--m);font-size:14px}.crumb{margin-top:16px}.crumb a{color:var(--m)}"
-       ".disc{background:var(--b);border-left:4px solid var(--p);padding:10px 14px;font-size:14px}"
-       ".card{border:1px solid var(--l);border-radius:12px;padding:16px;margin:16px 0}"
-       ".btn{display:inline-block;background:var(--p);color:#fff;text-decoration:none;padding:11px 18px;border-radius:10px;font-weight:600}"
-       "table{width:100%;border-collapse:collapse;font-size:15px;display:block;overflow-x:auto}"
-       "th,td{border:1px solid var(--l);padding:8px;text-align:left;vertical-align:top}th{background:var(--b)}"
-       "details{border-bottom:1px solid var(--l);padding:10px 0}summary{cursor:pointer;font-weight:600}"
-       ".pick{background:var(--b);border:2px solid var(--p);border-radius:12px;padding:14px 16px;margin:18px 0}.pick p{margin:6px 0}.btn.sm{padding:7px 12px;font-size:15px}"
-       ".sticky{display:none}@media(max-width:760px){.sticky{display:block;position:fixed;left:0;right:0;bottom:0;padding:10px 16px;background:#fff;border-top:1px solid var(--l);text-align:center;z-index:9}.sticky .btn{display:block}body{padding-bottom:76px}}"
-       "footer{margin-top:48px;border-top:1px solid var(--l);background:var(--b);font-size:14px;color:var(--m)}"
-       "footer .w{padding-top:16px;padding-bottom:16px}footer a{color:var(--m);margin-right:14px}")
+       ".top{border-bottom:1px solid var(--l)}"
+       ".top .w{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}"
+       ".logo{font-weight:600;text-decoration:none}.top nav a{margin-left:14px;font-size:14px;color:var(--m);text-decoration:none}"
+       "h1{font-size:1.55rem;line-height:1.25;margin:22px 0 6px}h2{font-size:1.15rem;line-height:1.3;margin:30px 0 6px}h3{font-size:1.02rem;margin:0 0 2px}"
+       ".meta,.crumb,.m,.disc{color:var(--m);font-size:13px}.crumb{margin-top:14px}.crumb a{color:var(--m)}.disc{margin:2px 0 18px}"
+       ".card{border-top:1px solid var(--l);padding:14px 0}.card p{margin:4px 0}"
+       ".btn{display:inline-block;border:1px solid var(--t);color:var(--t);text-decoration:none;padding:8px 14px;border-radius:6px;font-size:15px}"
+       ".btn.sm{padding:4px 10px;font-size:14px}"
+       "table{width:100%;border-collapse:collapse;font-size:14px;display:block;overflow-x:auto}"
+       "th,td{border-bottom:1px solid var(--l);padding:8px 6px;text-align:left;vertical-align:top}th{font-weight:600;font-size:13px;color:var(--m)}"
+       "details{border-bottom:1px solid var(--l);padding:8px 0}summary{cursor:pointer}"
+       ".pick{margin:16px 0}.pick p{margin:6px 0}"
+       ".sticky{display:none}@media(max-width:760px){.sticky{display:block;position:fixed;left:0;right:0;bottom:0;padding:8px 16px;background:#fff;border-top:1px solid var(--l);z-index:9}.sticky .btn{display:block;text-align:center}body{padding-bottom:64px}}"
+       "footer{margin-top:56px;border-top:1px solid var(--l);font-size:13px;color:var(--m)}"
+       "footer .w{padding-top:16px;padding-bottom:24px}footer a{color:var(--m);text-decoration:none}footer a:hover{text-decoration:underline}"
+       "footer ul{list-style:none;padding:0;margin:0 0 14px;columns:2;column-gap:24px}footer li{margin:3px 0}")
+
+# todas as rotas (preenchido em main antes de renderizar): rodapé global
+ROUTES = []
+
+
+def footer():
+    li = "".join('<li><a href="%s">%s</a></li>' % (u, e(n)) for n, u in ROUTES)
+    return (f'<footer><div class="w"><nav aria-label="Todas as páginas"><ul>{li}</ul></nav>'
+            f'<p>© {TODAY[:4]} {e(S["name"])} · Guia independente, não somos produtores dos cursos. Alguns links são de afiliado. '
+            'Preços e condições podem mudar; confirme na página oficial.</p></div></footer>')
 
 
 def render(m, body):
@@ -90,8 +101,7 @@ def render(m, body):
     crumb = "" if path == "/" else '<nav class="crumb" aria-label="Trilha"><a href="/">Início</a> › %s</nav>' % e(crumbs[-1][0])
     byline = ('<p class="meta">Por <a href="/sobre/">Equipe %s</a> · Atualizado em <time datetime="%s">%s</time></p>'
               % (e(S["name"]), upd, br(upd))) if kind in ("article", "review") else ""
-    disc = ('<p class="disc"><strong>Transparência:</strong> alguns links deste site são de afiliado. Se você comprar por eles, '
-            'podemos receber uma comissão, sem custo extra para você. Isso não altera nossas avaliações. '
+    disc = ('<p class="disc">Alguns links são de afiliado: se você comprar por eles, recebemos comissão, sem custo extra. '
             '<a href="/aviso-legal/">Saiba mais</a>.</p>') if kind in ("article", "review", "home") else ""
     ver = "".join('<meta name="%s" content="%s">' % (n, e(v)) for n, v in (
         ("google-site-verification", S["verify"].get("google")), ("msvalidate.01", S["verify"].get("bing"))) if v)
@@ -113,7 +123,7 @@ def render(m, body):
 <meta property="og:description" content="{e(m['desc'])}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#a3245e">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 {ver}<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());</script>{PIXEL}{SRCJS}
 <style>{CSS}</style>
@@ -121,12 +131,12 @@ def render(m, body):
 </head>
 <body>
 <a class="skip" href="#c">Pular para o conteúdo</a>
-<header class="top"><div class="w"><a class="logo" href="/">💅 {e(S['name'])}</a><nav aria-label="Principal"><a href="/melhor-curso-de-unhas-online/">Melhores cursos</a><a href="/vale-a-pena-fazer-curso-de-unha-em-gel/">Vale a pena?</a><a href="/sobre/">Sobre</a></nav></div></header>
+<header class="top"><div class="w"><a class="logo" href="/">{e(S['name'])}</a><nav aria-label="Principal"><a href="/melhor-curso-de-unhas-online/">Comparativo</a><a href="/comecar/">Por onde começar</a></nav></div></header>
 <main id="c" class="w">{crumb}<article>
 <h1>{e(m['h1'])}</h1>{byline}{disc}
 {body}
 </article></main>
-<footer><div class="w"><p><a href="/sobre/">Sobre e contato</a><a href="/politica-de-privacidade/">Privacidade</a><a href="/aviso-legal/">Aviso legal</a></p><p>© {TODAY[:4]} {e(S['name'])} · Site independente: não somos produtores dos cursos citados. Preços e condições podem mudar; confirme na página oficial.</p></div></footer>
+{footer()}
 </body>
 </html>"""
 
@@ -135,29 +145,30 @@ def hot(p):
     return "/ir/%s/" % p["slug"]
 
 
+def short(p):
+    return p['price'].split(' (')[0]
+
+
 def cards():
     if not P:
         return '<p class="card">Análises dos cursos em atualização.</p>'
-    out = []
-    for i, p in enumerate(P, 1):
-        out.append(f"""<div class="card"><h3>{i}. {e(p['name'])}</h3><p class="meta">{e(p['producer'])} · {e(p['best'])}</p><p>{e(p['summary'])}</p><p><strong>Preço:</strong> {e(p['price'])} · <strong>Garantia:</strong> {e(p['guarantee'])} · <strong>Certificado:</strong> {e(p['certificate'])}</p><p><a href="/{p['slug']}/">Ler análise completa</a> &nbsp; <a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver preço e garantia →</a></p></div>""")
-    return "".join(out)
+    return "".join(f"""<div class="card"><h3><a href="/{p['slug']}/">{e(p['name'])}</a></h3><p class="m">{e(p['best'])}</p><p>{e(p['summary'])}</p><p class="m">Preço: {e(p['price'])} · Garantia: {e(p['guarantee'])} · Certificado: {e(p['certificate'])} · Acesso: {e(p['access'])}</p><p><a class="btn sm" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></p></div>""" for p in P)
 
 
 def table():
     if not P:
         return ""
-    rows = "".join(f"<tr><td><a href='/{p['slug']}/'>{e(p['name'])}</a></td><td>{e(p['best'])}</td><td>{e(p['price'])}</td><td>{e(p['certificate'])}</td><td>{e(p['guarantee'])}</td><td><a class='btn sm' href='{hot(p)}' rel='sponsored nofollow'>Ver preço</a></td></tr>" for p in P)
-    return ("<table><thead><tr><th>Curso</th><th>Melhor para</th><th>Preço</th><th>Certificado</th><th>Garantia</th><th></th></tr></thead><tbody>"
+    rows = "".join(f"<tr><td><a href='/{p['slug']}/'>{e(p['name'])}</a></td><td>{e(p['best'])}</td><td style='white-space:nowrap'>{e(short(p).replace(' à vista',''))}</td><td>{e(p['certificate'].split(',')[0])}</td><td>{e(p['guarantee'])}</td><td><a href='{hot(p)}' rel='sponsored nofollow'>Ver</a></td></tr>" for p in P)
+    return ("<table><thead><tr><th>Curso</th><th>Para quem</th><th>À vista</th><th>Certificado</th><th>Garantia</th><th></th></tr></thead><tbody>"
             + rows + "</tbody></table>")
 
 
 def picks():
     if len(P) < 3:
         return ""
-    lab = ["Para trabalhar com alongamento", "Começando do zero, formação completa", "Mais barato, para iniciantes"]
-    rows = "".join(f"<p><strong>{lab[i]}:</strong> <a href='/{p['slug']}/'>{e(p['name'])}</a> ({e(p['price'].split(' (')[0])}) <a class='btn sm' href='{hot(p)}' rel='sponsored nofollow'>Ver preço e garantia →</a></p>" for i, p in enumerate(P[:3]))
-    return '<div class="pick" id="escolha"><p><strong>Nossa escolha por objetivo</strong></p>' + rows + '<p class="meta">Todos com garantia de pelo menos 7 dias: se não gostar, pede o reembolso.</p></div>'
+    lab = ["Alongamento e decoração", "Do zero ao avançado", "Só manicure e pedicure"]
+    rows = "".join(f"<p>{lab[i]}: <a href='/{p['slug']}/'>{e(p['name'])}</a> <span class='m'>{e(short(p))}</span></p>" for i, p in enumerate(P[:3]))
+    return '<div class="pick" id="escolha">' + rows + '</div>'
 
 
 def ul(xs):
@@ -213,6 +224,12 @@ def main():
         d = OUT / "ir" / p["slug"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(redirect(p["hotlink"]), "utf-8")
+    global ROUTES
+    lab = lambda m: "Início" if m["path"] == "/" else m.get("crumb", m["h1"])
+    rs = [(lab(m), m["path"]) for m, _ in pages] + [("Por onde começar", "/comecar/")]
+    ordem = ["/", "/melhor-curso-de-unhas-online/", "/comecar/"] + ["/%s/" % p["slug"] for p in P]
+    fim = ["/sobre/", "/aviso-legal/", "/politica-de-privacidade/"]
+    ROUTES[:] = sorted(rs, key=lambda r: ordem.index(r[1]) if r[1] in ordem else (100 + fim.index(r[1]) if r[1] in fim else 50))
     urls = []
     for m, body in pages:
         d = OUT / m["path"].strip("/")
