@@ -404,3 +404,11 @@ As 2 regras antigas filtram o nome "Unhas \| Indireto \| Lead" e não pegam a ca
 - **Total no ar:** 4 conjuntos × R$ 45 = **R$ 180/dia**; 7 anúncios (N1 imagem+vídeo, N2 imagem+vídeo, N4 imagem+vídeo, N5 vídeo). Conferido por API e no Gerenciador às ~13h.
 - **N3, limpeza final:** além dos anúncios, saíram da biblioteca os 6 vídeos N3 (v1, motion, v6; pelo Chrome), os 3 anúncios N3 arquivados, os 16 criativos N3 e as 2 imagens N3. Não sobra nada do N3 na conta.
 - **Atenção:** um gancho com "reset" na semana do boato atrai comentários com o boato; moderar/ocultar comentários de desinformação no anúncio N5. Há um rascunho pendente no Gerenciador ("Conferir e publicar (1)") que não é desta sessão e não foi tocado.
+
+## 09/11/2026 — pausa do Lucas e reativação dos vídeos
+
+- 18:57: o Lucas pausou pelo Gerenciador cinco anúncios (N1, N2 e N4 vídeo; N2 e N4 imagem), por achar que os vídeos estavam desatualizados.
+- Conferência: abri a prévia de cada anúncio de vídeo no Reels (9:16) e no feed do Instagram (1:1) e comparei o quadro dos 13 s com as folhas `marketing/remotion/out/v6/folha_V6-*.png`. Os seis vídeos são os renders finais v6 (durações 35,09 / 29,05 / 28,84 s), sem mãos vetoriais. Nada precisou ser trocado.
+- Reativados N1, N2 e N4 vídeo com o OK do Lucas. Ficaram "em processamento" (revisão do Meta) logo depois.
+- N2 e N4 imagem continuam pausados: o OK foi só para os vídeos.
+- Limite da conta: gasto R$ 562,09 de R$ 588,53; restam R$ 26,44, divididos com as campanhas do PEDE FLUX. Não mexi no limite.
