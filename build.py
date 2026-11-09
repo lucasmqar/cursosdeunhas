@@ -15,7 +15,7 @@ TODAY = datetime.date.today().isoformat()
 ORG = {"@type": "Organization", "@id": BASE + "/#org", "name": S["name"], "url": BASE + "/", "logo": BASE + "/favicon.svg"}
 
 
-TAG = "<script async src=\"https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS\"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());</script>"
+TAG = "<script>window.dataLayer=window.dataLayer||[];dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});</script><script async src=\"https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS\"></script><script>function gtag(){dataLayer.push(arguments)}gtag('js',new Date());</script>"
 
 
 MP = S.get("meta_pixel", "")
@@ -45,39 +45,36 @@ def br(d):
     return "/".join(reversed(d.split("-")))
 
 
-CSS = (":root{--t:#1a1a1a;--m:#6b6b6b;--l:#e6e6e6}*{box-sizing:border-box}"
-       "body{margin:0;font:16px/1.6 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--t);background:#fff}"
-       ".w{max-width:680px;margin:0 auto;padding:0 16px}a{color:inherit}"
-       ".skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px}"
-       ".top{border-bottom:1px solid var(--l)}"
-       ".top .w{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}"
-       ".logo{font-weight:600;text-decoration:none}.top nav a{margin-left:14px;font-size:14px;color:var(--m);text-decoration:none}"
-       "h1{font-size:1.55rem;line-height:1.25;margin:22px 0 6px}h2{font-size:1.15rem;line-height:1.3;margin:30px 0 6px}h3{font-size:1.02rem;margin:0 0 2px}"
-       ".meta,.crumb,.m,.disc{color:var(--m);font-size:13px}.crumb{margin-top:14px}.crumb a{color:var(--m)}.disc{margin:2px 0 18px}"
-       ".card,.box{background:#f7f7f7;border:1px solid var(--l);border-radius:10px;padding:14px 16px;margin:12px 0}.card p,.box p{margin:4px 0}"
-       ".card .hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline}.card .pr{white-space:nowrap;font-weight:600}"
-       ".tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px;padding:0}.tags li{list-style:none;background:#fff;border:1px solid var(--l);border-radius:20px;padding:1px 10px;font-size:12px;color:var(--m)}"
-       ".btn{display:inline-block;background:#ececec;border:1px solid #d6d6d6;color:var(--t);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:15px}"
-       ".btn:hover{background:#e2e2e2}.btn.sm{padding:5px 12px;font-size:14px}"
-       ".two{display:grid;gap:12px}@media(min-width:620px){.two{grid-template-columns:1fr 1fr}}.two .box{margin:0}.box h2,.box h3{margin:0 0 6px;font-size:1rem}.box ul{margin:0;padding-left:18px}"
-       "table{width:100%;border-collapse:collapse;font-size:14px;display:block;overflow-x:auto}"
-       "th,td{border-bottom:1px solid var(--l);padding:8px 6px;text-align:left;vertical-align:top}th{font-weight:600;font-size:13px;color:var(--m)}"
-       "details{border-bottom:1px solid var(--l);padding:8px 0}summary{cursor:pointer}"
-       ".pick{background:#f7f7f7;border:1px solid var(--l);border-radius:10px;padding:10px 16px;margin:16px 0}.pick p{margin:6px 0;display:flex;justify-content:space-between;gap:12px}"
-       ".sticky{display:none}@media(max-width:760px){.sticky{display:block;position:fixed;left:0;right:0;bottom:0;padding:8px 16px;background:#fff;border-top:1px solid var(--l);z-index:9}.sticky .btn{display:block;text-align:center}body{padding-bottom:64px}}"
-       "footer{margin-top:56px;border-top:1px solid var(--l);font-size:13px;color:var(--m)}"
-       "footer .w{padding-top:16px;padding-bottom:24px}footer a{color:var(--m);text-decoration:none}footer a:hover{text-decoration:underline}"
-       "footer ul{list-style:none;padding:0;margin:0 0 14px;columns:2;column-gap:24px}footer li{margin:3px 0}")
+BOOTSTRAP = ('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" '
+             'integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">')
+# só sobreposições de marca (contraste medido: branco sobre ameixa #6E1F45 ≈ 10:1; ameixa sobre branco ≈ 10:1)
+CSS = (":root{--bs-link-color:#6E1F45;--bs-link-color-rgb:110,31,69;--bs-link-hover-color:#4f1631;--bs-link-hover-color-rgb:79,22,49}"
+       ".btn-primary{--bs-btn-bg:#6E1F45;--bs-btn-border-color:#6E1F45;--bs-btn-hover-bg:#5a1838;--bs-btn-hover-border-color:#5a1838;"
+       "--bs-btn-active-bg:#4f1631;--bs-btn-active-border-color:#4f1631;--bs-btn-focus-shadow-rgb:110,31,69}"
+       ".badge-uso{background:#F6EDE8;color:#6E1F45;border:1px solid #e3cfd8;font-weight:600}"
+       "summary{cursor:pointer}.leitura{max-width:860px}")
 
 # todas as rotas (preenchido em main antes de renderizar): rodapé global
 ROUTES = []
 
 
 def footer():
-    li = "".join('<li><a href="%s">%s</a></li>' % (u, e(n)) for n, u in ROUTES)
-    return (f'<footer><div class="w"><nav aria-label="Todas as páginas"><ul>{li}</ul></nav>'
-            f'<p>© {TODAY[:4]} {e(S["name"])} · Guia independente, não somos produtores dos cursos. Alguns links são de afiliado. '
-            'Preços e condições podem mudar; confirme na página oficial.</p></div></footer>')
+    li = "".join('<li class="nav-item"><a class="nav-link px-0 link-secondary" href="%s">%s</a></li>' % (u, e(n)) for n, u in ROUTES)
+    return (f'<footer class="border-top mt-5 py-4 small"><div class="container leitura"><nav aria-label="Todas as páginas">'
+            f'<ul class="nav flex-column flex-md-row flex-md-wrap column-gap-3 row-gap-1">{li}</ul></nav>'
+            f'<p class="text-body-secondary mt-3 mb-0">© {TODAY[:4]} {e(S["name"])} · Guia independente: não somos produtores dos cursos. '
+            'Se você comprar pelos nossos links, recebemos comissão da Hotmart, sem custo extra para você. '
+            'Preços e condições podem mudar; confirme na página oficial. <a href="/aviso-legal/">Aviso legal</a> · '
+            '<a href="/politica-de-privacidade/">Privacidade</a></p></div></footer>')
+
+
+def bs(body):
+    """aplica classes do Bootstrap ao HTML simples dos artigos (content/*.html)"""
+    body = re.sub(r"<table>(.*?)</table>", r'<div class="table-responsive"><table class="table table-sm align-middle">\1</table></div>', body, flags=re.S)
+    return (body
+            .replace("<details>", '<details class="border rounded-3 p-3 mb-2">').replace("<summary>", '<summary class="fw-semibold">')
+            .replace('class="box"', 'class="border rounded-3 p-3 mb-3"').replace('class="m"', 'class="small text-body-secondary"')
+            .replace('class="meta"', 'class="small text-body-secondary"'))
 
 
 def render(m, body):
@@ -90,7 +87,7 @@ def render(m, body):
     if kind == "home":
         graph.append({"@type": "WebSite", "@id": BASE + "/#site", "name": S["name"], "url": BASE + "/",
                       "inLanguage": "pt-BR", "publisher": {"@id": ORG["@id"]}})
-    else:
+    elif "noindex" not in m.get("robots", ""):
         graph.append({"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "name": n, "item": BASE + u} for i, (n, u) in enumerate(crumbs)]})
         if kind in ("article", "review"):
@@ -101,23 +98,24 @@ def render(m, body):
                 art["about"] = m["about"]
             graph.append(art)
     ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
-    crumb = "" if path == "/" else '<nav class="crumb" aria-label="Trilha"><a href="/">Início</a> › %s</nav>' % e(crumbs[-1][0])
-    byline = ('<p class="meta">Por <a href="/sobre/">Equipe %s</a> · Atualizado em <time datetime="%s">%s</time></p>'
-              % (e(S["name"]), upd, br(upd))) if kind in ("article", "review") else ""
-    disc = ('<p class="disc">Alguns links são de afiliado: se você comprar por eles, recebemos comissão, sem custo extra. '
-            '<a href="/aviso-legal/">Saiba mais</a>.</p>') if kind in ("article", "review", "home") else ""
+    crumb = "" if path == "/" else ('<nav aria-label="Trilha"><ol class="breadcrumb small mt-3 mb-2"><li class="breadcrumb-item"><a href="/">Início</a></li>'
+                                     '<li class="breadcrumb-item active" aria-current="page">%s</li></ol></nav>' % e(crumbs[-1][0]))
+    disc = ('<p class="small text-body-secondary border-start border-3 ps-2">Se você comprar pelos nossos links, recebemos comissão da Hotmart. '
+            'O preço para você é o mesmo. <a href="/aviso-legal/">Como funciona</a></p>') if kind in ("article", "review", "home") else ""
+    byline = ('<p class="small text-body-secondary">Por <a href="/sobre/">Equipe %s</a> · Atualizado em <time datetime="%s">%s</time>%s</p>'
+              % (e(S["name"]), upd, br(upd), ' · <a href="#como-avaliamos">Como avaliamos</a>' if m.get("como") else "")) if kind in ("article", "review", "home") else ""
     ver = "".join('<meta name="%s" content="%s">' % (n, e(v)) for n, v in (
         ("google-site-verification", S["verify"].get("google")), ("msvalidate.01", S["verify"].get("bing"))) if v)
     robots = m.get("robots", "index,follow,max-image-preview:large,max-snippet:-1")
     ogtype = "website" if kind == "home" else "article"
     return f"""<!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-bs-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(m['title'])}</title>
 <meta name="description" content="{e(m['desc'])}">
-<link rel="canonical" href="{url}">
+{'' if 'noindex' in robots else f'<link rel="canonical" href="{url}">'}
 <meta name="robots" content="{robots}">
 <meta property="og:type" content="{ogtype}">
 <meta property="og:locale" content="pt_BR">
@@ -128,16 +126,16 @@ def render(m, body):
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-{ver}<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());</script>{PIXEL}{SRCJS}
-<style>{CSS}</style>
+{ver}{TAG}{PIXEL}{SRCJS}
+{BOOTSTRAP}<style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
 <body>
-<a class="skip" href="#c">Pular para o conteúdo</a>
-<header class="top"><div class="w"><a class="logo" href="/">{e(S['name'])}</a><nav aria-label="Principal"><a href="/melhor-curso-de-unhas-online/">Comparativo</a><a href="/comecar/">Por onde começar</a></nav></div></header>
-<main id="c" class="w">{crumb}<article>
-<h1>{e(m['h1'])}</h1>{byline}{disc}
-{body}
+<a class="visually-hidden-focusable" href="#c">Pular para o conteúdo</a>
+<header class="border-bottom"><nav class="navbar" aria-label="Principal"><div class="container leitura"><a class="navbar-brand fw-semibold" href="/">{e(S['name'])}</a><div class="d-flex gap-3"><a class="nav-link" href="/melhor-curso-de-unhas-online/">Comparativo</a><a class="nav-link" href="/comecar/">Por onde começar</a></div></div></nav></header>
+<main id="c" class="container leitura">{crumb}<article class="pt-2">
+<h1 class="h2 mt-3">{e(m['h1'])}</h1>{disc}{byline}
+{bs(body)}
 </article></main>
 {footer()}
 </body>
@@ -157,43 +155,87 @@ def short(p):
     return p['price'].split(' (')[0]
 
 
+# ordem de exibição: do mais simples ao mais avançado; rótulo de uso (badge) por curso
+ORDEM = ["curso-de-manicure-e-pedicure-profissional", "nail-academy", "escola-designer-de-unhas"]
+USO = {"curso-de-manicure-e-pedicure-profissional": "Para começar do zero, mais barato",
+       "nail-academy": "Mais completo, do zero ao alongamento",
+       "escola-designer-de-unhas": "Para quem já faz unhas"}
+
+
+def ordenados():
+    return sorted(P, key=lambda p: ORDEM.index(p["slug"]) if p["slug"] in ORDEM else 9)
+
+
+def aviso_cta():
+    return '<p class="small text-body-secondary mt-2 mb-0">Link de parceria: recebemos comissão, sem custo extra para você.</p>'
+
+
+def ctas(p, w100=False):
+    cls = "btn btn-primary btn-lg" + (" w-100" if w100 else "")
+    direto = (f'<a class="link-secondary small d-inline-block py-2" href="{ck(p)}" rel="sponsored nofollow">ou ir direto para o pagamento</a>'
+              if p.get("checkout") else "")
+    return f'<a class="{cls}" href="{hot(p)}" rel="sponsored nofollow">Ver o curso na Hotmart<span class="visually-hidden">: {e(p["name"])}</span></a>{aviso_cta()}{direto}'
+
+
+def attrs(p):
+    rows = (("Para quem", p["best"]), ("Preço", f"{short(p)} (conferido em {br(p.get('checked', TODAY))})"),
+            ("Certificado", p["certificate"]), ("Acesso", p["access"]), ("Garantia", p["guarantee"]))
+    return "".join(f'<li class="list-group-item d-flex justify-content-between gap-3"><span class="text-body-secondary">{k}</span><span class="text-end">{e(v)}</span></li>' for k, v in rows)
+
+
 def cards():
     if not P:
-        return '<p class="card">Análises dos cursos em atualização.</p>'
-    def tg(p):
-        return "".join("<li>%s</li>" % e(x) for x in (p['certificate'].split(',')[0].replace('Sim', 'Certificado'), "Garantia " + p['guarantee'], "Acesso " + p['access'].lower()))
-    return "".join(f"""<div class="card"><div class="hd"><h3><a href="/{p['slug']}/">{e(p['name'])}</a></h3><span class="pr">{e(short(p).replace(' à vista',''))}</span></div><p class="m">{e(p['best'])}</p><p>{e(p['summary'])}</p><ul class="tags">{tg(p)}</ul><a class="btn sm" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a> <a class="m" style="margin-left:10px" href="{ck(p)}" rel="sponsored nofollow">ou comprar direto →</a></div>""" for p in P)
+        return '<p>Análises dos cursos em atualização.</p>'
+    out = []
+    for p in ordenados():
+        out.append(f"""<div class="col"><article class="card h-100"><div class="card-body"><span class="badge badge-uso mb-2">{e(USO.get(p['slug'], p['best']))}</span>
+<h3 class="card-title h5"><a class="link-body-emphasis" href="/{p['slug']}/">{e(p['name'])}</a></h3><p class="card-text">{e(p['summary'])}</p></div>
+<ul class="list-group list-group-flush small">{attrs(p)}</ul><div class="card-footer bg-transparent border-0 pb-3">{ctas(p, True)}</div></article></div>""")
+    return '<div class="row row-cols-1 row-cols-md-3 g-3 my-3">' + "".join(out) + "</div>"
 
 
 def table():
     if not P:
         return ""
-    rows = "".join(f"<tr><td><a href='/{p['slug']}/'>{e(p['name'])}</a></td><td>{e(p['best'])}</td><td style='white-space:nowrap'>{e(short(p).replace(' à vista',''))}</td><td>{e(p['certificate'].split(',')[0])}</td><td>{e(p['guarantee'])}</td><td><a href='{hot(p)}' rel='sponsored nofollow'>Ver</a></td></tr>" for p in P)
-    return ("<table><thead><tr><th>Curso</th><th>Para quem</th><th>À vista</th><th>Certificado</th><th>Garantia</th><th></th></tr></thead><tbody>"
-            + rows + "</tbody></table>")
+    ps = ordenados()
+    head = "".join(f'<th scope="col"><a href="/{p["slug"]}/">{e(p["name"])}</a></th>' for p in ps)
+    linhas = (("À vista", lambda p: short(p).replace(" à vista", "")), ("Certificados", lambda p: p.get("cert_short", p["certificate"])),
+              ("Acesso", lambda p: p["access"]), ("Garantia", lambda p: p["guarantee"]), ("Para quem", lambda p: p["best"]))
+    body = "".join(f'<tr><th scope="row">{k}</th>' + "".join(f"<td>{e(f(p))}</td>" for p in ps) + "</tr>" for k, f in linhas)
+    data = br(max(p.get("checked", TODAY) for p in ps))
+    return (f'<div class="table-responsive"><table class="table table-sm align-middle"><caption class="caption-top">Preços conferidos em {data}</caption>'
+            f'<thead><tr><td></td>{head}</tr></thead><tbody>{body}</tbody></table></div>')
+
+
+def secoes():
+    out = []
+    for n, p in enumerate(ordenados(), 1):
+        out.append(f"""<section class="mt-4"><h2 class="h4">{n}. {e(p['name'])}: {e(USO.get(p['slug'], p['best']).lower())}</h2><p>{e(p['verdict'])}</p>
+<div class="row g-3"><div class="col-md-6"><div class="border rounded-3 p-3 h-100"><h3 class="h6">É para você se…</h3>{ul(p['for'][:3])}</div></div>
+<div class="col-md-6"><div class="border rounded-3 p-3 h-100"><h3 class="h6">Não é para você se…</h3>{ul(p['notfor'][:3])}</div></div></div>
+<h3 class="h6 mt-3">Pontos de atenção</h3>{ul(p['cons'][:3])}<p class="mt-3"><a href="/{p['slug']}/">Análise completa do {e(p['name'])}</a></p>{ctas(p)}</section>""")
+    return "".join(out)
 
 
 def picks():
-    if len(P) < 3:
-        return ""
-    lab = ["Alongamento e decoração", "Do zero ao avançado", "Só manicure e pedicure"]
-    rows = "".join(f"<p><span>{lab[i]}: <a href='/{p['slug']}/'>{e(p['name'])}</a></span><span class='m'>{e(short(p))}</span></p>" for i, p in enumerate(P[:3]))
-    return '<div class="pick" id="escolha">' + rows + '</div>'
+    return ""
 
 
 def ul(xs):
-    return "<ul>" + "".join("<li>%s</li>" % e(x) for x in xs) + "</ul>"
+    return '<ul class="mb-0">' + "".join("<li>%s</li>" % e(x) for x in xs) + "</ul>"
 
 
 def review_body(p):
-    return f"""<p>{e(p['verdict'])}</p>
-<div class="box"><table><tbody><tr><th>Para quem</th><td>{e(p['best'])}</td></tr><tr><th>Preço</th><td>{e(p['price'])}</td></tr><tr><th>Certificado</th><td>{e(p['certificate'])}</td></tr><tr><th>Acesso</th><td>{e(p['access'])}</td></tr><tr><th>Garantia</th><td>{e(p['guarantee'])}</td></tr></tbody></table>
-<p style="margin-top:10px"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a> <a class="m" style="margin-left:10px" href="{ck(p)}" rel="sponsored nofollow">ou comprar direto →</a></p></div>
-<div class="box"><h2>O que ensina</h2>{ul(p['modules'])}</div>
-<div class="two"><div class="box"><h3>Pontos fortes</h3>{ul(p['pros'][:3])}</div><div class="box"><h3>Pontos de atenção</h3>{ul(p['cons'][:3])}</div></div>
-<div class="two" style="margin-top:12px"><div class="box"><h3>Para quem é</h3>{ul(p['for'][:3])}</div><div class="box"><h3>Para quem não é</h3>{ul(p['notfor'][:3])}</div></div>
-<div class="sticky"><a class="btn" href="{hot(p)}" rel="sponsored nofollow">Ver na página oficial</a></div>
-<p class="m" style="margin-top:20px">Dados conferidos na página oficial em {br(p.get('checked', TODAY))}. Não é depoimento de aluno; preços podem mudar. Compre só pela página oficial (garantia de 7 dias). <a href="/melhor-curso-de-unhas-online/">Ver o comparativo</a>.</p>"""
+    outros = [o for o in ordenados() if o["slug"] != p["slug"]]
+    alt = "".join(f'<li class="list-group-item d-flex justify-content-between gap-3"><a href="/{o["slug"]}/">{e(o["name"])}</a><span class="text-body-secondary small text-end">{e(USO.get(o["slug"], o["best"]))} · {e(short(o))}</span></li>' for o in outros)
+    return f"""<div class="border rounded-3 p-3 my-3"><p class="fw-semibold mb-2">Veredito</p><p>{e(p['verdict'])}</p>
+<ul class="list-group list-group-flush small mb-3">{attrs(p)}</ul>{ctas(p)}</div>
+<div class="row g-3"><div class="col-md-6"><div class="border rounded-3 p-3 h-100"><h2 class="h6">É para você se…</h2>{ul(p['for'][:3])}</div></div>
+<div class="col-md-6"><div class="border rounded-3 p-3 h-100"><h2 class="h6">Não é para você se…</h2>{ul(p['notfor'][:3])}</div></div></div>
+<h2 class="h5 mt-4">O que ensina</h2>{ul(p['modules'])}
+<div class="row g-3 mt-2"><div class="col-md-6"><h2 class="h6">Pontos fortes</h2>{ul(p['pros'][:3])}</div><div class="col-md-6"><h2 class="h6">Pontos de atenção</h2>{ul(p['cons'][:3])}</div></div>
+<h2 class="h5 mt-4">Alternativas</h2><ul class="list-group mb-2">{alt}</ul><p><a href="/melhor-curso-de-unhas-online/">Ver os 3 lado a lado</a></p>
+<p class="small text-body-secondary mt-4">Dados conferidos na página oficial em {br(p.get('checked', TODAY))}. Não é depoimento de aluno; preços podem mudar. Compre só pela página oficial (garantia de 7 dias).</p>"""
 
 
 def redirect(url):
@@ -203,9 +245,9 @@ def redirect(url):
           "if(!s&&(q.get('gclid')||q.get('gbraid')||q.get('wbraid')))s='gads';"
           "s=s?s.replace(/[^a-z0-9_-]/gi,'').slice(0,30):'cursosdeunhas';"
           "window.fbq&&fbq('track','InitiateCheckout');setTimeout(function(){location.replace(%s+s)},900)" % json.dumps(base))
-    return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">'
+    return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">'
             '<title>Redirecionando…</title>' + TAG + PIXEL + '<meta http-equiv="refresh" content="3;url=%s"></head><body><p>Abrindo a página oficial… '
-            '<a href="%s" rel="sponsored nofollow">clique aqui</a> se não abrir.</p><script>%s</script></body></html>'
+            '<a href="%s" rel="sponsored nofollow">Abrir a página oficial do curso na Hotmart</a>.</p><script>%s</script></body></html>'
             % (e(url), e(url), js))
 
 
@@ -217,13 +259,13 @@ def main():
     for f in sorted((R / "content").glob("*.html")):
         raw = f.read_text("utf-8")
         m = json.loads(re.match(r"<!--META(.*?)-->", raw, re.S).group(1))
-        pages.append((m, raw.split("-->", 1)[1].strip().replace("{{CARDS}}", cards()).replace("{{TABLE}}", table()).replace("{{PICKS}}", picks())))
+        pages.append((m, raw.split("-->", 1)[1].strip().replace("{{CARDS}}", cards()).replace("{{TABLE}}", table()).replace("{{PICKS}}", picks()).replace("{{SECOES}}", secoes())))
     for p in P:
         chk = p.get("checked", TODAY)
         pages.append(({"path": "/%s/" % p["slug"], "type": "review", "title": p["title"], "desc": p["desc"],
                        "h1": "%s vale a pena? Análise completa" % p["name"], "crumb": p["name"], "updated": chk, "date": chk,
                        "about": {"@type": "Course", "name": p["name"], "description": p["summary"],
-                                 "provider": {"@type": "Person", "name": p["producer"]}}}, review_body(p)))
+                                 "provider": {"@type": "Organization", "name": p["producer"]}}}, review_body(p)))
         d = OUT / "ir" / p["slug"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(redirect(p["hotlink"]), "utf-8")
@@ -259,7 +301,7 @@ def main():
     for lp in (R / "static" / "lp").glob("*.html"):
         d = OUT / lp.stem
         d.mkdir(exist_ok=True)
-        (d / "index.html").write_text(lp.read_text("utf-8").replace("{{TAG}}", TAG).replace("{{PIXEL}}", PIXEL + SRCJS), "utf-8")
+        (d / "index.html").write_text(lp.read_text("utf-8").replace("{{TAG}}", TAG).replace("{{PIXEL}}", PIXEL + SRCJS).replace("{{BOOTSTRAP}}", BOOTSTRAP).replace("{{CSS}}", CSS).replace("{{FOOTER}}", footer()), "utf-8")
     for extra in (R / "static").glob("google*.html"):
         shutil.copy(extra, OUT / extra.name)
     (OUT / "llms.txt").write_text("# %s\n\n> %s\n\n" % (S["name"], S["tagline"]) + "".join(

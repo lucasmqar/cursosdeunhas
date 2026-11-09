@@ -21,28 +21,29 @@
     ],
     "pros": [
       "Reúne várias técnicas de alongamento em um só curso",
-      "Certificado de conclusão",
+      "2 certificados digitais com carga horária",
       "Nota 4,7 com mais de 2 mil avaliações de alunos",
       "Produtor com cursos on-line vendidos desde 2014"
     ],
     "cons": [
       "Foco em alongamento e decoração: quem nunca fez manicure pode precisar de uma base antes",
       "Os materiais de alongamento são um custo à parte",
-      "Parcelamento em 12x tem juros"
+      "Parcelamento em 12x tem juros (12x de R$ 6,93, total R$ 83,16, conferido em 09/11/2026)"
     ],
     "for": [
-      "Manicures que querem passar a oferecer alongamento",
-      "Quem já tem noção básica e quer aprender várias técnicas",
-      "Quem quer trabalhar com unhas como profissão"
+      "já faz unhas e quer aprender alongamento",
+      "quer técnicas de gel, fibra, polygel e acrilfix",
+      "quer decoração e esmaltação em gel"
     ],
     "notfor": [
-      "Quem procura só cuidados básicos para as próprias unhas",
-      "Quem não pode investir agora em materiais de alongamento"
+      "nunca fez unhas e precisa da base de manicure",
+      "quer só manicure e pedicure"
     ],
     "verdict": "Para quem já faz unhas e quer alongamento e decoração. É o mais focado em técnica, com 2 certificados e bônus de gestão (tabela de preços, ficha de anamnese).",
     "hotlink": "https://go.hotmart.com/Q108389424A",
     "checked": "2026-11-09",
-    "checkout": "https://go.hotmart.com/Q108389424A?ap=b64d"
+    "checkout": "https://go.hotmart.com/Q108389424A?ap=b64d",
+    "cert_short": "2 (digitais, com carga horária)"
   },
   {
     "slug": "nail-academy",
@@ -72,20 +73,23 @@
     ],
     "cons": [
       "Muito conteúdo: exige disciplina para seguir os níveis e treinar",
-      "Parcelamento em 12x tem juros (total ~R$ 120)",
+      "Parcelamento em 12x tem juros (12x de R$ 10,03, total R$ 120,36, conferido em 09/11/2026)",
       "Os materiais de alongamento são um custo à parte"
     ],
     "for": [
-      "Iniciantes que querem uma formação completa em um só curso",
-      "Quem quer trabalhar com unhas como profissão"
+      "é iniciante e quer uma formação completa num só curso",
+      "quer trabalhar com unhas como profissão",
+      "quer chegar ao alongamento e à decoração"
     ],
     "notfor": [
-      "Quem quer aprender só uma técnica específica, com rapidez"
+      "quer só manicure e pedicure, pagando pouco",
+      "já domina o alongamento"
     ],
-    "verdict": "Para quem começa do zero e quer um caminho só até o alongamento. É o mais completo dos três, com 17 certificados e acesso vitalício.",
+    "verdict": "Para quem começa do zero e quer um único curso da manicure ao alongamento e à decoração. É o mais completo dos três, com 17 certificados e acesso vitalício.",
     "hotlink": "https://go.hotmart.com/J108389456B",
     "checked": "2026-11-09",
-    "checkout": "https://go.hotmart.com/J108389456B?ap=4d48"
+    "checkout": "https://go.hotmart.com/J108389456B?ap=4d48",
+    "cert_short": "17 (um por nível)"
   },
   {
     "slug": "curso-de-manicure-e-pedicure-profissional",
@@ -103,31 +107,32 @@
     "modules": [
       "Técnicas de manicure e pedicure, do preparo ao acabamento",
       "Cuidados essenciais, higiene e segurança no atendimento",
-      "Design de unhas e decoração (nail art)",
-      "Conteúdo pensado para todos os níveis, do zero ao especializado"
+      "Design de unhas e decoração (nail art)"
     ],
     "pros": [
       "Menor preço entre os cursos analisados",
-      "Nota 4,9 nas avaliações de alunos",
+      "Nota 4,9 com 243 avaliações de alunos (conferido em 07/11/2026)",
       "Certificado de conclusão e acesso imediato",
       "Garantia de 7 dias informada pelo produtor"
     ],
     "cons": [
-      "Não é focado em alongamento em gel ou fibra",
-      "A descrição pública não detalha a carga horária",
-      "Confira o tempo de acesso na página oficial"
+      "Só manicure e pedicure: não cobre alongamento em gel ou fibra",
+      "Parcelamento em 8x tem juros (8x de R$ 6,83, total R$ 54,64, conferido em 09/11/2026)",
+      "Não ensina gestão do negócio nem precificação"
     ],
     "for": [
-      "Quem está começando do zero",
-      "Quem quer uma primeira formação barata antes de investir em alongamento",
-      "Quem quer cuidar das próprias unhas com técnica de salão"
+      "está começando do zero",
+      "quer uma primeira formação barata antes de investir em alongamento",
+      "quer cuidar das próprias unhas com técnica de salão"
     ],
     "notfor": [
-      "Manicures experientes que buscam alongamento avançado"
+      "já é manicure e quer alongamento",
+      "quer uma formação completa num só curso"
     ],
     "verdict": "Para quem quer só manicure e pedicure, pagando pouco. Não cobre alongamento.",
     "hotlink": "https://go.hotmart.com/H108389444X",
     "checked": "2026-11-09",
-    "checkout": "https://go.hotmart.com/H108389444X?ap=46e8"
+    "checkout": "https://go.hotmart.com/H108389444X?ap=46e8",
+    "cert_short": "1 (digital, com carga horária)"
   }
 ]
