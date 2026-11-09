@@ -22,6 +22,15 @@ MP = S.get("meta_pixel", "")
 PIXEL = ("<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};"
          "if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];"
          "s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','%s');fbq('track','PageView');</script>" % MP) if MP else ""
+# origem da visita (src) que precisa chegar à Hotmart: vem da URL (?src=, ou gclid/gbraid/wbraid = Google Ads),
+# fica na sessão da aba e é acrescentada a todo link /ir/ (inclusive saindo das páginas de análise).
+SRCJS = ("<script>(function(){try{var q=new URLSearchParams(location.search),s=q.get('src'),K='cdu_src';"
+         "if(!s&&(q.get('gclid')||q.get('gbraid')||q.get('wbraid')))s='gads';"
+         "if(s){s=s.replace(/[^a-z0-9_-]/gi,'').slice(0,30);try{sessionStorage.setItem(K,s)}catch(e){}}"
+         "else{try{s=sessionStorage.getItem(K)}catch(e){}}if(!s)return;window.cduSrc=s;"
+         "var fix=function(){document.querySelectorAll('a[href*=\"/ir/\"]').forEach(function(a){if(a.href.indexOf('src=')<0)"
+         "a.href+=(a.href.indexOf('?')<0?'?':'&')+'src='+encodeURIComponent(s)})};"
+         "document.readyState=='loading'?document.addEventListener('DOMContentLoaded',fix):fix()}catch(e){}})();</script>")
 CL = S.get("clarity", "")
 if CL:
     PIXEL += ('<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;'
@@ -106,7 +115,7 @@ def render(m, body):
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#a3245e">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-{ver}<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());</script>{PIXEL}
+{ver}<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());</script>{PIXEL}{SRCJS}
 <style>{CSS}</style>
 <script type="application/ld+json">{ld}</script>
 </head>
@@ -176,7 +185,9 @@ def review_body(p):
 def redirect(url):
     base = url + ("&" if "?" in url else "?") + "src="
     url = base + "cursosdeunhas"
-    js = ("var s=new URLSearchParams(location.search).get('src');s=s?s.replace(/[^a-z0-9_-]/gi,'').slice(0,30):'cursosdeunhas';"
+    js = ("var q=new URLSearchParams(location.search),s=q.get('src');if(!s){try{s=sessionStorage.getItem('cdu_src')}catch(e){}}"
+          "if(!s&&(q.get('gclid')||q.get('gbraid')||q.get('wbraid')))s='gads';"
+          "s=s?s.replace(/[^a-z0-9_-]/gi,'').slice(0,30):'cursosdeunhas';"
           "window.fbq&&fbq('track','InitiateCheckout');setTimeout(function(){location.replace(%s+s)},900)" % json.dumps(base))
     return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">'
             '<title>Redirecionando…</title>' + TAG + PIXEL + '<meta http-equiv="refresh" content="3;url=%s"></head><body><p>Abrindo a página oficial… '
@@ -225,7 +236,7 @@ def main():
     for lp in (R / "static" / "lp").glob("*.html"):
         d = OUT / lp.stem
         d.mkdir(exist_ok=True)
-        (d / "index.html").write_text(lp.read_text("utf-8").replace("{{TAG}}", TAG).replace("{{PIXEL}}", PIXEL), "utf-8")
+        (d / "index.html").write_text(lp.read_text("utf-8").replace("{{TAG}}", TAG).replace("{{PIXEL}}", PIXEL + SRCJS), "utf-8")
     for extra in (R / "static").glob("google*.html"):
         shutil.copy(extra, OUT / extra.name)
     (OUT / "llms.txt").write_text("# %s\n\n> %s\n\n" % (S["name"], S["tagline"]) + "".join(
