@@ -1,0 +1,1786 @@
+{
+ "id": "N2",
+ "conceito": "A noite dela: edição noturna de uma revista literária (Hopper + The New Yorker). A fachada é a grade da página; a janela acesa dela vira a coluna onde a narração é composta ao vivo, como um diário. O fólio é um relógio que anda sozinho (23:00 → 23:07 → 23:20 → 23:58 → rebobina → 23:59 → 00:00). Um único gesto 3D: a página que volta quando ela olha pra trás.",
+ "formatos": {
+  "principal": [
+   1080,
+   1920
+  ],
+  "corte": [
+   1080,
+   1080
+  ],
+  "fps": 30
+ },
+ "duracao_s": 28.93,
+ "assinatura": {
+  "paleta": {
+   "noite_ameixa": "#1B1220",
+   "janela_apagada": "#2B2030",
+   "ambar_abajur": "#E9A23B",
+   "papel_lua": "#F1E6D6",
+   "lilas_sombra": "#6B5A78"
+  },
+  "fontes": {
+   "display": {
+    "familia": "Big Caslon",
+    "peso": 500,
+    "px": [
+     34,
+     92
+    ]
+   },
+   "texto": {
+    "familia": "Gill Sans",
+    "peso": 600,
+    "px": [
+     40
+    ]
+   },
+   "legenda": {
+    "familia": "Gill Sans",
+    "peso": 400,
+    "px": [
+     62
+    ]
+   }
+  },
+  "grade": {
+   "margens_px": {
+    "topo": 250,
+    "base": 427,
+    "lados": 120
+   },
+   "colunas": 4,
+   "zona_segura_reels": {
+    "topo": 250,
+    "base": 420
+   },
+   "regra_1x1": "recorte y 420–1500. A linha 1 da fachada some (já nasce apagada: 16 janelas, 13 acesas, mesma conta do gancho); o fólio desce de y 300 para y 450; todo o resto já está no quadrado."
+  },
+  "transicoes": [
+   {
+    "id": "t1",
+    "mecanica": "mini-persiana por janela, só para apagar: lâmina janela-apagada desce sobre a janela acesa em 5 f (gancho f0/30/60/90). Nada acende por lâmina: acender é sempre a janela que abre em miniatura (t2)",
+    "dur_f": 5,
+    "easing": "cubic-bezier(0.45,0,0.55,1)"
+   },
+   {
+    "id": "t2",
+    "mecanica": "janela que abre: a janela âmbar dela vira o quadro (clip-path inset do retângulo dela até 0); f100–124. Em miniatura (5 f, mesma curva) é como toda luz acende no N2: as folhas da janela abrem do eixo vertical para os lados, inset(0 50% 0 50%) → inset(0), com borda dura. Usos: janelas-unha 2–10 (f405–497) e as 19 janelas de \"agradecer\" (f642–659)",
+    "dur_f": 24,
+    "easing": "cubic-bezier(0.76,0,0.24,1)"
+   },
+   {
+    "id": "t3",
+    "mecanica": "janela que fecha (o inverso do t2), f372–386: a página âmbar inteira recolhe por clip-path inset, com borda dura, até uma janela de 150×150 (x 120–270, y 600–750); a página noite das janelas-unha já está parada por baixo e aparece em volta. A janela fica sozinha f386–393 e em f393 vira a 1ª janela-unha (inset 150×150 → 120×170, 5 f). 14 f = 60% dos 24 f do t2, porque é a saída da página que entrou por ele",
+    "dur_f": 14,
+    "easing": "cubic-bezier(0.76,0,0.24,1)"
+   },
+   {
+    "id": "t4",
+    "mecanica": "linha que sobe: a coluna do diário sobe 80 px; a linha mais velha é cortada pela borda dura y 1250, nunca esmaecida; o cursor volta a x 120 no mesmo movimento",
+    "dur_f": 12,
+    "easing": "cubic-bezier(0.33,0,0.67,1)"
+   },
+   {
+    "id": "t5",
+    "mecanica": "página virada para trás: rotateY 0→+180°, dobradiça na borda direita, perspective 1800, verso chapado janela-apagada; f563–585; único 3D do conjunto",
+    "dur_f": 22,
+    "easing": "cubic-bezier(0.65,0,0.35,1)"
+   },
+   {
+    "id": "t6",
+    "mecanica": "mesma página, sem troca de plano: a camada-chave muda presa à palavra (traço, varredura angular ou morph por interpolatePath) e o diário segue com t4",
+    "dur_f": 14,
+    "easing": "cubic-bezier(0.65,0,0.35,1)"
+   },
+   {
+    "id": "t7",
+    "mecanica": "persiana, uma vez só, f696–720: a cortina âmbar que fecha a noite. 4 lâminas de 480 px (topos em y 0/480/960/1440) crescem do próprio topo (scaleY 0→1, 15 f cada, atraso 3 f, de cima para baixo), borda dura e sem fresta. Faixas horizontais que crescem: não são as colunas que deslizam do N4 nem o corte em 2 do N1",
+    "dur_f": 24,
+    "easing": "cubic-bezier(0.45,0,0.55,1)"
+   }
+  ],
+  "camera": {
+   "micro_push": "nenhum zoom (proibido no N2). No lugar do push, deriva descendente de 1% por página: translateY 0→+19 px, inOut(sine), só na camada de ilustração (fachada, anel, ovais, título do cartão); diário, cursor e fólio ficam presos à grade.",
+   "movimentos": [
+    "deriva descendente +19 px por página (P1 f0–105, P2 f105–380, P3 f380–569, P4 f569–704, P5 f704–868)",
+    "tripé: sem zoom, sem rotação, sem travelling",
+    "mola única {mass 1.2, stiffness 60, damping 18}, zeta 1,06, 0% overshoot",
+    "entrada 24 f, saída 14 f"
+   ]
+  },
+  "legenda": {
+   "estilo": "a legenda é a página: diário em Gill Sans Regular 62/80 px composto ao vivo; cada palavra existe a partir do seu s, revelada por máscara esquerda→direita em min(duração, 8 f), com cursor de 4 px × 0,9 em que acompanha a borda sem piscar. Cada frase começa numa linha nova; quebras editoriais (ver blueprint.md §4). Renderizada dentro de cada página (não como camada global) para a cor trocar exatamente na borda de cada transição.",
+   "posicao": "x 120, coluna de 720 px; linha de escrita fixa na base (linha de base y 1470); 3 linhas visíveis em y 1250–1490; papel-lua sobre a noite, noite sobre o âmbar",
+   "max_palavras": 5,
+   "destaque": "\"só dela\", \"aprender\" e \"agradecer\" em Gill Sans SemiBold; âmbar quando estão sobre a noite, noite quando estão sobre o âmbar"
+  },
+  "cartao_final": {
+   "inicio_s": 23.47,
+   "composicao": "persiana âmbar de 4 lâminas de 480 px (t7, f696–720) para uma página âmbar inteira; a fala final composta ao vivo em Big Caslon 92 px noite, x 120, y 560–900 (f704–764); fio lilás 1,5 px x 120–840 y 980 (f776, 12 f); URL em Gill Sans SemiBold 40 px noite por máscara (f780, 10 f); fólio 23:59 → 00:00 (f800, 20 f). Sem botão, pílula ou símbolo.",
+   "texto": [
+    "Se der vontade,",
+    "veja por onde",
+    "começar.",
+    "cursosdeunhas.com.br/comecar"
+   ]
+  }
+ },
+ "audio": {
+  "narracao": {
+   "arquivo": "audio/n2.mp3",
+   "inicio_s": 0.45,
+   "volume_db": 0
+  },
+  "trilhas": [
+   {
+    "arquivo_origem": "/Users/lucasmqar/Desktop/flux/flux/outputs/marketing-2026-11/motor/public/trilha/base.mp3",
+    "processamento_ffmpeg": "nenhum: cópia intacta (cp base.mp3 public/audio/v6/n2_base.mp3). No render: <Sequence from={0} durationInFrames={720}>, <Audio trimBefore={0}>, rampa de entrada 0 f (a 1ª nota cai em f2). Ganho por chaves (dB, rampa linear em dB entre chaves, ver curva_ganho_db): f0 −22 · f105 −22 · f124 −9 · f580 −9 · f600 −22 · f641 −22 · f642 −24 · f696 −24 · f720 −60. Duck sob a voz por trecho (ataque 6 f, soltura 10 f): f0–104 −6 · f105–599 −3 · f600–720 −6. Chaves medidas na voz real (n2.mp3, RMS por trecho): gancho −37 dBFS (sussurro: \"Onze\" −33, \"A casa dorme.\" −40), meio −21, \"agradecer\" −36, \"noite.\" −43, CTA −21; as notas da base valem −18/−19 dBFS RMS no arquivo.",
+    "saida": "audio/v6/n2_base.mp3",
+    "entra_s": 0.0,
+    "sai_s": 24.0,
+    "volume_db": -22,
+    "ducking_sob_voz_db": -6,
+    "motivo_emocional": "sol# menor, escura e esparsa: o silêncio da casa. Baixa no gancho (−22, duck −6) porque a voz sussurra: as notas ficam ≈ −41 dBFS nas pausas e ≈ −48 sob a voz, 11 dB abaixo do sussurro (pior caso: a nota de f72 em \"casa\", ≈ 8 dB abaixo). Sobe com a janela que abre (f105–124) e fica a −9 (−12 sob a voz) no meio, onde a voz é cheia; as notas do arquivo caem sozinhas em \"pedaço\" f152, \"pra (aprender)\" f322, f390 e f473; os vazios do próprio arquivo (decaem até −40 dB em f210–321 e f540–641) são \"descansar\" e \"olhar pra trás\". Em \"agradecer\" (f642) a nota reentra já baixa (−24, duck −6: ≈ −48 sob a voz de −36) e a base sai sob a persiana (f696–720): o menor não atravessa a gratidão nem o cartão, que fica com a voz e o si maior dos dois twangs.",
+    "curva_ganho_db": [
+     {
+      "f": 0,
+      "db": -22
+     },
+     {
+      "f": 105,
+      "db": -22
+     },
+     {
+      "f": 124,
+      "db": -9
+     },
+     {
+      "f": 580,
+      "db": -9
+     },
+     {
+      "f": 600,
+      "db": -22
+     },
+     {
+      "f": 641,
+      "db": -22
+     },
+     {
+      "f": 642,
+      "db": -24
+     },
+     {
+      "f": 696,
+      "db": -24
+     },
+     {
+      "f": 720,
+      "db": -60
+     }
+    ],
+    "duck_db_por_trecho": [
+     {
+      "de_f": 0,
+      "ate_f": 104,
+      "db": -6
+     },
+     {
+      "de_f": 105,
+      "ate_f": 599,
+      "db": -3
+     },
+     {
+      "de_f": 600,
+      "ate_f": 720,
+      "db": -6
+     }
+    ]
+   }
+  ],
+  "sfx": [
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 0.0,
+    "ancora_palavra": "quadro 0 (antes da voz)",
+    "volume_db": -18,
+    "motivo": "relógio de parede da casa que dorme; cai junto com um grupo de janelas apagando. −18 dB (pico ≈ −21 dBFS): a voz do gancho é sussurrada (−37 dBFS RMS) e o tique não passa por cima dela · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 1.0,
+    "ancora_palavra": "da",
+    "volume_db": -18,
+    "motivo": "relógio de parede da casa que dorme; cai junto com um grupo de janelas apagando. −18 dB (pico ≈ −21 dBFS): a voz do gancho é sussurrada (−37 dBFS RMS) e o tique não passa por cima dela · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 2.0,
+    "ancora_palavra": "pausa antes de \"A\"",
+    "volume_db": -18,
+    "motivo": "relógio de parede da casa que dorme; cai junto com um grupo de janelas apagando. −18 dB (pico ≈ −21 dBFS): a voz do gancho é sussurrada (−37 dBFS RMS) e o tique não passa por cima dela · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 3.0,
+    "ancora_palavra": "dorme.",
+    "volume_db": -18,
+    "motivo": "relógio de parede da casa que dorme; cai junto com um grupo de janelas apagando. −18 dB (pico ≈ −21 dBFS): a voz do gancho é sussurrada (−37 dBFS RMS) e o tique não passa por cima dela · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 20.07,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -20.0,
+    "motivo": "catraca 1/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 20.2,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -21.4,
+    "motivo": "catraca 2/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 20.33,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -22.9,
+    "motivo": "catraca 3/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 20.47,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -24.3,
+    "motivo": "catraca 4/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 20.6,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -25.7,
+    "motivo": "catraca 5/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 20.73,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -27.1,
+    "motivo": "catraca 6/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 20.87,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -28.6,
+    "motivo": "catraca 7/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_tick.wav",
+    "t_s": 21.0,
+    "ancora_palavra": "pra trás…",
+    "volume_db": -30.0,
+    "motivo": "catraca 8/8: o relógio rebobina e o passado se afasta (cada vez mais baixo: de −20 a −30 dB, picos de ≈ −23 a −33 dBFS sobre \"trás…\", que a voz diz a −29 dBFS RMS) · render: playbackRate 0.5, preservePitch false, durationInFrames 4"
+   },
+   {
+    "arquivo": "audio/v6/n2_twang.wav",
+    "t_s": 22.97,
+    "ancora_palavra": "logo depois de \"noite.\" (termina em f687), antes de \"Se\" (f704)",
+    "volume_db": -22,
+    "motivo": "o 1º som claro do filme, no vão depois da última palavra da frase-tese e não em cima dela (\"noite.\" sai a −43 dBFS RMS). sol→si (−8 st): a terça de sol# menor e a tônica de si maior. Nível: o arquivo tem pico de −2,0 dBFS e RMS de 50 ms de −11,9 a 0,63×; a −22 dB fica com pico ≈ −24 dBFS e RMS ≈ −34, 11 dB acima da base (≈ −45) e 13 dB abaixo da voz do CTA (−21) · render: <Sequence from={689} durationInFrames={34}>, playbackRate 0.63, preservePitch false (1,11 s)"
+   },
+   {
+    "arquivo": "audio/v6/n2_twang.wav",
+    "t_s": 26.67,
+    "ancora_palavra": "\"00:00\" (fólio rola em f800; a voz terminou em f776)",
+    "volume_db": -18,
+    "motivo": "a resolução: ré# (−4 st), a terça maior sobre o si de f689. Os dois formam si maior, a relativa maior de sol# menor, no \"00:00\": a noite vira dia e a trilha chega à serenidade que a fala pede. Sem voz e sem base (a base saiu em f720): −18 dB, pico ≈ −20 dBFS, RMS ≈ −30, 9 dB abaixo da voz do CTA. Mesmo arquivo, nenhum arquivo novo · render: <Sequence from={800} durationInFrames={27}>, playbackRate 0.7937, preservePitch false (0,88 s)"
+   }
+  ]
+ },
+ "cenas": [
+  {
+   "id": "c01",
+   "inicio_s": 0.0,
+   "fim_s": 3.49,
+   "ancora": {
+    "palavra": "Onze",
+    "s": 0.45
+   },
+   "papel": "gancho",
+   "texto_tela": [
+    "23:00",
+    "Onze da noite.",
+    "A casa dorme."
+   ],
+   "camadas": [
+    {
+     "id": "c01-fundo",
+     "tipo": "forma",
+     "conteudo": "página noite chapada 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.0,
+      "dur_f": 0,
+      "easing": "nenhum: presente desde o quadro 0",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-fachada",
+     "tipo": "grafico",
+     "conteudo": "fachada 4 col × 5 lin, janelas 150×150, calha 40, x 120–840, y 300–1210 (centros x 195/385/575/765, y 375/565/755/945/1135). No f0: 12 acesas em papel-lua (c1l2, c3l2, c4l2, c1l3, c3l3, c4l3, c2l4, c3l4, c1l5, c2l5, c3l5, c4l5) + a dela em âmbar; apagadas em #2B2030: a linha 1 inteira, c2l2, c1l4, c4l4. Linha 1 apagada = o 1:1 já nasce com 16 janelas e 13 acesas",
+     "pos": {
+      "x": 480,
+      "y": 755,
+      "ancora": "centro"
+     },
+     "cor": "#F1E6D6",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.0,
+      "dur_f": 0,
+      "easing": "nenhum: presente desde o quadro 0",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-janela-dela",
+     "tipo": "forma",
+     "conteudo": "janela c2l3 (x 310–460, y 680–830), a única âmbar desde o quadro 0: pop-out pré-atentivo",
+     "pos": {
+      "x": 385,
+      "y": 755,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.0,
+      "dur_f": 0,
+      "easing": "nenhum: presente desde o quadro 0",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-g1",
+     "tipo": "forma",
+     "conteudo": "mini-persiana G1 (apaga): c4l5, c4l2, c1l5, os cantos do bloco aceso (distância 2,83 / 2,24 / 2,24 da dela); tique 1",
+     "pos": {
+      "x": 575,
+      "y": 945,
+      "ancora": "centro"
+     },
+     "cor": "#2B2030",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 0.0,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.45,0,0.55,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-g2",
+     "tipo": "forma",
+     "conteudo": "mini-persiana G2 (apaga): c3l5, c4l3, c2l5 (2,24 / 2 / 2); tique 2, sob \"da\"",
+     "pos": {
+      "x": 575,
+      "y": 1008,
+      "ancora": "centro"
+     },
+     "cor": "#2B2030",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 1.0,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.45,0,0.55,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-g3",
+     "tipo": "forma",
+     "conteudo": "mini-persiana G3 (apaga): c1l2, c3l2, c3l4 (1,41); tique 3, 4 f antes de \"A\"",
+     "pos": {
+      "x": 448,
+      "y": 692,
+      "ancora": "centro"
+     },
+     "cor": "#2B2030",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 2.0,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.45,0,0.55,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-g4",
+     "tipo": "forma",
+     "conteudo": "mini-persiana G4 (apaga): c1l3, c3l3, c2l4, as vizinhas da dela (1); tique 4, sob \"dorme.\"; em f95 só a dela está acesa",
+     "pos": {
+      "x": 385,
+      "y": 818,
+      "ancora": "centro"
+     },
+     "cor": "#2B2030",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 3.0,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.45,0,0.55,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-folio",
+     "tipo": "tipo",
+     "conteudo": "fólio-relógio \"23:00\", Big Caslon Medium 34 px, algarismos tabulares, parado (pequeno de propósito: grande duplicaria a fala)",
+     "pos": {
+      "x": 870,
+      "y": 300,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#6B5A78",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.0,
+      "dur_f": 0,
+      "easing": "nenhum: presente desde o quadro 0",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-cursor",
+     "tipo": "forma",
+     "conteudo": "cursor 4×56 px (0,9 em), estacionado em x 120 na linha de escrita desde o f0, sem piscar; corre com a borda da máscara e volta a x 120 em cada subida",
+     "pos": {
+      "x": 122,
+      "y": 1453,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.0,
+      "dur_f": 0,
+      "easing": "nenhum: presente desde o quadro 0",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c01-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). \"Onze da noite.\" f14–41 · sobe f47 · \"A casa dorme.\" f64–82 · sobe f101 (abre espaço para \"Pra\"). A janela que abre recorta o diário e a cor vira noite na borda da máscara (o mesmo diário continua na página âmbar)",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#F1E6D6",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 0.45,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0.0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 19.0
+    },
+    "easing": "inOut(sine) · deriva da página f0–f105, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t2"
+  },
+  {
+   "id": "c02",
+   "inicio_s": 3.49,
+   "fim_s": 5.07,
+   "ancora": {
+    "palavra": "Pra",
+    "s": 3.49
+   },
+   "papel": "problema",
+   "texto_tela": [
+    "23:07",
+    "Pra muita mulher,",
+    "é o pedaço do dia"
+   ],
+   "camadas": [
+    {
+     "id": "c02-pagina-ambar",
+     "tipo": "forma",
+     "conteudo": "interior âmbar chapado: entra pela janela dela, clip-path inset(699px 620px 1071px 310px) → inset(0), já com a deriva de +19 px da fachada. Sai pela janela que fecha (t3, f372–386): recolhe por inset até 150×150 (x 120–270, y 600–750), que fica sozinha até f393 e vira a janela-unha 1 (c06)",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c02-folio",
+     "tipo": "tipo",
+     "conteudo": "fólio \"23:07\" (página nova, relógio andou sem ninguém dizer); revelado pela máscara da janela",
+     "pos": {
+      "x": 870,
+      "y": 300,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c02-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). Cor noite sobre o âmbar. \"Pra muita mulher,\" f105–130 · sobe f135 · \"é o\" f144–152",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 3.49,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c02-cursor",
+     "tipo": "forma",
+     "conteudo": "cursor 4×56 px, noite sobre o âmbar",
+     "pos": {
+      "x": 122,
+      "y": 1453,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 3.33,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c02-anel",
+     "tipo": "linha",
+     "conteudo": "anel-dia: círculo lilás de 4 px, centro (480, 720), raio 240 (y 480–960), desenhado no sentido anti-horário a partir da meia-noite (topo): termina exatamente em \"pedaço\"",
+     "pos": {
+      "x": 480,
+      "y": 720,
+      "ancora": "centro"
+     },
+     "cor": "#6B5A78",
+     "entrada": {
+      "tipo": "traco",
+      "inicio_s": 4.27,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "traco",
+      "inicio_s": 8.75,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.7,0,0.84,0)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0.0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 1.34
+    },
+    "easing": "inOut(sine) · deriva da página f105–f380, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t6"
+  },
+  {
+   "id": "c03",
+   "inicio_s": 5.07,
+   "fim_s": 8.75,
+   "ancora": {
+    "palavra": "pedaço",
+    "s": 5.07
+   },
+   "papel": "problema",
+   "texto_tela": [
+    "que é só dela.",
+    "Tem quem use esse tempo",
+    "pra descansar."
+   ],
+   "camadas": [
+    {
+     "id": "c03-setor",
+     "tipo": "forma",
+     "conteudo": "setor noite de 15° (23h→24h: de 345° a 360° no sentido horário a partir do topo), do centro (480, 720) ao raio 240: o pedaço do dia",
+     "pos": {
+      "x": 480,
+      "y": 720,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 5.07,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.16,1,0.3,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "morph",
+      "inicio_s": 8.75,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c03-setor-cresce",
+     "tipo": "forma",
+     "conteudo": "em \"só\" o raio do setor cresce de 240 para 280 px e passa 40 px além do anel (topo em y 440, dentro do 1:1)",
+     "pos": {
+      "x": 480,
+      "y": 720,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "escala",
+      "inicio_s": 6.19,
+      "dur_f": 24,
+      "easing": "spring(mass 1.2, stiffness 60, damping 18; zeta 1,06; 0% overshoot)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "morph",
+      "inicio_s": 8.75,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c03-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). \"pedaço do dia\" f152–177 · sobe f174 · \"que é só dela.\" f178–204 (\"só dela.\" em Gill Sans SemiBold, noite) · sobe f209 · \"Tem quem use esse tempo\" f222–254 · sobe f252 · \"pra\" f256",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 5.07,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 1.34
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 11.7
+    },
+    "easing": "inOut(sine) · deriva da página f105–f380, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t6"
+  },
+  {
+   "id": "c04",
+   "inicio_s": 8.75,
+   "fim_s": 10.97,
+   "ancora": {
+    "palavra": "descansar.",
+    "s": 8.75
+   },
+   "papel": "problema",
+   "texto_tela": [
+    "E tem quem use pra"
+   ],
+   "camadas": [
+    {
+     "id": "c04-capsula",
+     "tipo": "forma",
+     "conteudo": "o setor vira, por interpolatePath, uma cápsula deitada de 520×200 (raio 100; x 220–740, y 620–820): o descanso. O anel recolhe ao mesmo tempo",
+     "pos": {
+      "x": 480,
+      "y": 720,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "morph",
+      "inicio_s": 8.75,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "morph",
+      "inicio_s": 10.97,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c04-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). \"descansar.\" f263–271 · sobe f288 · \"E tem quem use pra\" f297–329 (a base está no vazio do arquivo: −40 dB)",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 8.75,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 11.7
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 17.43
+    },
+    "easing": "inOut(sine) · deriva da página f105–f380, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t6"
+  },
+  {
+   "id": "c05",
+   "inicio_s": 10.97,
+   "fim_s": 12.67,
+   "ancora": {
+    "palavra": "aprender",
+    "s": 10.97
+   },
+   "papel": "caminho",
+   "texto_tela": [
+    "aprender a fazer unhas."
+   ],
+   "camadas": [
+    {
+     "id": "c05-oval",
+     "tipo": "forma",
+     "conteudo": "a cápsula se levanta numa oval de unha em pé, 300×420 (superelipse n 2,4; x 330–630, y 510–930): a virada",
+     "pos": {
+      "x": 480,
+      "y": 720,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "morph",
+      "inicio_s": 10.97,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c05-borda-livre",
+     "tipo": "linha",
+     "conteudo": "borda livre: fio âmbar reto de 6 px, corda horizontal a 92 px do topo da oval (y 602), de borda a borda; reto de propósito (a curva do sorriso pertence ao N3)",
+     "pos": {
+      "x": 480,
+      "y": 602,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "traco",
+      "inicio_s": 11.67,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    },
+    {
+     "id": "c05-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). sobe f325 · \"aprender a fazer unhas.\" f329–358 (\"aprender\" em SemiBold, noite; vira âmbar quando a janela fecha e a noite aparece por baixo, f372–386) · sobe f364",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 10.97,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 17.43
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 19.0
+    },
+    "easing": "inOut(sine) · deriva da página f105–f380, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t3"
+  },
+  {
+   "id": "c06",
+   "inicio_s": 12.67,
+   "fim_s": 16.33,
+   "ancora": {
+    "palavra": "Uma",
+    "s": 12.67
+   },
+   "papel": "caminho",
+   "texto_tela": [
+    "23:20",
+    "Uma aula de cada vez.",
+    "Uma unha de cada vez."
+   ],
+   "camadas": [
+    {
+     "id": "c06-pagina-noite",
+     "tipo": "forma",
+     "conteudo": "página noite chapada; já está parada por baixo da página âmbar e aparece em volta dela quando a janela fecha (t3, f372–386)",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c06-folio",
+     "tipo": "tipo",
+     "conteudo": "fólio \"23:20\"",
+     "pos": {
+      "x": 870,
+      "y": 300,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#6B5A78",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c06-janelas-unha-apagadas",
+     "tipo": "grafico",
+     "conteudo": "2 fileiras × 5 janelas-unha apagadas: retângulos de canto vivo de 120×170 (proporção de unha, vocabulário de janela; não são as ovais do N1), x 120/270/420/570/720 (calha 30), y 590–760 e 790–960: as 10 unhas de duas mãos. Ordem: fileira 1 esq.→dir., depois fileira 2 esq.→dir.",
+     "pos": {
+      "x": 480,
+      "y": 775,
+      "ancora": "centro"
+     },
+     "cor": "#2B2030",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c06-janela-unha-1",
+     "tipo": "forma",
+     "conteudo": "a 1ª janela-unha é a própria janela que fechou: o resto da página âmbar fica em 150×150 (x 120–270, y 600–750) de f386 a f393 e em f393 vira 120×170 (x 120–240, y 590–760) por inset, 5 f. Não acende: já estava acesa",
+     "pos": {
+      "x": 180,
+      "y": 675,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "morph",
+      "inicio_s": 13.1,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c06-janelas-unha-2a9",
+     "tipo": "forma",
+     "conteudo": "janelas-unha 2–9 acendem em âmbar pela janela que abre em miniatura (t2: inset(0 50% 0 50%) → inset(0), 5 f), uma a cada 11–12 f (104 f ÷ 9, a partir de f393): f405, 416, 428, 439 (fileira 1, colunas 2–5) e f451, 462, 474, 485 (fileira 2, colunas 1–4). Ritmo de relógio, sem som e sem prender a palavra; os quadros exatos estão em \"quadros\" (offset_f é o passo nominal)",
+     "pos": {
+      "x": 480,
+      "y": 775,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 13.5,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 12
+     },
+     "quadros": [
+      405,
+      416,
+      428,
+      439,
+      451,
+      462,
+      474,
+      485
+     ],
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c06-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). Papel-lua sobre a noite. \"Uma aula de cada vez.\" f380–417 · sobe f421 · \"Uma unha de cada vez.\" f432–475 · sobe f482",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#F1E6D6",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 12.67,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c06-cursor",
+     "tipo": "forma",
+     "conteudo": "cursor 4×56 px, âmbar sobre a noite",
+     "pos": {
+      "x": 122,
+      "y": 1453,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 12.4,
+      "dur_f": 14,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0.0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 11.92
+    },
+    "easing": "inOut(sine) · deriva da página f380–f569, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t6"
+  },
+  {
+   "id": "c07",
+   "inicio_s": 16.33,
+   "fim_s": 18.97,
+   "ancora": {
+    "palavra": "Sem",
+    "s": 16.33
+   },
+   "papel": "prova",
+   "texto_tela": [
+    "Sem pressa,",
+    "sem sair de casa."
+   ],
+   "camadas": [
+    {
+     "id": "c07-janela-unha-10",
+     "tipo": "forma",
+     "conteudo": "a 10ª janela-unha (fileira 2, coluna 5: x 720–840, y 790–960) acende em \"pressa,\" (f497), pela mesma janela em miniatura (5 f). Daí em diante a fileira completa fica parada f502–563 (2,0 s) sob \"sem sair de casa.\": nada se completa em \"casa.\" (esse fecho é do N1)",
+     "pos": {
+      "x": 780,
+      "y": 875,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 16.57,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    },
+    {
+     "id": "c07-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). \"Sem pressa,\" f490–505 · sobe f518 · \"sem sair de casa.\" f523–554. As linhas saem com a página que vira",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#F1E6D6",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 16.33,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 11.92
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 19.0
+    },
+    "easing": "inOut(sine) · deriva da página f380–f569, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t5"
+  },
+  {
+   "id": "c08",
+   "inicio_s": 18.97,
+   "fim_s": 21.41,
+   "ancora": {
+    "palavra": "Um",
+    "s": 18.97
+   },
+   "papel": "payoff",
+   "texto_tela": [
+    "23:58 → 23:00",
+    "Um dia ela vai",
+    "olhar pra trás…",
+    "e"
+   ],
+   "camadas": [
+    {
+     "id": "c08-verso",
+     "tipo": "forma",
+     "conteudo": "a página das janelas-unha vira para trás: rotateY 0→+180°, dobradiça na borda direita, perspective 1800, backface-visibility hidden; verso chapado. Leva o diário antigo com ela (o passado sai junto)",
+     "pos": {
+      "x": 1080,
+      "y": 960,
+      "ancora": "direita-centro"
+     },
+     "cor": "#2B2030",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 19.5,
+      "dur_f": 0,
+      "easing": "nenhum: já fora do quadro (180°)"
+     }
+    },
+    {
+     "id": "c08-pagina-fachada",
+     "tipo": "forma",
+     "conteudo": "a página anterior por baixo: noite chapada com a fachada inteira em janela-apagada, só a dela acesa em âmbar (mesma grade do c01), revelada pela página que vira",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    },
+    {
+     "id": "c08-janela-dela",
+     "tipo": "forma",
+     "conteudo": "janela c2l3, âmbar",
+     "pos": {
+      "x": 385,
+      "y": 755,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    },
+    {
+     "id": "c08-folio",
+     "tipo": "tipo",
+     "conteudo": "fólio \"23:58\"",
+     "pos": {
+      "x": 870,
+      "y": 300,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#6B5A78",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    },
+    {
+     "id": "c08-folio-rebobina",
+     "tipo": "tipo",
+     "conteudo": "o fólio rebobina até \"23:00\" em 8 degraus de 4 f (58→50→43→36→29→21→14→07→00), dígitos rolando para baixo, um degrau por tique da catraca (f602–630)",
+     "pos": {
+      "x": 870,
+      "y": 300,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#6B5A78",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 20.07,
+      "dur_f": 4,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 4
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    },
+    {
+     "id": "c08-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). Página nova, diário vazio. \"Um dia ela vai\" f569–594 · sobe f590 · \"olhar pra trás…\" f594–616 · sobe f632 · \"e\" f636",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#F1E6D6",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 18.97,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    },
+    {
+     "id": "c08-cursor",
+     "tipo": "forma",
+     "conteudo": "cursor 4×56 px, âmbar, em x 120",
+     "pos": {
+      "x": 122,
+      "y": 1453,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 18.77,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0.0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 10.71
+    },
+    "easing": "inOut(sine) · deriva da página f569–f704, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t6"
+  },
+  {
+   "id": "c09",
+   "inicio_s": 21.41,
+   "fim_s": 23.47,
+   "ancora": {
+    "palavra": "agradecer",
+    "s": 21.41
+   },
+   "papel": "payoff",
+   "texto_tela": [
+    "agradecer",
+    "por essa noite."
+   ],
+   "camadas": [
+    {
+     "id": "c09-janelas-acendem",
+     "tipo": "grafico",
+     "conteudo": "as 19 janelas acendem em âmbar pela janela que abre em miniatura (t2: as folhas abrem do eixo vertical para os lados, 5 f), em anéis a partir da dela: distância 1 (4 janelas) f642 · 1,41 (4) f645 · 2 (3) f648 · 2,24 (6) f651 · 2,83 (2) f654. A luz que era só dela enche o prédio",
+     "pos": {
+      "x": 480,
+      "y": 755,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 21.41,
+      "dur_f": 5,
+      "easing": "cubic-bezier(0.76,0,0.24,1)",
+      "offset_f": 3
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    },
+    {
+     "id": "c09-diario",
+     "tipo": "legenda",
+     "conteudo": "Gill Sans Regular 62/80 px, coluna x 120–840, linha de escrita fixa (linha de base y 1470), 3 linhas visíveis em y 1250–1490 com recorte duro; cada palavra por máscara esquerda→direita a partir do seu s em min(duração, 8 f); subida de 80 px em 12 f no início = min(fim da última palavra da linha, s da próxima − 4 f). \"agradecer\" f642–650 em SemiBold âmbar · sobe f659 · \"por essa noite.\" f663–683",
+     "pos": {
+      "x": 120,
+      "y": 1470,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#F1E6D6",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 21.41,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 10.71
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 19.0
+    },
+    "easing": "inOut(sine) · deriva da página f569–f704, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "t7"
+  },
+  {
+   "id": "c10",
+   "inicio_s": 23.47,
+   "fim_s": 28.93,
+   "ancora": {
+    "palavra": "Se",
+    "s": 23.47
+   },
+   "papel": "cta",
+   "texto_tela": [
+    "Se der vontade,",
+    "veja por onde",
+    "começar.",
+    "cursosdeunhas.com.br/comecar",
+    "23:59 → 00:00"
+   ],
+   "camadas": [
+    {
+     "id": "c10-pagina-ambar",
+     "tipo": "forma",
+     "conteudo": "última página, âmbar chapado inteiro; entra pela persiana âmbar (t7: 4 lâminas de 480 px que crescem do próprio topo, 15 f cada, atraso 3 f)",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#E9A23B",
+     "entrada": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)",
+      "offset_f": 3
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 28.93,
+      "dur_f": 0,
+      "easing": "nenhum: fim do vídeo (não é corte entre cenas)"
+     }
+    },
+    {
+     "id": "c10-titulo",
+     "tipo": "tipo",
+     "conteudo": "a fala vira o título: Big Caslon Medium 92 px, x 120, linhas de base y 636 / 750 / 864 (y 560–900): \"Se der vontade,\" (f704, 710, 715) · \"veja por onde\" (f745, 753, 758) · \"começar.\" (f764); cada palavra no seu s, máscara esquerda→direita em min(duração, 8 f). Sem diário nesta página: nada duplica",
+     "pos": {
+      "x": 120,
+      "y": 636,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 23.47,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.33,0,0.67,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 28.93,
+      "dur_f": 0,
+      "easing": "nenhum: fim do vídeo (não é corte entre cenas)"
+     }
+    },
+    {
+     "id": "c10-cursor",
+     "tipo": "forma",
+     "conteudo": "cursor 4×83 px (0,9 em de 92) que compõe o título; recolhe por escala vertical quando o fio nasce",
+     "pos": {
+      "x": 122,
+      "y": 610,
+      "ancora": "centro"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)",
+      "offset_f": 3
+     },
+     "saida": {
+      "tipo": "escala",
+      "inicio_s": 25.87,
+      "dur_f": 6,
+      "easing": "cubic-bezier(0.7,0,0.84,0)"
+     }
+    },
+    {
+     "id": "c10-fio",
+     "tipo": "linha",
+     "conteudo": "fio lilás de 1,5 px, x 120–840, y 980",
+     "pos": {
+      "x": 480,
+      "y": 980,
+      "ancora": "centro"
+     },
+     "cor": "#6B5A78",
+     "entrada": {
+      "tipo": "traco",
+      "inicio_s": 25.87,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.65,0,0.35,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 28.93,
+      "dur_f": 0,
+      "easing": "nenhum: fim do vídeo (não é corte entre cenas)"
+     }
+    },
+    {
+     "id": "c10-url",
+     "tipo": "tipo",
+     "conteudo": "\"cursosdeunhas.com.br/comecar\" em Gill Sans SemiBold 40 px (551 px de largura)",
+     "pos": {
+      "x": 120,
+      "y": 1050,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 26.0,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.16,1,0.3,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 28.93,
+      "dur_f": 0,
+      "easing": "nenhum: fim do vídeo (não é corte entre cenas)"
+     }
+    },
+    {
+     "id": "c10-folio",
+     "tipo": "tipo",
+     "conteudo": "fólio \"23:59\" (1:1: y 450)",
+     "pos": {
+      "x": 870,
+      "y": 300,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "divisao",
+      "inicio_s": 23.2,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45,0,0.55,1)",
+      "offset_f": 3
+     },
+     "saida": {
+      "tipo": "desloca",
+      "inicio_s": 26.67,
+      "dur_f": 20,
+      "easing": "cubic-bezier(0.16,1,0.3,1)"
+     }
+    },
+    {
+     "id": "c10-folio-vira",
+     "tipo": "tipo",
+     "conteudo": "contador vertical \"23:59\" → \"00:00\": a noite vira o primeiro dia",
+     "pos": {
+      "x": 870,
+      "y": 300,
+      "ancora": "base-esquerda"
+     },
+     "cor": "#1B1220",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 26.67,
+      "dur_f": 20,
+      "easing": "cubic-bezier(0.16,1,0.3,1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 28.93,
+      "dur_f": 0,
+      "easing": "nenhum: fim do vídeo (não é corte entre cenas)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0.0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 19.0
+    },
+    "easing": "inOut(sine) · deriva da página f704–f868, só na camada de ilustração"
+   },
+   "transicao_para_proxima": "fim"
+  }
+ ],
+ "elevenlabs_futuro": {
+  "modelo": "eleven_v3",
+  "voz_id": "8EY2gK6oUxZCDZAlvUpZ",
+  "texto_marcado": "[calm] [softly] Onze da noite. [short pause] [whispers] A casa dorme. [pause] [warmly] Pra muita mulher, [short pause] é o pedaço do dia que é só dela. [pause] [matter-of-fact] Tem quem use esse tempo pra descansar. [short pause] [gentle smile] E tem quem use pra aprender a fazer unhas. [pause] [slowly] Uma aula de cada vez. [short pause] Uma unha de cada vez. [short pause] [reassuring] Sem pressa, sem sair de casa. [long pause] [tender] Um dia ela vai olhar pra trás… [short pause] e agradecer por essa noite. [long pause] [softly] Se der vontade, [short pause] veja por onde começar.",
+  "nota": "NÃO gerar agora; para a próxima regravação. Texto idêntico ao gravado, só tags. Pausas-alvo para não mexer na montagem: 0,58 s depois de \"noite.\"; 0,40 s depois de \"dorme.\" (hoje 0,06 s: deixa a janela abrir); 0,42 s depois de \"dela.\"; 0,52 s depois de \"unhas.\"; 0,40 s depois de \"casa.\"; 0,58 s depois de \"noite.\" (2ª). Se regravar, rodar tools/align.py: as cenas são presas à palavra e se recalculam sozinhas."
+ },
+ "copy_meta": {
+  "texto_principal": "Onze da noite. A casa dorme.\nPra muita mulher, é o pedaço do dia que é só dela. Tem quem use pra descansar. E tem quem use pra aprender a fazer unhas: uma aula de cada vez, sem sair de casa.\nSe der vontade, veja por onde começar. É uma pergunta só.\nContém links de afiliado.",
+  "titulo": "Uma aula de cada vez. Sem pressa."
+ }
+}

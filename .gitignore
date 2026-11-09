@@ -2,3 +2,7 @@
 __pycache__/
 marketing/videos/
 marketing/videos_motion/
+marketing/videos_v5/
+marketing/remotion/public/audio/
+marketing/videos_v6/
+.claude/

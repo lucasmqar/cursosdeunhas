@@ -1,0 +1,2219 @@
+{
+ "id": "N1",
+ "conceito": "A capa dela: cada cena é uma capa de revista de moda (Harper's Bazaar de Fabien Baron). A manchete em Didot passa atrás dos dedos de uma mão chapada. A capa nasce cinza, o vermelho entra inteiro na virada (\"caminho.\") e a frase que converteu vira hierarquia tipográfica (\"coragem.\" riscada, \"pequena:\" minúscula, \"aprender.\" gigante). O laço é uma unha pintada até 52% no quadro 0, que só completa em \"Sem sair de casa\".",
+ "formatos": {
+  "principal": [
+   1080,
+   1920
+  ],
+  "corte": [
+   1080,
+   1080
+  ],
+  "fps": 30
+ },
+ "duracao_s": 34.97,
+ "assinatura": {
+  "paleta": {
+   "osso": "#EEE8E1",
+   "grafite": "#1A1416",
+   "cinza_cansaco": "#A8A19B",
+   "vermelho_esmalte": "#A6192E",
+   "areia": "#D9B79E",
+   "canela": "#A97A5E"
+  },
+  "fontes": {
+   "display": {
+    "familia": "Didot",
+    "peso": 400
+   },
+   "texto": {
+    "familia": "Futura",
+    "peso": 700
+   },
+   "legenda": {
+    "familia": "Futura",
+    "peso": 500
+   }
+  },
+  "grade": {
+   "margens_px": {
+    "topo": 250,
+    "base": 420,
+    "lados": 72
+   },
+   "colunas": 6,
+   "zona_segura_reels": {
+    "topo": 250,
+    "base": 420
+   },
+   "regra_1x1": "O 1:1 é a faixa y 420–1500 do 9:16 (sq no motor). Manchete cujo glifo começa acima de y 440 (\"caminho.\", \"Hoje,\") desce até o topo do glifo ficar em y 440; o cabeçalho \"caminho.\" vai para a linha de base 500 e os algarismos para 700; a figura das capas 1,0× (c02, c04–c08, c13) vai a 0,8 ancorada em y 1380, e os planos 2,4× e 1,5× não mudam; a legenda fica em y 1400–1470; o bloco do cartão desce 180 px (retângulo em y 960–1052). c09, c10, c11 e c12 já cabem e não mudam."
+  },
+  "transicoes": [
+   {
+    "id": "t1",
+    "mecanica": "Corte seco no compasso: troca de capa num quadro, sem movimento. Elementos persistentes (unha do meio, cabeçalho \"caminho.\", \"coragem.\") atravessam o corte na mesma posição de página.",
+    "dur_f": 1,
+    "easing": "steps(1)"
+   },
+   {
+    "id": "t2",
+    "mecanica": "Guilhotina 12°: um corte reto a 12° pelo centro divide a página que sai. A metade de cima vai para cima-esquerda e a de baixo para baixo-direita, 110% na perpendicular ao corte. A página nova já está parada por baixo. Só em \"Não\" (17,07) e no cartão (29,49).",
+    "dur_f": 10,
+    "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+   },
+   {
+    "id": "t3",
+    "mecanica": "Palavra promovida (camada): a palavra sai da legenda por corte, nasce em Didot 90 px na linha da legenda e voa em arco até a manchete, crescendo até 230 px (\"aprender.\" vai a 200 px, para ficar fora do trilho de ações do Reels). As restantes fecham o vão em 6 f. \"pequena:\" faz o inverso e encolhe para Futura 30 px.",
+    "dur_f": 12,
+    "easing": "cubic-bezier(0.3, 0, 0, 1)"
+   },
+   {
+    "id": "t4",
+    "mecanica": "Esmalte por máscara reta a partir da cutícula (camada): borda horizontal, como barra de progresso; 6 f por unha, stagger de 3 f (2 f na vizinha, f366–380: a rede acelera).",
+    "dur_f": 6,
+    "easing": "cubic-bezier(0.2, 0, 0, 1)"
+   },
+   {
+    "id": "t5",
+    "mecanica": "Traço que se desenha (camada): risco de \"coragem.\" (9 f), contorno do \"1\" (30 f) e floreio da assinatura (16 f na página vermelha, 22 f no cartão), por stroke-dashoffset.",
+    "dur_f": 22,
+    "easing": "cubic-bezier(0.6, 0, 0.2, 1)"
+   },
+   {
+    "id": "t6",
+    "mecanica": "Máscara de linha (camada): o texto sobe por trás da própria linha (algarismo I e títulos do cartão). Saída = 60% da entrada.",
+    "dur_f": 9,
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)"
+   }
+  ],
+  "camera": {
+   "micro_push": "Nenhum: no N1 a escala só muda por corte (2,4× / 1,0× / 1,5×). A deriva é o tilt de leitura de cada capa, translateY de 0 a −38 px (2% da altura) em cubic-bezier(0.37,0,0.63,1), só depois da virada (c05–c13). Antes dela a câmera fica parada e só a mão afunda +72 px (f0–209): nada para totalmente.",
+   "movimentos": [
+    "Frontal, sem rotação e sem zoom contínuo; escala por corte com transform-origin (540,960); x e y em px de tela depois da escala.",
+    "Paralaxe em 2 planos: manchete 1,0× e figura 1,6× do tilt (−61 px); o cabeçalho \"caminho.\" fica fora do tilt.",
+    "Mola do N1 {mass 1, stiffness 220, damping 22}: ζ 0,74, overshoot 3,1% (teto de 6%). Só no cabeçalho \"caminho.\" e na escala de \"aprender.\". Entrada de 15 f, saída de 9 f.",
+    "Saídas em cubic-bezier(0.7,0,0.84,0), com 60% do tempo da entrada. Nada se move linearmente e nenhuma opacidade é animada."
+   ]
+  },
+  "legenda": {
+   "estilo": "Futura Medium 60 px, caixa-baixa, grafite (osso na página vermelha c08, a partir de f430). Os blocos trocam por corte, sem pílula. Um fio de 6 px sob a palavra falada (scaleX 0→1 a partir da esquerda, 4 f, cubic-bezier(0.2,0,0,1), começando 2 f antes da palavra) escorrega para a seguinte. O fio é grafite até \"caminho.\" (6,99 s), vermelho depois e osso em c08 (grafite em f421–429, enquanto a legenda passa sobre as mãos de c07). A legenda pertence à página e se divide junto na guilhotina.",
+   "posicao": "Alinhada à esquerda em x 72, caixa em y 1290–1380 (linha de base ≈1360); no 1:1, y 1400–1470. Nada acima de 250 nem abaixo de 1500.",
+   "max_palavras": 3,
+   "destaque": "Palavra promovida (t3): \"cansaço.\" 4,91, \"caminho.\" 6,99, \"Hoje,\" 13,49, \"coragem.\" 17,97 e \"aprender.\" 21,33 saltam para a manchete; \"pequena:\" 20,27 encolhe para Futura 30 px. O texto grande nunca duplica a legenda, porque é a palavra que saiu dela. A legenda some em 29,49."
+  },
+  "cartao_final": {
+   "inicio_s": 29.49,
+   "composicao": "A guilhotina leva à capa final osso. A mão do gancho fica completa (5 unhas vermelhas) embaixo à direita, sangrando. O bloco fica à esquerda em x 72: \"DESCUBRA\" em Futura Bold 34; \"por onde / começar.\" em Didot Italic 150 grafite (y 360–720); o retângulo reto vermelho com a URL em Futura Medium 40 osso (y 780–872); \"LEVA 2 MINUTOS\" em Futura 30; e o floreio vermelho de 9 px fecha em 32,50–33,23. Cada linha entra na sua palavra: a fala vira o título. Sem selo, sem símbolo e sem cabeçalho.",
+   "texto": [
+    "DESCUBRA",
+    "por onde",
+    "começar.",
+    "cursosdeunhas.com.br/comecar",
+    "LEVA 2 MINUTOS"
+   ]
+  }
+ },
+ "audio": {
+  "narracao": {
+   "arquivo": "audio/n1.mp3",
+   "inicio_s": 0.45,
+   "volume_db": 0
+  },
+  "trilhas": [
+   {
+    "arquivo_origem": "/Users/lucasmqar/Desktop/flux/flux/outputs/marketing-2026-11/motor/public/trilha/beat1.mp3",
+    "processamento_ffmpeg": "Nenhum: cópia intacta (cp). No render: <Sequence from={220} durationInFrames={292}><Audio trimBefore={60}/>. O equivalente ffmpeg, só para conferência, é atrim=start=2.0:duration=9.733,adelay=7333|7333. Envelope: −60→−6 dB em f220–235; duck −4 dB sob a voz (ataque 6 f, soltura 10 f); −6→−60 dB em f506–512.",
+    "saida": "audio/v6/n1_beat1.mp3",
+    "entra_s": 7.33,
+    "sai_s": 17.07,
+    "volume_db": -6,
+    "ducking_sob_voz_db": -4,
+    "motivo_emocional": "A rede que se espalha: o trecho 2,0–11,7 s do arquivo cresce sozinho (−27 → −20 dB) sob \"Primeiro… assinatura dela.\". Corta a zero antes de \"Não\", para a frase que converteu ficar só na voz por 4 s."
+   },
+   {
+    "arquivo_origem": "/Users/lucasmqar/Desktop/flux/flux/outputs/marketing-2026-11/motor/public/trilha/beat1.mp3",
+    "processamento_ffmpeg": "Nenhum (o mesmo arquivo do trecho A). No render: <Sequence from={645} durationInFrames={404}><Audio trimBefore={470}/>. Equivalente: atrim=start=15.667:duration=13.467,adelay=21500|21500. Envelope (dB por quadro): −60 em f645 → −20 em f656; duck −8 dB sob a voz (ataque 6 f, soltura 10 f); −20→−16 dB em f971–985; −16→−60 dB em f1013–1049 (1,2 s). O drop do arquivo (16,02 s) cai em f656. Termina em 29,1 s do arquivo, de 32,0.",
+    "saida": "audio/v6/n1_beat1.mp3",
+    "entra_s": 21.5,
+    "sai_s": 34.97,
+    "volume_db": -20,
+    "ducking_sob_voz_db": -8,
+    "motivo_emocional": "Orgulho como resposta. \"aprender.\" (f640–655) está a −42 dBFS RMS na gravação, quase sussurrado, e fica só na voz: o drop chega em f656, quando a palavra termina, e a palavra continua pousando na tela em f640 com a mola. Durante a rampa (f645–656), o fim do break e a antecipação (15,76 s do arquivo, f648) ficam abaixo de −50 dBFS até f654. Depois do drop o arquivo mede −10,5 dBFS RMS: a −20 dB o leito fica em −30 dBFS no vão antes de \"No\" (f656–668) e em −38 sob \"No tempo dela… minutos.\", fala que mede −20 dBFS RMS. No cartão, depois da última palavra, ele sobe 4 dB e sai."
+   }
+  ],
+  "sfx": [
+   {
+    "arquivo": "audio/v6/n1_abertura.mp3",
+    "t_s": 6.99,
+    "ancora_palavra": "caminho.",
+    "volume_db": -26,
+    "motivo": "O caminho aparece sem cobrir a palavra: golpe em si♭4 + fá5 (consonante com o fá maior do beat1), junto do corte para a cor. Cópia intacta de ~/Downloads/0_sounds_to_inicial__#4-1786641394099.mp3. Render: <Sequence from={210} durationInFrames={36}><Audio trimBefore={77}/> (atrim=start=2.567:duration=1.2). O golpe do arquivo (2,58 s; pico −1,9 dBFS, RMS de 50 ms −7,4) cai no quadro 210 e soa em f211–217, sobre \"caminho.\" (f210–218), que na gravação está a −30/−41 dBFS RMS (pico −24). A −26 dB ele fica com pico ≈ −28 dBFS e RMS ≈ −33: no nível da palavra ou abaixo dela, nunca por cima. Medido decodificando os arquivos, só leitura. Único efeito do vídeo; antes dele, só a voz."
+   }
+  ],
+  "preparo": {
+   "copias": [
+    {
+     "saida": "audio/v6/n1_beat1.mp3",
+     "origem": "/Users/lucasmqar/Desktop/flux/flux/outputs/marketing-2026-11/motor/public/trilha/beat1.mp3",
+     "md5": "a08165ea2af054f0666bf1f674073062"
+    },
+    {
+     "saida": "audio/v6/n1_abertura.mp3",
+     "origem": "~/Downloads/0_sounds_to_inicial__#4-1786641394099.mp3",
+     "md5": "57b6f9b716dfa14578264f3911b84cab"
+    }
+   ],
+   "conferido": "09/11: as 7 cópias intactas do Livro §8 já estão em remotion/public/audio/v6/ e o md5 de cada uma confere com o da origem (ls + md5, só leitura). Não há nada a criar nem a processar. Antes do primeiro still, conferir de novo as duas do N1 por estes md5; corte, ganho e duck saem só das props do <Audio>."
+  }
+ },
+ "cenas": [
+  {
+   "id": "c01",
+   "inicio_s": 0.0,
+   "fim_s": 1.01,
+   "ancora": {
+    "palavra": "Ela",
+    "s": 0.45
+   },
+   "papel": "gancho",
+   "texto_tela": [
+    "legenda: Ela olhava pras"
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.0,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 1.01,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "Mão M (geometria-base, escala 1, plano da figura): palma 560×700 com cantos de 70 px em x 300–860, y 1100–1800 (sangra abaixo de 1500); dedos-pílula de 140 px: indicador x 330–470 com topo em y 530, médio x 490–630 com topo em y 440, anelar x 650–790 com topo em y 510, mínimo x 810–930 (120 px) com topo em y 670; polegar em pílula de (330,1210) a (215,900); unhas ovais 110×160 com centros em (400,625), (560,530) e (720,605); mínimo 96×140 em (870,755); polegar em (240,960), a −20°. A cutícula é a borda de baixo da oval. Escalas partem da âncora da palma: (580,1800) na posição-base e (580,1872) depois da descida (capítulos c06–c07). Aqui em cinza-cansaço, unhas nuas em osso, vista a 2,4× com a unha do meio em (540,900) da tela; as unhas do indicador e do anelar ficam cortadas nas bordas. A mão afunda +72 px no próprio plano de f0 a f209 (cubic-bezier(0.37,0,0.63,1)), atravessando c01–c04: nada para totalmente.",
+     "pos": {
+      "x": 560,
+      "y": 530,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#A8A19B",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.0,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 1.01,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "esmalte-meio",
+     "tipo": "forma",
+     "conteudo": "Barra de esmalte dentro da oval da unha do meio, borda reta horizontal (barra de progresso, não pincel): já cobre 40% a partir da cutícula no quadro 0, sobe até 52% e congela. Ação interrompida: o laço do vídeo.",
+     "pos": {
+      "x": 560,
+      "y": 610,
+      "ancora": "cuticula-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 0.0,
+      "dur_f": 8,
+      "easing": "cubic-bezier(0.2, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 1.01,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G1 \"Ela olhava pras\" entra por corte em f12 (s−2). Fio grafite de 6 px sob \"Ela\" (scaleX 0→1 da esquerda, 4 f, cubic-bezier(0.2,0,0,1)); escorrega para \"olhava\" em f28–32.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 0.4,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 1.01,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 2.4,
+     "x": -48,
+     "y": 972
+    },
+    "para": {
+     "escala": 2.4,
+     "x": -48,
+     "y": 972
+    },
+    "easing": "fixa: antes da virada a câmera não respira (só a figura afunda)"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c02",
+   "inicio_s": 1.01,
+   "fim_s": 2.93,
+   "ancora": {
+    "palavra": "olhava",
+    "s": 1.01
+   },
+   "papel": "gancho",
+   "texto_tela": [
+    "legenda: Ela olhava pras",
+    "legenda: próprias mãos…"
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 1.01,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 2.93,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "Mão M inteira a 1,0×, cinza, enorme (x 190–930, palma sangrando); zona de manchete vazia: a capa ainda não tem título. Continua afundando (+72 px até f209).",
+     "pos": {
+      "x": 560,
+      "y": 530,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#A8A19B",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 1.01,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 2.93,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "esmalte-meio",
+     "tipo": "forma",
+     "conteudo": "Unha do meio congelada em 52%: a única cor da tela.",
+     "pos": {
+      "x": 560,
+      "y": 610,
+      "ancora": "cuticula-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 1.01,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 2.93,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G1 até f71; G2 \"próprias mãos…\" por corte em f72. Fio grafite: olhava 1,01 → pras 2,09 → próprias 2,45 → mãos… 2,93.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 1.01,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 2.93,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "easing": "fixa"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c03",
+   "inicio_s": 2.93,
+   "fim_s": 4.91,
+   "ancora": {
+    "palavra": "mãos…",
+    "s": 2.93
+   },
+   "papel": "problema",
+   "texto_tela": [
+    "legenda: próprias mãos…",
+    "legenda: e só via",
+    "legenda: cansaço."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 2.93,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 4.91,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "Corte seco para plano médio 1,5×: as quatro pontas e as unhas ocupam y 525–1000; a unha do meio fica em (480,655) da tela; o polegar sai do quadro. Ela olha para as próprias mãos.",
+     "pos": {
+      "x": 560,
+      "y": 557,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#A8A19B",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 2.93,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 4.91,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "esmalte-meio",
+     "tipo": "forma",
+     "conteudo": "Unha do meio em 52%, congelada.",
+     "pos": {
+      "x": 560,
+      "y": 637,
+      "ancora": "cuticula-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 2.93,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 4.91,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G2 com o fio em \"mãos…\"; G3 \"e só via\" por corte em f120 (fio: e 4,05 → só 4,49 → via 4,63); G4 \"cansaço.\" por corte em f145.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 2.93,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 4.91,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1.5,
+     "x": -90,
+     "y": 300
+    },
+    "para": {
+     "escala": 1.5,
+     "x": -90,
+     "y": 300
+    },
+    "easing": "fixa"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c04",
+   "inicio_s": 4.91,
+   "fim_s": 6.99,
+   "ancora": {
+    "palavra": "cansaço.",
+    "s": 4.91
+   },
+   "papel": "problema",
+   "texto_tela": [
+    "manchete: cansaço.",
+    "legenda: Até que viu",
+    "legenda: um caminho."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 4.91,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 6.99,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "manchete-cansaco",
+     "tipo": "tipo",
+     "conteudo": "\"cansaço.\" promovida (t3): sai da legenda por corte, nasce em Didot Italic 90 px na linha da legenda (x 72, y 1330) e voa em arco (controle +230 px à direita) até a manchete, crescendo de 90 para 230 px, tracking −0,02 em, linha de base y 540. Voa acima da figura e, no quadro de pouso, passa para trás dos dedos: só a ponta do médio cobre ≤40% da altura de 2 letras.",
+     "pos": {
+      "x": 72,
+      "y": 319,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 4.91,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.3, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 6.99,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "Corte de volta à capa 1,0×; a mão termina de afundar (ponta do médio de y 497 a 512).",
+     "pos": {
+      "x": 560,
+      "y": 587,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#A8A19B",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 4.91,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 6.99,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "esmalte-meio",
+     "tipo": "forma",
+     "conteudo": "O vermelho recua de 52% a 0% junto com o voo de \"cansaço.\": a energia que faltava.",
+     "pos": {
+      "x": 560,
+      "y": 667,
+      "ancora": "cuticula-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 4.91,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "mascara",
+      "inicio_s": 4.91,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.5, 0, 0.75, 0)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G4 \"cansaço.\" sai da legenda em f147 e ela fica vazia; G5 \"Até que viu\" por corte em f180 (fio grafite: Até 6,05 → que 6,43 → viu 6,61); G6 \"um caminho.\" por corte em f204, com o fio em \"um\" (6,85).",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 6.0,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 6.99,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "easing": "fixa"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c05",
+   "inicio_s": 6.99,
+   "fim_s": 10.15,
+   "ancora": {
+    "palavra": "caminho.",
+    "s": 6.99
+   },
+   "papel": "caminho",
+   "texto_tela": [
+    "manchete: caminho. (vira cabeçalho em 7,83)",
+    "algarismo: I",
+    "legenda: um",
+    "legenda: Primeiro,",
+    "legenda: nas próprias unhas."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 6.99,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "Corte para a cor no mesmo enquadramento de c04: mão M em areia, unhas nuas em osso, na posição final da descida (+72). Com o tilt, a figura sobe 1,6× mais que a página: depois da virada, a mão se levanta.",
+     "pos": {
+      "x": 560,
+      "y": 602,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#D9B79E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 6.99,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 10.15,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "manchete-caminho",
+     "tipo": "tipo",
+     "conteudo": "\"caminho.\" promovida (t3): Didot Bold de 90 a 230 px, tracking −0,02 em, linha de base y 540, x 72–1028, atrás do dedo médio. Em \"Primeiro,\" vira a camada cabecalho-caminho.",
+     "pos": {
+      "x": 72,
+      "y": 319,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 6.99,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.3, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "escala",
+      "inicio_s": 7.83,
+      "dur_f": 15,
+      "easing": "spring(mass 1, stiffness 220, damping 22) · ζ 0,74 · overshoot 3,1%"
+     }
+    },
+    {
+     "id": "cabecalho-caminho",
+     "tipo": "tipo",
+     "conteudo": "\"caminho.\" recolhe a cabeçalho de capa: Didot Bold 96 px, linha de base y 345, x 72–483, fora do tilt (fixo na página). Atravessa c05–c07: o caminho dá título aos capítulos.",
+     "pos": {
+      "x": 72,
+      "y": 253,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "escala",
+      "inicio_s": 7.83,
+      "dur_f": 15,
+      "easing": "spring(mass 1, stiffness 220, damping 22) · ζ 0,74 · overshoot 3,1%",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 10.15,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "algarismo-I",
+     "tipo": "tipo",
+     "conteudo": "\"I\" em Didot Regular 200 px, linha de base y 640 (glifo em y 494–640), x 72; sobe por máscara.",
+     "pos": {
+      "x": 72,
+      "y": 448,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 7.83,
+      "dur_f": 15,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "offset_f": 2
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "unhas-ela",
+     "tipo": "forma",
+     "conteudo": "As 5 unhas dela ficam vermelhas por máscara reta a partir da cutícula (t4), 6 f cada, stagger de 3 f, do polegar ao mínimo (f279–297).",
+     "pos": {
+      "x": 560,
+      "y": 602,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 9.31,
+      "dur_f": 6,
+      "easing": "cubic-bezier(0.2, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 10.15,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "\"caminho.\" sai da legenda em f210 e \"um\" fecha o vão em 6 f (até f228); G7 \"Primeiro,\" por corte em f233; G8 \"nas próprias unhas.\" em f259. O fio fica vermelho a partir de f210: Primeiro 7,83 → nas 8,69 → próprias 8,75 → unhas 9,31.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 6.99,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 10.15,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c06",
+   "inicio_s": 10.15,
+   "fim_s": 11.77,
+   "ancora": {
+    "palavra": "Depois,",
+    "s": 10.15
+   },
+   "papel": "prova",
+   "texto_tela": [
+    "cabeçalho: caminho.",
+    "algarismo: II",
+    "legenda: Depois,",
+    "legenda: na irmã."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "cabecalho-caminho",
+     "tipo": "tipo",
+     "conteudo": "Continua de c05, na mesma posição.",
+     "pos": {
+      "x": 72,
+      "y": 253,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 11.77,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "algarismo-II",
+     "tipo": "tipo",
+     "conteudo": "\"II\" em Didot Regular 200 px, linha de base y 640, x 72–228; chega com o corte.",
+     "pos": {
+      "x": 72,
+      "y": 448,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "Mão M a 0,72 com a unha do meio em x 330, areia, 5 unhas vermelhas; pontas em y≈893, palma sangrando.",
+     "pos": {
+      "x": 330,
+      "y": 958,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#D9B79E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-irma",
+     "tipo": "forma",
+     "conteudo": "Mão M a 0,72 com a unha do meio em x 750, areia, unhas nuas; contorno osso de 6 px (recorte de papel, não sombra).",
+     "pos": {
+      "x": 750,
+      "y": 958,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#D9B79E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "unhas-irma",
+     "tipo": "forma",
+     "conteudo": "Unhas da irmã ficam vermelhas por máscara da cutícula (t4), 6 f, stagger de 3 f (f332–350).",
+     "pos": {
+      "x": 750,
+      "y": 1016,
+      "ancora": "cuticula-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 11.07,
+      "dur_f": 6,
+      "easing": "cubic-bezier(0.2, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G9 \"Depois,\" por corte em f302; G10 \"na irmã.\" em f327. Fio vermelho: Depois 10,15 → na 10,95 → irmã 11,07.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 10.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 11.77,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c07",
+   "inicio_s": 11.77,
+   "fim_s": 13.49,
+   "ancora": {
+    "palavra": "Depois,",
+    "s": 11.77
+   },
+   "papel": "prova",
+   "texto_tela": [
+    "cabeçalho: caminho.",
+    "algarismo: III",
+    "legenda: Depois,",
+    "legenda: na vizinha."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 13.49,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "cabecalho-caminho",
+     "tipo": "tipo",
+     "conteudo": "Continua de c06; sai com o corte para a página vermelha.",
+     "pos": {
+      "x": 72,
+      "y": 253,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 13.49,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "algarismo-III",
+     "tipo": "tipo",
+     "conteudo": "\"III\" em Didot Regular 200 px, linha de base y 640, x 72–306; chega com o corte.",
+     "pos": {
+      "x": 72,
+      "y": 448,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 13.49,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "maos-rede",
+     "tipo": "forma",
+     "conteudo": "Três mãos M a 0,52, todas com o centro da unha do meio em y 1161 (pontas em y≈1114; unhas do meio em y 1119–1203): ela com a unha do meio em x 200 (areia, vermelhas), a irmã em x 470 (areia, vermelhas) e a vizinha em x 740 (canela, nuas). Contorno osso de 6 px em cada uma, para separar as sobreposições; o polegar dela sangra 16 px à esquerda. Zona segura do Reels: a unha do mínimo da vizinha termina em x 926 e o dedo em x 932, fora do trilho de ações (x > 940, y 1000–1600). A escada fica 1,0 / 0,72 / 0,52. Não sai no corte de f405: as três mãos atravessam para a página vermelha (c08) e saem em f430.",
+     "pos": {
+      "x": 470,
+      "y": 1161,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#D9B79E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 13.49,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte para a página vermelha de c08 na mesma posição de página; sai em f430)"
+     }
+    },
+    {
+     "id": "unhas-vizinha",
+     "tipo": "forma",
+     "conteudo": "Unhas da vizinha (mão canela) ficam vermelhas por máscara da cutícula (t4), 6 f cada, com stagger de 2 f em vez de 3 (a rede acelera): f366–380, começando antes de \"na\" e completas antes do fim de \"vizinha.\" (f391). Ficam completas 50 f (f380–429, 1,67 s), atravessando o corte para a página vermelha.",
+     "pos": {
+      "x": 740,
+      "y": 1203,
+      "ancora": "cuticula-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 12.2,
+      "dur_f": 6,
+      "easing": "cubic-bezier(0.2, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 13.49,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte para a página vermelha; sai com as mãos em f430)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G11 \"Depois,\" por corte em f351; G12 \"na vizinha.\" em f367 (até f401). Fio vermelho: Depois 11,77 → na 12,31 → vizinha 12,39.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 11.77,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 13.49,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c08",
+   "inicio_s": 13.49,
+   "fim_s": 17.07,
+   "ancora": {
+    "palavra": "Hoje,",
+    "s": 13.49
+   },
+   "papel": "prova",
+   "texto_tela": [
+    "manchete: Hoje,",
+    "legenda: cada unha bem-feita",
+    "legenda: tem a assinatura",
+    "legenda: dela."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "página inteira vermelha 1080×1920 (a única)",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 13.49,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 17.07,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    },
+    {
+     "id": "manchete-hoje",
+     "tipo": "tipo",
+     "conteudo": "\"Hoje,\" promovida (t3): Didot Italic de 90 a 230 px, osso, linha de base y 600 (glifo em y 432–650), x 72–574.",
+     "pos": {
+      "x": 72,
+      "y": 379,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 13.49,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.3, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 17.07,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    },
+    {
+     "id": "maos-rede",
+     "tipo": "forma",
+     "conteudo": "As três mãos de c07, com as 15 unhas vermelhas, seguem por cima da página vermelha até \"unha\" (f430), quando saem por corte e a unha gigante nasce no lugar delas: as unhas da vizinha ficam completas 50 f (1,67 s). Para não saltarem no corte, ficam na posição de página em que c07 termina (plano da figura a −61 px do tilt) e seguem a deriva de c08 a partir dali (1,6×). O contorno osso de 6 px já as separa do vermelho, e a unha vermelha fica cercada de pele, então continua legível sobre a página da mesma cor.",
+     "pos": {
+      "x": 470,
+      "y": 1161,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#D9B79E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 13.49,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 14.33,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "unha-gigante",
+     "tipo": "forma",
+     "conteudo": "Uma unha oval de 400×560, osso, em x 232–632, y 680–1240 (colunas 2–4, peso à esquerda), com a cutícula embaixo. Nasce por máscara reta a partir da cutícula (t4) de \"unha\" a \"bem-feita\", no mesmo quadro em que as mãos de c07 saem por corte (f430).",
+     "pos": {
+      "x": 432,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 14.33,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.2, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 17.07,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    },
+    {
+     "id": "floreio-assinatura",
+     "tipo": "linha",
+     "conteudo": "floreio cursivo abstrato, sem letras, caixa 288×160: path \"M0 120 C40 40 90 20 110 70 C125 110 80 140 70 110 C60 80 120 40 160 60 C190 75 175 120 200 115 C230 108 250 60 288 40\", traço de 9 px com ponta redonda, em osso, com origem em (720,1060): a assinatura no canto da página, como numa tela assinada. Desenha-se em 16 f a partir de \"assinatura\" (f474–490) e fica completo até a guilhotina (f512); a leitura se completa na reprise do cartão, completa por 1,7 s (f997–1048).",
+     "pos": {
+      "x": 720,
+      "y": 1060,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "traco",
+      "inicio_s": 15.79,
+      "dur_f": 16,
+      "easing": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 17.07,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "Legenda e fio em osso nesta página, com uma exceção: de f421 a f429 a G14 passa sobre os dedos das três mãos de c07 (a faixa y 1290–1380, de x 74 a 938, fica toda sobre pele e contorno osso), então legenda e fio ficam em grafite e viram osso por corte em f430, junto com a saída das mãos. \"Hoje,\" sai da legenda em f405; G14 \"cada unha bem-feita\" por corte em f421; G15 \"tem a assinatura\" em f459; G16 \"dela.\" em f487 (até f509). Ela se divide junto com a página.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 13.49,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 17.07,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t2"
+  },
+  {
+   "id": "c09",
+   "inicio_s": 17.07,
+   "fim_s": 18.97,
+   "ancora": {
+    "palavra": "Não",
+    "s": 17.07
+   },
+   "papel": "caminho",
+   "texto_tela": [
+    "manchete: coragem. (riscada)",
+    "legenda: Não começou com"
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "página osso, já parada por baixo da guilhotina",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 17.07,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 18.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "manchete-coragem",
+     "tipo": "tipo",
+     "conteudo": "\"coragem.\" promovida (t3): Didot Italic de 90 a 230 px, grafite, linha de base y 540, x 72–919.",
+     "pos": {
+      "x": 72,
+      "y": 319,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 17.97,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.3, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 18.97,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "risco",
+     "tipo": "linha",
+     "conteudo": "Fio grafite de 6 px, reto, de x 60 a 930 em y 487 (meio da altura-x): risca \"coragem.\" logo depois do pouso.",
+     "pos": {
+      "x": 60,
+      "y": 487,
+      "ancora": "esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "traco",
+      "inicio_s": 17.97,
+      "dur_f": 9,
+      "easing": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "offset_f": 12
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 18.97,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G17 \"Não começou com\" já está na página nova (f510). Fio vermelho: Não 17,07 → começou 17,27 → com 17,71; \"coragem.\" sai da legenda em f539 e ela fica vazia até f567.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 17.07,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 18.97,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c10",
+   "inicio_s": 18.97,
+   "fim_s": 23.71,
+   "ancora": {
+    "palavra": "Começou",
+    "s": 18.97
+   },
+   "papel": "payoff",
+   "texto_tela": [
+    "manchete: coragem. (riscada, 150 px)",
+    "linha: pequena:",
+    "manchete: aprender.",
+    "legenda: Começou com uma",
+    "legenda: decisão",
+    "legenda: No tempo dela."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 18.97,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 23.71,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "coragem-riscada",
+     "tipo": "tipo",
+     "conteudo": "Corte seco de escala: \"coragem.\" riscada passa a Didot Italic 150 px, linha de base y 520 (glifo em y 451–560), com o risco a 4 px em y 486. Fica até o fim da cena (5,7 s de vida no total).",
+     "pos": {
+      "x": 72,
+      "y": 376,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 18.97,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 23.71,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "pequena",
+     "tipo": "tipo",
+     "conteudo": "\"pequena:\" sai da legenda e ENCOLHE (t3 invertido): de Futura Medium 60 para 30 px, caixa-baixa, em arco até (72,900).",
+     "pos": {
+      "x": 72,
+      "y": 900,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 20.27,
+      "dur_f": 12,
+      "easing": "cubic-bezier(0.3, 0, 0, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 23.71,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "aprender",
+     "tipo": "tipo",
+     "conteudo": "\"aprender.\" promovida (t3), com a mola do N1 na escala: Didot Bold de 90 a 200 px (pico de 206 px), tracking −0,02 em, linha de base y 1190 (tinta em y 1046–1246). A tinta vai de x 80 a 907 em repouso e chega a x 932 no pico da mola, com origem da escala em (72,1190): fica fora do trilho de ações do Reels (x > 940, y 1000–1600) e longe da borda (medido na Didot.ttc, só leitura). Pousa na tela em f640 só com a voz; o drop do beat1 responde em f656, quando a palavra termina (f655). Este quadro (f656–710) é a imagem que converteu, recomposta: exportável como estático. Se a fonte for a Georgia Bold da ADAPTACAO-MARCA.md, o mesmo limite dá 172 px (a 206 px, começando em x 64, a Georgia Bold vai até x 1072).",
+     "pos": {
+      "x": 72,
+      "y": 998,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "desloca",
+      "inicio_s": 21.33,
+      "dur_f": 15,
+      "easing": "cubic-bezier(0.3, 0, 0, 1) na trajetória + spring(mass 1, stiffness 220, damping 22) · ζ 0,74 · overshoot 3,1% na escala",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 23.71,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G19 \"Começou com uma\" (desde f567); G20 \"decisão pequena:\" por corte em f592, \"pequena:\" sai em f608 e \"decisão\" fica até f638; \"aprender.\" sai da legenda em f640 (vazia até f667); G22 \"No tempo dela.\" em f667 (até f709). Fio vermelho em cada palavra falada.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 18.97,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 23.71,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c11",
+   "inicio_s": 23.71,
+   "fim_s": 26.15,
+   "ancora": {
+    "palavra": "Sem",
+    "s": 23.71
+   },
+   "papel": "payoff",
+   "texto_tela": [
+    "legenda: Sem sair de",
+    "legenda: casa.",
+    "legenda: Toda história assim"
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 23.71,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 26.15,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "O plano-detalhe do quadro 0, agora em cor: o mesmo enquadramento 2,4× de c01, dedo areia, unhas do indicador e do anelar vermelhas nas bordas e a do meio em 52% no corte, que já começa a encher.",
+     "pos": {
+      "x": 560,
+      "y": 530,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#D9B79E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 23.71,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 26.15,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "esmalte-meio",
+     "tipo": "forma",
+     "conteudo": "A unha do meio completa de 52% a 100% (borda reta, da cutícula à ponta) em f711–735, durante \"Sem sair de casa.\" e terminando em \"casa.\" (f735): o laço aberto no quadro 0 fecha e fica completo 50 f (1,67 s), até o corte para o \"1\" (f785).",
+     "pos": {
+      "x": 560,
+      "y": 610,
+      "ancora": "cuticula-da-unha-do-meio"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 23.71,
+      "dur_f": 24,
+      "easing": "cubic-bezier(0.45, 0, 0.55, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 26.15,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G23 \"Sem sair de\" (desde f709); G24 \"casa.\" por corte em f733; G25 \"Toda história assim\" por corte em f754; G26 \"começa do mesmo\" entra em f783, 2 f antes do corte, como nos outros cortes. Fio vermelho: Sem 23,71 → sair 24,01 → de 24,31 → casa 24,51 → Toda 25,19 → história 25,47 → assim 25,87.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 23.71,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "continua",
+      "inicio_s": 26.15,
+      "dur_f": 0,
+      "easing": "nenhum (atravessa o corte na mesma posição de página)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 2.4,
+     "x": -48,
+     "y": 972
+    },
+    "para": {
+     "escala": 2.4,
+     "x": -48,
+     "y": 934
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t1"
+  },
+  {
+   "id": "c12",
+   "inicio_s": 26.15,
+   "fim_s": 29.49,
+   "ancora": {
+    "palavra": "começa",
+    "s": 26.15
+   },
+   "papel": "cta",
+   "texto_tela": [
+    "algarismo: 1",
+    "legenda: começa do mesmo",
+    "legenda: jeito:",
+    "legenda: com uma primeira",
+    "legenda: aula."
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "campo chapado 1080×1920",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 26.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 29.49,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    },
+    {
+     "id": "um-contorno",
+     "tipo": "linha",
+     "conteudo": "\"1\" em Didot Bold 900 px, só o contorno do glifo (extraído da fonte), grafite de 3 px, glifo em x 72–572, y 430–1085. Desenha-se em f789–819, a partir de \"começa\": a história que começa é o algarismo 1.",
+     "pos": {
+      "x": 72,
+      "y": 212,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "traco",
+      "inicio_s": 26.15,
+      "dur_f": 30,
+      "easing": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "offset_f": 4
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 29.49,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    },
+    {
+     "id": "um-recheio",
+     "tipo": "forma",
+     "conteudo": "O vermelho sobe dentro do \"1\" por máscara de baixo para cima, em \"primeira\".",
+     "pos": {
+      "x": 72,
+      "y": 212,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 28.23,
+      "dur_f": 15,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 29.49,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    },
+    {
+     "id": "legenda",
+     "tipo": "legenda",
+     "conteudo": "G26 \"começa do mesmo\" (desde f783); G27 \"jeito:\" em f811; G28 \"com uma primeira\" em f825; G29 \"aula.\" em f861 (até f884). Fio vermelho. A legenda se divide com a página e não volta.",
+     "pos": {
+      "x": 72,
+      "y": 1290,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 26.15,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "divisao",
+      "inicio_s": 29.49,
+      "dur_f": 10,
+      "easing": "cubic-bezier(0.7, 0, 0.84, 0)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": "t2"
+  },
+  {
+   "id": "c13",
+   "inicio_s": 29.49,
+   "fim_s": 34.97,
+   "ancora": {
+    "palavra": "Descubra",
+    "s": 29.49
+   },
+   "papel": "cta",
+   "texto_tela": [
+    "DESCUBRA",
+    "por onde",
+    "começar.",
+    "cursosdeunhas.com.br/comecar",
+    "LEVA 2 MINUTOS"
+   ],
+   "camadas": [
+    {
+     "id": "fundo",
+     "tipo": "forma",
+     "conteudo": "capa final osso, já parada por baixo da guilhotina",
+     "pos": {
+      "x": 540,
+      "y": 960,
+      "ancora": "centro"
+     },
+     "cor": "#EEE8E1",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 29.49,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "mao-ela",
+     "tipo": "forma",
+     "conteudo": "A mão do gancho completa: mão M a 0,7, centro da palma em x 880, 5 unhas vermelhas, pontas em y 848–1170 (médio a polegar); palma e mínimo sangram à direita e abaixo de 1500 (embaixo à direita, sem tocar no bloco de texto).",
+     "pos": {
+      "x": 866,
+      "y": 911,
+      "ancora": "centro-da-unha-do-meio"
+     },
+     "cor": "#D9B79E",
+     "entrada": {
+      "tipo": "corte",
+      "inicio_s": 29.49,
+      "dur_f": 1,
+      "easing": "steps(1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "descubra",
+     "tipo": "tipo",
+     "conteudo": "\"DESCUBRA\" em Futura Bold 34 px, caixa-alta, +0,14 em, y 360–394.",
+     "pos": {
+      "x": 72,
+      "y": 360,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 29.49,
+      "dur_f": 9,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "por-onde",
+     "tipo": "tipo",
+     "conteudo": "\"por onde\" em Didot Italic 150 px, linha de base y 540.",
+     "pos": {
+      "x": 72,
+      "y": 396,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 30.11,
+      "dur_f": 9,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "comecar",
+     "tipo": "tipo",
+     "conteudo": "\"começar.\" em Didot Italic 150 px, linha de base y 690.",
+     "pos": {
+      "x": 72,
+      "y": 546,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 30.43,
+      "dur_f": 9,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "cta-retangulo",
+     "tipo": "forma",
+     "conteudo": "Retângulo reto vermelho de 640×92 (sem raio, sem sombra) em x 72–712, y 780–872, com \"cursosdeunhas.com.br/comecar\" em Futura Medium 40 px osso, recuo de 32 px. Abre por máscara horizontal da esquerda.",
+     "pos": {
+      "x": 72,
+      "y": 780,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 30.43,
+      "dur_f": 9,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "offset_f": 7
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "leva",
+     "tipo": "tipo",
+     "conteudo": "\"LEVA 2 MINUTOS\" em Futura Medium 30 px, caixa-alta, +0,14 em, y 912–942.",
+     "pos": {
+      "x": 72,
+      "y": 912,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#1A1416",
+     "entrada": {
+      "tipo": "mascara",
+      "inicio_s": 31.33,
+      "dur_f": 9,
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "offset_f": 0
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    },
+    {
+     "id": "floreio-assinatura",
+     "tipo": "linha",
+     "conteudo": "O mesmo floreio cursivo abstrato, sem letras, caixa 288×160: path \"M0 120 C40 40 90 20 110 70 C125 110 80 140 70 110 C60 80 120 40 160 60 C190 75 175 120 200 115 C230 108 250 60 288 40\", traço de 9 px com ponta redonda, agora vermelho, com origem em (72,968), sob o retângulo: a capa assinada.",
+     "pos": {
+      "x": 72,
+      "y": 968,
+      "ancora": "topo-esquerda"
+     },
+     "cor": "#A6192E",
+     "entrada": {
+      "tipo": "traco",
+      "inicio_s": 32.37,
+      "dur_f": 22,
+      "easing": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "offset_f": 4
+     },
+     "saida": {
+      "tipo": "corte",
+      "inicio_s": 34.97,
+      "dur_f": 1,
+      "easing": "steps(1)"
+     }
+    }
+   ],
+   "camera": {
+    "de": {
+     "escala": 1,
+     "x": 0,
+     "y": 0
+    },
+    "para": {
+     "escala": 1,
+     "x": 0,
+     "y": -38
+    },
+    "easing": "cubic-bezier(0.37, 0, 0.63, 1)"
+   },
+   "transicao_para_proxima": null
+  }
+ ],
+ "copy_meta": {
+  "texto_principal": "Não começou com coragem. Começou com uma decisão pequena: aprender.\nPrimeiro nas próprias unhas. Depois na irmã, na vizinha… no tempo dela, sem sair de casa.\nResponda uma pergunta e veja por onde começar. Leva 2 minutos.\nContém links de afiliado.",
+  "titulo": "Descubra por onde começar"
+ }
+}

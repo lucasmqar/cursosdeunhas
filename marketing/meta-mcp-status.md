@@ -351,3 +351,52 @@ trilha, nome da Página) é feita abrindo os links.
 - ARQUIVADOS: 7 anúncios da Página errada (App FLUX/pede_flux) e os 4 motion.
 - "N3 — vídeo" antigo (52521307668591, pede_flux): edição solta do rascunho descartada com confirmação do usuário e anúncio ARQUIVADO. Rascunho da conta vazio. Os 8 anúncios da Página errada estão arquivados.
 - Renomeadas (08/11): 52521304526791 → "CURSOS DE UNHAS | Unhas | Indireto | Lead | Site /comecar" (mantém o trecho "Unhas | Indireto | Lead" usado pelas 2 regras automáticas); 52521322785991 → "PEDE FLUX | Mensagens | Messenger". Nenhuma campanha de unhas duplicada em nenhuma das 4 contas; cópias antigas de outros projetos mantidas (usuário optou por não excluir).
+
+## v6 · reconstrução (09/11/2026, sessão "esteira Cursos de Unhas")
+
+Pela Graph API v23.0 com o usuário do sistema "Claude" (token em `~/.config/lovit/chaves/meta.env`, nunca impresso). Cliente mínimo e roteiros em scratchpad; IDs gravados em `marketing/v6/meta_v6.json`. **Tudo criado PAUSADO**; nada ativado sem OK do Lucas.
+
+### Diagnóstico antes da troca (campanha antiga 52521304526791, desde 08/11 15h)
+- R$ 41,34 · 2.024 impressões · 80 cliques no link · 65 visitas · 8 Lead · 11 InitiateCheckout · 0 venda.
+- N1 imagem levou R$ 35,29 (85%) e todos os leads; os 4 vídeos v1 quase não entregaram.
+- Entrega só em Reels/Stories. Facebook Stories: CTR 11,5% e 4 leads. 65+: maior gasto (R$ 12,98), mas também CTR 8% e 3 leads.
+- Limite de gasto da conta: R$ 562,17; gasto R$ 480,62 → **restam R$ 81,55** (às 10h de 09/11), divididos com o PEDE FLUX (R$ 13/dia). O Lucas decidiu não subir o limite: `spend_cap` não foi tocado.
+
+### Estrutura nova
+| Nível | ID | Configuração |
+|---|---|---|
+| Campanha | 52521474830791 | "CURSOS DE UNHAS \| Vendas \| v6 \| /comecar \| ABO" · OUTCOME_SALES · orçamento por conjunto (ABO), para a regra de CTR ser aceita |
+| Conjunto N1 | 52521474878791 | Recomeço · mulheres 22–45 · interesses unhas/manicure/esmaltes/salões · R$ 20/dia |
+| Conjunto N2 | 52521474888391 | Rotina cheia · mulheres 25–45 · (unhas) E (maternidade ou ensino a distância) · R$ 10/dia |
+| Conjunto N3 | 52521474916391 | Nail art · mulheres 20–50 · unhas decoradas/artificiais/esmaltes · R$ 10/dia |
+| Conjunto N4 | pendente | Remarketing (visitantes do site 30 d + quem viu os vídeos) · bloqueado: a conta não aceitou os Termos de Públicos Personalizados (erro #2663) |
+
+Comum aos conjuntos: otimização OFFSITE_CONVERSIONS no evento **INITIATED_CHECKOUT** do pixel 1828949965085065 (= ida à Hotmart, o evento mais perto da venda com volume; trocar para PURCHASE quando o pixel receber compras da Hotmart). Idade travada (`advantage_audience: 0`). Posicionamentos manuais no celular: Stories e Reels (FB/IG) com o 9:16 e Feed/Stream com o 1:1. Atribuição 7 d clique / 1 d visualização. Interesses "Manicure & Pedicure" e "Nail Art Club" foram descontinuados pelo Meta e ficaram de fora.
+
+### Anúncios (PAUSADOS)
+| Anúncio | ID | Criativo | URL |
+|---|---|---|---|
+| N1 — imagem — v6 | 52521475045991 | 1074376655653568 | /comecar/?src=meta-n1i |
+| N2 — imagem — v6 | 52521475059391 | 1033546806425077 | /comecar/?src=meta-n2i |
+| N3 — imagem — v6 | 52521475084191 | 2666544720443662 | /comecar/?src=meta-n3i |
+
+`src` por anúncio: `meta-n<k>i` (imagem) e `meta-n<k>v` (vídeo). A /comecar/ troca o título pelo prefixo `meta-n<k>`. A Hotmart tira o hífen: no relatório aparece `metan1i`. Identidade no Instagram: conta da própria Página (`instagram_user_id` 17841455683002194). Advantage+ de criativo todo em OPT_OUT, como antes.
+
+### Regras automáticas (criadas DESLIGADAS; ligam com a campanha)
+| Regra | ID | Condição → ação |
+|---|---|---|
+| Sem ida à Hotmart | 1507792387826491 | anúncio com gasto > R$ 12 e 0 resultado em 3 dias → pausa (a cada 30 min) |
+| CTR baixo | 2252971232233957 | anúncio com > 2.000 impressões na vida e CTR do link < 0,6% → pausa. Aceita porque a campanha é ABO |
+| Escalar | 1487451800224362 | conjunto com custo por resultado < R$ 1,50 e > 4 resultados em 3 dias → +20% no orçamento, teto R$ 100/dia, **no máx. 1x a cada 72 h** (`action_frequency` 4320 min, que a interface não oferece) |
+| Frequência | 1697074748810074 | anúncio com frequência > 4 em 7 dias → pausa |
+
+As 2 regras antigas filtram o nome "Unhas \| Indireto \| Lead" e não pegam a campanha nova.
+
+### Publicação e ativação (09/11/2026, OK do Lucas: "publicar e ativar todos… vai pra 180")
+- **Vídeos v6 enviados** (`/advideos`, upload direto do Mac, sem URL pública): N1 9:16 1540420794594456 · 1:1 1070511086009565; N2 9:16 1164154535946839 · 1:1 1878285279892068; N4 9:16 2058452092098310 · 1:1 1449161936546329. Áudio normalizado a −14 LUFS antes do envio.
+- **Conjunto N4 novo** 52521496964191 · "Com calma (compara curso)" · mulheres 25–54 · (unhas) E (ensino a distância). Substitui o remarketing, que depende dos Termos de Públicos Personalizados (não aceitos).
+- **Anúncios de vídeo** (9:16 em Stories/Reels, 1:1 nos feeds, aviso de IA OPT_IN porque a voz é sintética): N1 52521497062791 (`meta-n1v`), N2 52521497097191 (`meta-n2v`), N4 52521497146191 (`meta-n4v`); imagem N4 52521497157591 (`meta-n4i`).
+- **Ativado:** campanha 52521474830791, conjuntos N1/N2/N4 a **R$ 45/dia cada** (R$ 180/dia com o N5, equilibrado para comparar conceitos), 6 anúncios e as 4 regras v6. Leitura de volta: tudo ACTIVE, nenhum anúncio reprovado.
+- **Campanha antiga 52521304526791 ARQUIVADA**; regras antigas 2303943963721994 e 1695407632107630 DESLIGADAS.
+- **N3 removido** (Lucas: "n3 péssimo, remova totalmente daqui e da conta"): apagados o conjunto 52521474916391, os anúncios 52521497122391 e 52521475084191 (v6) e 52521309994391 e 52521309843991 (campanha antiga). Os 2 vídeos N3 v6 (2379825092836330, 1808001350496448) não saem pela API (exige permissão de Página) e a biblioteca de mídia pediu 2FA no Chrome: ficam na biblioteca, sem uso. No projeto, todos os arquivos N3 (código v5/v6, narrações, MP4 v1/v4/v5/v6, folhas, assets n3_*, blueprint) foram para a Lixeira do Mac em `cursosdeunhas-N3-removido-2026-11-09` (recuperáveis).
+- **Limite de gasto:** às 12h55 restavam R$ 79,26 de R$ 562,17. A R$ 180/dia + R$ 13 do PEDE FLUX, a conta para em ~10 h. O `spend_cap` não foi tocado (decisão do Lucas).
