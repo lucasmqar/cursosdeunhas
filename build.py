@@ -15,16 +15,29 @@ TODAY = datetime.date.today().isoformat()
 ORG = {"@type": "Organization", "@id": BASE + "/#org", "name": S["name"], "url": BASE + "/", "logo": BASE + "/favicon.svg"}
 
 
-TAG = "<script>window.dataLayer=window.dataLayer||[];dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});</script><script async src=\"https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS\"></script><script>function gtag(){dataLayer.push(arguments)}gtag('js',new Date());</script>"
+# Rastreadores (tag do Google/GTM, Pixel do Meta e Clarity) só carregam no domínio publicado (com ou sem www).
+# Em localhost ou em qualquer cópia de teste nada é carregado, para não sujar os dados; dataLayer e gtag continuam
+# definidos e o resto do site funciona igual (as chamadas a fbq usam window.fbq&&...).
+PROD_JS = "/^(www\\.)?%s$/.test(location.hostname)" % re.escape(S["domain"])
+TAG = ("<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}"
+       "if(%s){dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});"
+       "(function(d,s){var j=d.createElement(s),f=d.getElementsByTagName(s)[0];j.async=true;"
+       "j.src='https://www.googletagmanager.com/gtm.js?id=GTM-MMW9HHNS';f.parentNode.insertBefore(j,f)})(document,'script');"
+       "gtag('js',new Date());}</script>" % PROD_JS)
 
 
 MP = S.get("meta_pixel", "")
-PIXEL = ("<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};"
+PIXEL = ("<script>if(%s){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};"
          "if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];"
-         "s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','%s');fbq('track','PageView');</script>" % MP) if MP else ""
+         "s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','%s');fbq('track','PageView');}</script>" % (PROD_JS, MP)) if MP else ""
 # origem da visita (src) que precisa chegar à Hotmart: vem da URL (?src=, ou gclid/gbraid/wbraid = Google Ads),
 # fica na sessão da aba e é acrescentada a todo link /ir/ (inclusive saindo das páginas de análise).
+# Os identificadores de clique de anúncio (gclid, gbraid, wbraid, fbclid) também ficam na sessão (cdu_<nome>)
+# e são repassados ao hotlink pela página /ir/ (ver redirect()).
+# O src é guardado aqui como veio (com hífen); a normalização para a Hotmart acontece só em redirect().
 SRCJS = ("<script>(function(){try{var q=new URLSearchParams(location.search),s=q.get('src'),K='cdu_src';"
+         "['gclid','gbraid','wbraid','fbclid'].forEach(function(k){var v=q.get(k);"
+         "if(v&&v.length<=500){try{sessionStorage.setItem('cdu_'+k,v)}catch(e){}}});"
          "if(!s&&(q.get('gclid')||q.get('gbraid')||q.get('wbraid')))s='gads';"
          "if(s){s=s.replace(/[^a-z0-9_-]/gi,'').slice(0,30);try{sessionStorage.setItem(K,s)}catch(e){}}"
          "else{try{s=sessionStorage.getItem(K)}catch(e){}}if(!s)return;window.cduSrc=s;"
@@ -33,8 +46,11 @@ SRCJS = ("<script>(function(){try{var q=new URLSearchParams(location.search),s=q
          "document.readyState=='loading'?document.addEventListener('DOMContentLoaded',fix):fix()}catch(e){}})();</script>")
 CL = S.get("clarity", "")
 if CL:
-    PIXEL += ('<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;'
-              't.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","%s");</script>' % CL)
+    # o script do Clarity só é pedido depois do evento load da janela (não disputa banda com o CSS e o texto)
+    PIXEL += ('<script>if(%s){(function(c,l,a,r,i){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};'
+              'var go=function(){var t=l.createElement(r),y=l.getElementsByTagName(r)[0];t.async=1;'
+              't.src="https://www.clarity.ms/tag/"+i;y.parentNode.insertBefore(t,y)};'
+              'l.readyState==="complete"?go():c.addEventListener("load",go)})(window,document,"clarity","script","%s");}</script>' % (PROD_JS, CL))
 
 
 def e(s):
@@ -45,7 +61,8 @@ def br(d):
     return "/".join(reversed(d.split("-")))
 
 
-BOOTSTRAP = ('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" '
+BOOTSTRAP = ('<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>'
+             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" '
              'integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">')
 # só sobreposições de marca (contraste medido: branco sobre ameixa #6E1F45 ≈ 10:1; ameixa sobre branco ≈ 10:1)
 CSS = (":root{--bs-link-color:#6E1F45;--bs-link-color-rgb:110,31,69;--bs-link-hover-color:#4f1631;--bs-link-hover-color-rgb:79,22,49}"
@@ -126,8 +143,8 @@ def render(m, body):
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-{ver}{TAG}{PIXEL}{SRCJS}
-{BOOTSTRAP}<style>{CSS}</style>
+{ver}{BOOTSTRAP}<style>{CSS}</style>
+{TAG}{PIXEL}{SRCJS}
 <script type="application/ld+json">{ld}</script>
 </head>
 <body>
@@ -174,12 +191,16 @@ def ctas(p, w100=False):
     cls = "btn btn-primary btn-lg" + (" w-100" if w100 else "")
     direto = (f'<a class="link-secondary small d-inline-block py-2" href="{ck(p)}" rel="sponsored nofollow">ou ir direto para o pagamento</a>'
               if p.get("checkout") else "")
-    return f'<a class="{cls}" href="{hot(p)}" rel="sponsored nofollow">Ver o curso na Hotmart<span class="visually-hidden">: {e(p["name"])}</span></a>{aviso_cta()}{direto}'
+    return f'<a class="{cls}" href="{hot(p)}" rel="sponsored nofollow">Ver a página oficial do curso<span class="visually-hidden">: {e(p["name"])}</span></a>{aviso_cta()}{direto}'
+
+
+# rótulo do certificado: é certificado de conclusão de curso livre, não reconhecimento oficial
+CERT = "Certificado de conclusão (curso livre)"
 
 
 def attrs(p):
     rows = (("Para quem", p["best"]), ("Preço", f"{short(p)} (conferido em {br(p.get('checked', TODAY))})"),
-            ("Certificado", p["certificate"]), ("Acesso", p["access"]), ("Garantia", p["guarantee"]))
+            (CERT, p["certificate"]), ("Acesso", p["access"]), ("Garantia", p["guarantee"]))
     return "".join(f'<li class="list-group-item d-flex justify-content-between gap-3"><span class="text-body-secondary">{k}</span><span class="text-end">{e(v)}</span></li>' for k, v in rows)
 
 
@@ -199,7 +220,7 @@ def table():
         return ""
     ps = ordenados()
     head = "".join(f'<th scope="col"><a href="/{p["slug"]}/">{e(p["name"])}</a></th>' for p in ps)
-    linhas = (("À vista", lambda p: short(p).replace(" à vista", "")), ("Certificados", lambda p: p.get("cert_short", p["certificate"])),
+    linhas = (("À vista", lambda p: short(p).replace(" à vista", "")), ("Certificados de conclusão (curso livre)", lambda p: p.get("cert_short", p["certificate"])),
               ("Acesso", lambda p: p["access"]), ("Garantia", lambda p: p["guarantee"]), ("Para quem", lambda p: p["best"]))
     body = "".join(f'<tr><th scope="row">{k}</th>' + "".join(f"<td>{e(f(p))}</td>" for p in ps) + "</tr>" for k, f in linhas)
     data = br(max(p.get("checked", TODAY) for p in ps))
@@ -228,27 +249,49 @@ def ul(xs):
 def review_body(p):
     outros = [o for o in ordenados() if o["slug"] != p["slug"]]
     alt = "".join(f'<li class="list-group-item d-flex justify-content-between gap-3"><a href="/{o["slug"]}/">{e(o["name"])}</a><span class="text-body-secondary small text-end">{e(USO.get(o["slug"], o["best"]))} · {e(short(o))}</span></li>' for o in outros)
-    return f"""<div class="border rounded-3 p-3 my-3"><p class="fw-semibold mb-2">Veredito</p><p>{e(p['verdict'])}</p>
-<ul class="list-group list-group-flush small mb-3">{attrs(p)}</ul>{ctas(p)}</div>
+    # primeiro parágrafo: apresentação do curso, com a nota e o número de avaliações na data da conferência
+    intro = f"<p>{e(p['intro'])}</p>\n" if p.get("intro") else ""
+    # resumo com preço, garantia e botão logo depois da apresentação: no celular o botão aparecia só na 2ª tela
+    resumo = (f'<div class="border rounded-3 p-3 my-3 bg-body-tertiary"><p class="mb-2"><strong>{e(short(p))}</strong> · garantia de {e(p["guarantee"])} · '
+              f'acesso {e(p["access"].lower())} <span class="small text-body-secondary">(conferido em {br(p.get("checked", TODAY))})</span></p>{ctas(p)}</div>\n')
+    return f"""{intro}{resumo}<div class="border rounded-3 p-3 my-3"><p class="fw-semibold mb-2">Veredito</p><p>{e(p['verdict'])}</p>
+<ul class="list-group list-group-flush small mb-0">{attrs(p)}</ul></div>
 <div class="row g-3"><div class="col-md-6"><div class="border rounded-3 p-3 h-100"><h2 class="h6">É para você se…</h2>{ul(p['for'][:3])}</div></div>
 <div class="col-md-6"><div class="border rounded-3 p-3 h-100"><h2 class="h6">Não é para você se…</h2>{ul(p['notfor'][:3])}</div></div></div>
 <h2 class="h5 mt-4">O que ensina</h2>{ul(p['modules'])}
 <div class="row g-3 mt-2"><div class="col-md-6"><h2 class="h6">Pontos fortes</h2>{ul(p['pros'][:3])}</div><div class="col-md-6"><h2 class="h6">Pontos de atenção</h2>{ul(p['cons'][:3])}</div></div>
+<div class="my-4">{ctas(p)}</div>
 <h2 class="h5 mt-4">Alternativas</h2><ul class="list-group mb-2">{alt}</ul><p><a href="/melhor-curso-de-unhas-online/">Ver os 3 lado a lado</a></p>
 <p class="small text-body-secondary mt-4">Dados conferidos na página oficial em {br(p.get('checked', TODAY))}. Não é depoimento de aluno; preços podem mudar. Compre só pela página oficial (garantia de 7 dias).</p>"""
 
 
-def redirect(url):
+def redirect(url, slug, checkout=False):
+    """Página /ir/<curso>/ (checkout=False: página de vendas do produtor) e /ir/<curso>/checkout/ (pagamento).
+    Só aqui o src é normalizado para a Hotmart: minúsculas, só [a-z0-9] (ela remove o hífen e reserva o underline),
+    até 30 caracteres; na rota de checkout o src é cortado em 28 e ganha o sufixo "ck" (gadsf3 x gadsf3ck).
+    gclid/gbraid/wbraid/fbclid (da URL ou da sessão) seguem no hotlink com o mesmo nome.
+    Pixel do Meta: ViewContent na rota normal e AddToCart na de checkout; InitiateCheckout e Purchase vêm só da Hotmart.
+    Com JavaScript, o link de reserva visível recebe a mesma URL do redirecionamento (src e IDs de clique), para
+    quem tocar nele antes do redirecionamento ou em rede lenta não sair como tráfego sem origem.
+    Sem JavaScript valem o href estático do link e o meta refresh dentro de <noscript>, com o src padrão."""
     base = url + ("&" if "?" in url else "?") + "src="
-    url = base + "cursosdeunhas"
-    js = ("var q=new URLSearchParams(location.search),s=q.get('src');if(!s){try{s=sessionStorage.getItem('cdu_src')}catch(e){}}"
+    url = base + "cursosdeunhas" + ("ck" if checkout else "")
+    src = "n.slice(0,28)+'ck'" if checkout else "n"
+    js = ("(function(){var b=%s,n='cursosdeunhas',u;try{var q=new URLSearchParams(location.search),"
+          "g=function(k){try{return sessionStorage.getItem(k)}catch(e){return null}},s=q.get('src')||g('cdu_src');"
           "if(!s&&(q.get('gclid')||q.get('gbraid')||q.get('wbraid')))s='gads';"
-          "s=s?s.replace(/[^a-z0-9_-]/gi,'').slice(0,30):'cursosdeunhas';"
-          "window.fbq&&fbq('track','InitiateCheckout');setTimeout(function(){location.replace(%s+s)},900)" % json.dumps(base))
+          "n=String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,30)||n;u=b+%s;"
+          "['gclid','gbraid','wbraid','fbclid'].forEach(function(k){var v=q.get(k)||g('cdu_'+k);"
+          "if(v&&v.length<=500)u+='&'+k+'='+encodeURIComponent(v)})}catch(e){n='cursosdeunhas';u=b+%s}"
+          "try{var a=document.querySelector('a[rel~=\"sponsored\"]');if(a)a.href=u}catch(e){}"
+          "try{window.fbq&&fbq('track','%s',{content_name:%s,content_category:n})}catch(e){}"
+          "setTimeout(function(){location.replace(u)},900)})();"
+          % (json.dumps(base), src, src, "AddToCart" if checkout else "ViewContent", json.dumps(slug)))
+    txt = ('Abrindo a página de pagamento… <a href="%s" rel="sponsored nofollow">Ir para o pagamento na Hotmart</a>.' if checkout
+           else 'Abrindo a página oficial… <a href="%s" rel="sponsored nofollow">Ver a página oficial do curso</a>.') % e(url)
     return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">'
-            '<title>Redirecionando…</title>' + TAG + PIXEL + '<meta http-equiv="refresh" content="3;url=%s"></head><body><p>Abrindo a página oficial… '
-            '<a href="%s" rel="sponsored nofollow">Abrir a página oficial do curso na Hotmart</a>.</p><script>%s</script></body></html>'
-            % (e(url), e(url), js))
+            '<title>Redirecionando…</title>' + TAG + PIXEL + '<noscript><meta http-equiv="refresh" content="0;url=%s"></noscript></head><body><p>%s</p>'
+            '<script>%s</script></body></html>' % (e(url), txt, js))
 
 
 def main():
@@ -268,10 +311,10 @@ def main():
                                  "provider": {"@type": "Organization", "name": p["producer"]}}}, review_body(p)))
         d = OUT / "ir" / p["slug"]
         d.mkdir(parents=True, exist_ok=True)
-        (d / "index.html").write_text(redirect(p["hotlink"]), "utf-8")
+        (d / "index.html").write_text(redirect(p["hotlink"], p["slug"]), "utf-8")
         if p.get("checkout"):
             (d / "checkout").mkdir(exist_ok=True)
-            (d / "checkout" / "index.html").write_text(redirect(p["checkout"]), "utf-8")
+            (d / "checkout" / "index.html").write_text(redirect(p["checkout"], p["slug"], True), "utf-8")
     global ROUTES
     lab = lambda m: "Início" if m["path"] == "/" else m.get("crumb", m["h1"])
     rs = [(lab(m), m["path"]) for m, _ in pages] + [("Por onde começar", "/comecar/")]
@@ -288,8 +331,8 @@ def main():
     (OUT / "404.html").write_text(render(
         {"path": "/404.html", "type": "page", "title": "Página não encontrada | " + S["name"], "crumb": "Erro 404",
          "desc": "A página procurada não existe ou mudou de endereço.", "h1": "Página não encontrada", "robots": "noindex,follow"},
-        '<p>Essa página não existe ou mudou de endereço. <a href="/">Voltar ao início</a> ou veja os '
-        '<a href="/melhor-curso-de-unhas-online/">melhores cursos de unhas on-line</a>.</p>'), "utf-8")
+        '<p>Essa página não existe ou mudou de endereço. <a href="/">Voltar ao início</a> ou veja o '
+        '<a href="/melhor-curso-de-unhas-online/">comparativo dos 3 cursos que analisamos</a>.</p>'), "utf-8")
     sm = "".join("<url><loc>%s</loc><lastmod>%s</lastmod></url>" % u for u in urls)
     (OUT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                                      + sm + "</urlset>\n", "utf-8")
