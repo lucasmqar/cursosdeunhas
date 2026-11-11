@@ -54,6 +54,17 @@ SRCJS = ("<script>(function(){try{var q=new URLSearchParams(location.search),s=q
 # a página /ir/ roda normalmente só quando a navegação acontece.
 SPEC = ('<script type="speculationrules">{"prefetch":[{"source":"document","where":{"href_matches":["/ir/*","/ir/*\\\\?*"]},'
         '"eagerness":"moderate"}]}</script>')
+# Evento do Pixel NO TOQUE do botão de saída (diagnóstico de 11/11/2026: 261 visitas do Meta e 1 ViewContent, porque o
+# evento só saía no /ir/, que redireciona em menos de 1 s e o WebView do Instagram cancela o envio). O mesmo eventID
+# vai no link (eid=) e o /ir/ repete o evento com ele: a Meta conta uma vez só. Sem fbq (localhost, bloqueador) só
+# acrescenta o eid. Rota /checkout/ = AddToCart; as outras = ViewContent, como no /ir/.
+TAPJS = ("<script>document.addEventListener('click',function(v){try{var a=v.target&&v.target.closest&&v.target.closest('a[href*=\"/ir/\"]');"
+         "if(!a)return;var m=a.pathname.match(/^\\/ir\\/([a-z0-9-]+)\\/(checkout\\/)?/);if(!m)return;"
+         "var id=(+new Date()).toString(36)+'.'+Math.floor(Math.random()*1e9).toString(36);"
+         "if(!/[?&]eid=/.test(a.href))a.href+=(a.href.indexOf('?')<0?'?':'&')+'eid='+id;else id=(a.href.match(/[?&]eid=([^&]+)/)||[])[1]||id;"
+         "window.fbq&&fbq('track',m[2]?'AddToCart':'ViewContent',{content_name:m[1],content_category:window.cduSrc||'cursosdeunhas'},{eventID:id})"
+         "}catch(e){}},true)</script>")
+SRCJS += TAPJS
 CL = S.get("clarity", "")
 if CL:
     # o script do Clarity só é pedido depois do evento load da janela (não disputa banda com o CSS e o texto)
@@ -246,7 +257,7 @@ def cards():
     for p in ordenados():
         out.append(f"""<div class="col"><article class="card h-100"><div class="card-body"><span class="badge badge-uso mb-2">{e(USO.get(p['slug'], p['best']))}</span>
 <h3 class="card-title h5"><a class="link-body-emphasis" href="/{p['slug']}/">{e(p['name'])}</a></h3><p class="card-text">{e(p['summary'])}</p>
-<p class="mb-2"><strong class="fs-5">{e(short(p))}</strong> <span class="small text-body-secondary">· garantia de {e(p['guarantee'])}</span></p>{ctas(p, True)}</div>
+<p class="mb-2"><a class="link-body-emphasis text-decoration-none" href="{hot(p)}" rel="sponsored nofollow"><strong class="fs-5">{e(short(p))}</strong></a> <span class="small text-body-secondary">· garantia de {e(p['guarantee'])}</span></p>{ctas(p, True)}</div>
 <ul class="list-group list-group-flush small border-top">{attrs(p)}</ul></article></div>""")
     return '<div class="row row-cols-1 row-cols-md-3 g-3 my-3">' + "".join(out) + "</div>"
 
@@ -293,7 +304,7 @@ def review_body(p):
     fatos = ('<ul class="list-unstyled checks mb-3">' + "".join(f"<li>{e(x)}</li>" for x in p["facts"]) + "</ul>") if p.get("facts") else ""
     parc = re.search(r"\((.*?)\)", p["price"])
     parc = f' <span class="text-body-secondary">{e(parc.group(1))}</span>' if parc else ""
-    resumo = (f'{hook}{fatos}<div class="border rounded-3 p-3 mb-3 bg-body-tertiary"><p class="mb-2"><strong class="fs-5">{e(short(p))}</strong>{parc} '
+    resumo = (f'{hook}{fatos}<div class="border rounded-3 p-3 mb-3 bg-body-tertiary"><p class="mb-2"><a class="link-body-emphasis text-decoration-none" href="{hot(p)}" rel="sponsored nofollow"><strong class="fs-5">{e(short(p))}</strong>{parc}</a> '
               f'<span class="small text-body-secondary">(conferido em {br(p.get("checked", TODAY))})</span></p>{ctas(p)}</div><!--AVISO-->\n')
     return f"""{resumo}{intro}<div class="border rounded-3 p-3 my-3"><p class="fw-semibold mb-2">Veredito</p><p>{e(p['verdict'])}</p>
 <ul class="list-group list-group-flush small mb-0">{attrs(p)}</ul></div>
@@ -351,7 +362,8 @@ IR_HOOK = ("<script>(function(w){try{var P=w.performance,N=function(){return P&&
 # Regra de saída (ms desde o IR_HOOK): nunca antes de IR_PISO; Google pronto = hit concluído, gtm.js bloqueado, hit iniciado
 # há IR_GVIVO (keepalive segue sozinho) ou falha há IR_GFALHA (tempo do reenvio); Meta pronto = concluído, bloqueado, sem
 # Pixel ou passou IR_META (campanhas do Meta pausadas: não vale segurar o visitante por ele). Sai SEMPRE em IR_TETO.
-IR_PISO, IR_GVIVO, IR_GFALHA, IR_META, IR_TETO = 150, 700, 600, 600, 2500
+# 11/11/2026: com o evento no toque, o Meta não precisa segurar o visitante (IR_META 600 -> 150) e o teto cai para 1,2 s
+IR_PISO, IR_GVIVO, IR_GFALHA, IR_META, IR_TETO = 150, 250, 600, 150, 1200
 IR_CSS = ("body{margin:0;min-height:90vh;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;"
           "font:16px/1.5 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#fff;color:#212529;text-align:center}"
           "p{margin:0 0 12px}a.b{display:inline-block;padding:12px 20px;border-radius:8px;background:#6E1F45;color:#fff;"
@@ -371,14 +383,14 @@ def redirect(url, slug, checkout=False):
     url = base + "cursosdeunhas" + ("ck" if checkout else "")
     src = "n.slice(0,28)+'ck'" if checkout else "n"
     ev = "AddToCart" if checkout else "ViewContent"
-    js = ("(function(){var b=%s,n='cursosdeunhas',u;try{var q=new URLSearchParams(location.search),"
+    js = ("(function(){var b=%s,n='cursosdeunhas',u,E;try{var q=new URLSearchParams(location.search);E=q.get('eid');var "
           "g=function(k){try{return sessionStorage.getItem(k)}catch(e){return null}},s=q.get('src')||g('cdu_src');"
           "if(!s&&(q.get('gclid')||q.get('gbraid')||q.get('wbraid')))s='gads';"
           "n=String(s||'').toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,30)||n;u=b+%s;"
           "['gclid','gbraid','wbraid','fbclid'].forEach(function(k){var v=q.get(k)||g('cdu_'+k);"
           "if(v&&v.length<=500)u+='&'+k+'='+encodeURIComponent(v)})}catch(e){n='cursosdeunhas';u=b+%s}"
           "try{var a=document.querySelector('a[rel~=\"sponsored\"]');if(a)a.href=u}catch(e){}"
-          "try{window.fbq&&fbq('track','%s',{content_name:%s,content_category:n})}catch(e){}"
+          "try{window.fbq&&fbq('track','%s',{content_name:%s,content_category:n},E?{eventID:String(E).slice(0,60)}:{})}catch(e){}"
           "var R=window.__ir||{},P=window.performance,N=function(){return P&&P.now?P.now():+new Date},T=R.t0||N(),d=0,iv,"
           "go=function(){if(d)return;d=1;try{clearInterval(iv)}catch(e){}location.replace(u)},"
           "ck=function(){try{var o=N(),t=o-T;if(t<%d)return;"
