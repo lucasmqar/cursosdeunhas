@@ -43,7 +43,14 @@
     "hotlink": "https://go.hotmart.com/Q108389424A",
     "checked": "2026-11-09",
     "checkout": "https://go.hotmart.com/Q108389424A?ap=b64d",
-    "cert_short": "2 (digitais, com carga horária)"
+    "cert_short": "2 (digitais, com carga horária)",
+    "hook": "Para quem já faz unhas e quer aprender alongamento: fibra, gel, polygel e acrilfix, mais esmaltação em gel e decoração.",
+    "facts": [
+      "5 técnicas de alongamento num só curso",
+      "2 certificados digitais com carga horária",
+      "Nota 4,7 em 2.245 avaliações de alunos",
+      "Acesso vitalício e 7 dias de garantia"
+    ]
   },
   {
     "slug": "nail-academy",
@@ -89,7 +96,14 @@
     "hotlink": "https://go.hotmart.com/J108389456B",
     "checked": "2026-11-09",
     "checkout": "https://go.hotmart.com/J108389456B?ap=4d48",
-    "cert_short": "17 (um por nível)"
+    "cert_short": "17 (um por nível)",
+    "hook": "Um curso só, do zero ao alongamento: manicure, gel, fibra de vidro e decoração em 17 níveis, para estudar em casa, no seu ritmo.",
+    "facts": [
+      "17 níveis, da manicure ao alongamento e à decoração",
+      "17 certificados de conclusão, um por nível",
+      "Nota 4,8 em 614 avaliações de alunos",
+      "Acesso vitalício e 7 dias de garantia"
+    ]
   },
   {
     "slug": "curso-de-manicure-e-pedicure-profissional",
@@ -133,6 +147,13 @@
     "hotlink": "https://go.hotmart.com/H108389444X",
     "checked": "2026-11-09",
     "checkout": "https://go.hotmart.com/H108389444X?ap=46e8",
-    "cert_short": "1 (digital, com carga horária)"
+    "cert_short": "1 (digital, com carga horária)",
+    "hook": "A porta de entrada mais barata: manicure e pedicure, do preparo ao acabamento, para aprender em casa.",
+    "facts": [
+      "7 módulos, do preparo ao atendimento",
+      "Certificado digital com carga horária",
+      "Nota 4,9 em 243 avaliações de alunos",
+      "Acesso vitalício e 7 dias de garantia"
+    ]
   }
 ]
