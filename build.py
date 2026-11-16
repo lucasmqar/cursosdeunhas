@@ -100,7 +100,11 @@ CSS = (":root{--bs-link-color:#6E1F45;--bs-link-color-rgb:110,31,69;--bs-link-ho
        # 93% das sessões em celular; na análise do Nail Academy 65% saíam antes de rolar 25% e só 3 de 266 tocaram o botão)
        ".checks li{position:relative;padding-left:1.6rem;margin-bottom:.3rem}.checks li::before{content:'\\2713';position:absolute;left:0;color:#6E1F45;font-weight:700}"
        ".escolha .list-group-item{border-color:#6E1F45;color:#6E1F45;font-weight:600}"
-       "@media(max-width:575.98px){.btn-cta{display:block;width:100%}}"
+       # e numa linha só: com btn-lg (20 px) o texto quebrava em 2 linhas dentro da caixa do resumo (78 px de altura em
+       # 360–375 px) e empurrava o botão do comparativo e da home para baixo da primeira tela; 17 px cabe em 1 linha a partir de
+       # 360 px e 16 px a partir de 320 px
+       "@media(max-width:575.98px){.btn-cta{display:block;width:100%;font-size:1.0625rem;padding-left:.5rem;padding-right:.5rem}}"
+       "@media(max-width:359.98px){.btn-cta{font-size:1rem}}"
        # celular: cabeçalho numa linha só (a marca e os 2 links cabem a partir de 336 px), alvo de toque >= 24 px
        "@media(max-width:575.98px){.navbar-brand{font-size:1.05rem;margin-right:.5rem}.navbar .nav-link{font-size:.875rem;padding-top:.125rem;padding-bottom:.125rem}"
        ".navbar .gap-3{gap:.75rem!important}}"
@@ -325,7 +329,7 @@ def barra_fixa(p):
     return (f'<div id="cta-fixo" class="d-md-none fixed-bottom bg-body border-top shadow px-3 py-2" hidden>'
             f'<div class="d-flex align-items-center gap-2"><span class="small flex-grow-1 lh-sm"><strong>{e(short(p))}</strong><br>'
             f'<span class="text-body-secondary">link de parceria</span></span>'
-            f'<a class="btn btn-primary" href="{hot(p)}" rel="sponsored nofollow" data-saida="fixo">Ver conteúdo e preço'
+            f'<a class="btn btn-primary text-nowrap" href="{hot(p)}" rel="sponsored nofollow" data-saida="fixo">Ver conteúdo e preço'
             f'<span class="visually-hidden">: {e(p["name"])}</span></a></div></div>'
             '<script>document.addEventListener("DOMContentLoaded",function(){try{var b=document.getElementById("cta-fixo");'
             'if(!b||!("IntersectionObserver"in window)||!("isIntersecting"in IntersectionObserverEntry.prototype))return;'
@@ -348,7 +352,7 @@ def barra_fixa(p):
 #   Meta: ViewContent/AddToCart vão por <img> (o navegador cancela na troca de página), então só contam CONCLUÍDOS
 #     (m, via PerformanceObserver); me = fbevents.js não carregou.
 IR_HOOK = ("<script>(function(w){try{var P=w.performance,N=function(){return P&&P.now?P.now():+new Date},"
-           "R=w.__ir={t0:N(),gs:0,g:0,gf:0,ge:0,m:0,me:0},"
+           "R=w.__ir={t0:N(),gs:0,g:0,gf:0,ge:0,gl:0,m:0,me:0},"
            "G=/\\/pagead\\/(1p-)?conversion\\/\\d+\\/[^#]*[?&]label=/,M=/facebook\\.com\\/tr\\/?\\?[^#]*ev=%s/,"
            "ok=function(){R.g=R.g||N()},ko=function(){R.gf=N()},"
            "see=function(u,pr){try{u=String(u&&u.url||u||'');if(G.test(u)){R.gs=R.gs||N();"
@@ -357,13 +361,22 @@ IR_HOOK = ("<script>(function(w){try{var P=w.performance,N=function(){return P&&
            "var n=w.navigator,b=n&&n.sendBeacon;if(b)n.sendBeacon=function(u){var r=b.apply(n,arguments);if(r)see(u,1);return r};"
            "try{new PerformanceObserver(function(l){var a=l.getEntries();for(var k=0;k<a.length;k++)see(a[k].name)}).observe({type:'resource',buffered:true})}catch(x){}"
            "w.addEventListener('error',function(v){var s=v&&v.target&&v.target.src||'';"
-           "if(/googletagmanager\\.com\\/gtm\\.js/.test(s))R.ge=N();if(/connect\\.facebook\\.net/.test(s))R.me=N()},true)"
+           "if(/googletagmanager\\.com\\/gtm\\.js/.test(s))R.ge=N();if(/connect\\.facebook\\.net/.test(s))R.me=N()},true);"
+           # o evento load de um <script> não chega ao window (a especificação o tira do caminho), por isso a escuta é no document
+           "w.document.addEventListener('load',function(v){var s=v&&v.target&&v.target.src||'';"
+           "if(/googletagmanager\\.com\\/gtm\\.js/.test(s))R.gl=N()},true)"
            "}catch(x){}})(window);</script>")
 # Regra de saída (ms desde o IR_HOOK): nunca antes de IR_PISO; Google pronto = hit concluído, gtm.js bloqueado, hit iniciado
 # há IR_GVIVO (keepalive segue sozinho) ou falha há IR_GFALHA (tempo do reenvio); Meta pronto = concluído, bloqueado, sem
-# Pixel ou passou IR_META (campanhas do Meta pausadas: não vale segurar o visitante por ele). Sai SEMPRE em IR_TETO.
+# Pixel ou passou IR_META (campanhas do Meta pausadas: não vale segurar o visitante por ele). Passado IR_TETO, sai
+# assim que o Google estiver pronto ou o gtm.js tiver carregado há IR_POS_GTM sem hit; sai SEMPRE em IR_TETO_LENTO.
 # 11/11/2026: com o evento no toque, o Meta não precisa segurar o visitante (IR_META 600 -> 150) e o teto cai para 1,2 s
+# 16/11/2026 (teste com rede simulada): se o gtm.js ainda está baixando (fora do cache, rede 3G) em 1,2 s, o redirecionamento
+# saía antes de o hit da conversão começar e o clique pago não era contado. Agora, enquanto o gtm.js baixa e nenhum hit
+# começou, o teto vai a IR_TETO_LENTO; quando ele termina de carregar (gl), há IR_POS_GTM para o hit começar. Quem tem o
+# gtm.js em cache (veio de outra página do site) ou bloqueador não espera nada a mais.
 IR_PISO, IR_GVIVO, IR_GFALHA, IR_META, IR_TETO = 150, 250, 600, 150, 1200
+IR_POS_GTM, IR_TETO_LENTO = 1000, 3500
 IR_CSS = ("body{margin:0;min-height:90vh;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;"
           "font:16px/1.5 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#fff;color:#212529;text-align:center}"
           "p{margin:0 0 12px}a.b{display:inline-block;padding:12px 20px;border-radius:8px;background:#6E1F45;color:#fff;"
@@ -395,12 +408,15 @@ def redirect(url, slug, checkout=False):
           "go=function(){if(d)return;d=1;try{clearInterval(iv)}catch(e){}location.replace(u)},"
           "ck=function(){try{var o=N(),t=o-T;if(t<%d)return;"
           "var gp=R.g||R.ge||(R.gs&&o-R.gs>=%d)||(R.gf&&o-R.gf>=%d)||!document.querySelector('script[src*=\"googletagmanager.com/gtm.js\"]'),"
-          "mp=R.m||R.me||!window.fbq||t>=%d;if(gp&&mp)go()}catch(e){go()}};"
+          "mp=R.m||R.me||!window.fbq||t>=%d;if(gp&&mp)go();"
+          # passou do teto normal: sai, a não ser que o gtm.js ainda esteja baixando ou tenha acabado de carregar sem hit
+          "else if(t>=%d&&(gp||(R.gl&&o-R.gl>=%d)||t>=%d))go()}catch(e){go()}};"
           # toque no link visível: não navega por cima do vigia (perderia o hit); sai pela mesma regra, no máximo em 600 ms
           "try{var A=document.querySelector('a[rel~=\"sponsored\"]');if(A)A.addEventListener('click',function(v){"
           "try{v.preventDefault()}catch(e){}setTimeout(go,600)},false)}catch(e){}"
           "try{iv=setInterval(ck,30);ck()}catch(e){}setTimeout(go,Math.max(0,%d-(N()-T)))})();"
-          % (json.dumps(base), src, src, ev, json.dumps(slug), IR_PISO, IR_GVIVO, IR_GFALHA, IR_META, IR_TETO))
+          % (json.dumps(base), src, src, ev, json.dumps(slug), IR_PISO, IR_GVIVO, IR_GFALHA, IR_META,
+             IR_TETO, IR_POS_GTM, IR_TETO_LENTO, IR_TETO_LENTO))
     txt = (('<p>Abrindo o pagamento na Hotmart…</p><a class="b" href="%s" rel="sponsored nofollow">Ir para o pagamento</a>' if checkout
             else '<p>Abrindo a página oficial do curso…</p><a class="b" href="%s" rel="sponsored nofollow">Ver a página oficial</a>') % e(url)
            + '<p class="n">%s · link de parceria: recebemos comissão se você comprar.</p>' % e(S["name"]))
